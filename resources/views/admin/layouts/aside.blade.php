@@ -36,11 +36,11 @@
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
 
-                <li class="nav-item {{Request::is('home/') ? 'menu-open' : ''}}">
-                    <a href="#" class="nav-link {{Request::is('home/') ? 'active' : ''}}">
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>
-                            الاعدادات الرئيسية
+                            main
                             <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>
@@ -48,7 +48,7 @@
                         <li class="nav-item">
                             <a href="./index.html" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>عدادات الموقع</p>
+                                <p>Main site settings</p>
                             </a>
                         </li>
                     </ul>
@@ -58,19 +58,19 @@
 
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
 
-                <li class="nav-item {{Request::is('students/') ? 'menu-open' : ''}}">
-                    <a href="#" class="nav-link {{Request::is('students/army') ? 'active' : ''}}">
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>
-                            بيانات الطلاب الفرعية
+                            Departments
                             <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="{{route('army.index')}}" class="nav-link">
+                            <a href="{{route('department.index')}}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>الجيش</p>
+                                <p>Departments</p>
                             </a>
                         </li>
                     </ul>
