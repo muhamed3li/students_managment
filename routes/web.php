@@ -1,6 +1,11 @@
 <?php
 
+use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\DepartmentController;
+use App\Http\Controllers\GroupController;
+use App\Http\Controllers\LevelController;
+use App\Http\Controllers\TimeController;
+use App\Models\Level;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,3 +24,12 @@ Route::get('/', function () {
 });
 
 Route::resource('department',DepartmentController::class);
+
+Route::resource('attendance',AttendanceController::class);
+
+Route::prefix('groups')->group(function(){
+    Route::resource('group',GroupController::class);
+    Route::resource('time',TimeController::class);
+});
+
+Route::resource('level',LevelController::class);

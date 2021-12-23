@@ -2,11 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Attendance;
 use App\Models\Department;
 use Illuminate\Http\Request;
 
 class DepartmentController extends Controller
 {
+    public $department;
+    public function __construct(Department $department)
+    {
+        $this->department = $department;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +20,9 @@ class DepartmentController extends Controller
      */
     public function index()
     {
-        $all = Department::get();
+        // $all = $this->department::get();
+        // $x = new Attendance();
+        // dd($x->getAttributes());
         return view('admin.pages.department.index',compact('all'));
     }
 
@@ -37,7 +45,7 @@ class DepartmentController extends Controller
     public function store(Request $request)
     {
         $this->validation();
-        Department::create([
+        $this->department::create([
             'name' => $request->name,
             'description' => $request->description,
         ]);
@@ -89,7 +97,7 @@ class DepartmentController extends Controller
      * @param  \App\Models\Department  $department
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Department $department)
+    public function destroy(Request $request, Department $department)
     {
         $department->delete();
         return redirect()->back()->with('success', 'Department was Deleted successfully');

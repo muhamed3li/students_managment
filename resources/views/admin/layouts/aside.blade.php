@@ -34,48 +34,101 @@
 
         <!-- Sidebar Menu -->
         <nav class="mt-2">
-            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-tachometer-alt"></i>
-                        <p>
-                            main
-                            <i class="right fas fa-angle-left"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="./index.html" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Main site settings</p>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
 
 
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
 
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
+
+
+
+                <li class="nav-item {{currentRequest('attendance') ? 'menu-open' : ''}}">
+                    <a href="#" class="nav-link {{currentRequest('attendance') ? 'active' : ''}}">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>
-                            Departments
+                            الحضور
                             <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>
-                    <ul class="nav nav-treeview">
+                    <ul class="nav nav-treeview" style="display: {{currentRequest('attendance') ? 'block' : 'none'}};">
                         <li class="nav-item">
-                            <a href="{{route('department.index')}}" class="nav-link">
+                            <a href="{{route('attendance.index')}}"
+                                class="nav-link {{currentRequest('attendance') ? 'active' : ''}}">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Departments</p>
+                                <p>جدول الحضور</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="./index2.html" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Dashboard v2</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="./index3.html" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Dashboard v3</p>
                             </a>
                         </li>
                     </ul>
                 </li>
+
+
+                <li class="nav-item {{currentRequest('groups') ? 'menu-open' : ''}}">
+                    <a href="#" class="nav-link {{currentRequest('groups') ? 'active' : ''}}">
+                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <p>
+                            المجاميع
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview" style="display: {{currentRequest('groups') ? 'block' : 'none'}};">
+                        <li class="nav-item">
+                            <a href="{{route('group.index')}}"
+                                class="nav-link {{currentRequest('groups/group') ? 'active' : ''}}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>جدول المجاميع</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{route('time.index')}}"
+                                class="nav-link {{currentRequest('groups/time') ? 'active' : ''}}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>جدول المواعيد</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+
+
+
+                <li class="nav-item {{currentRequest('level') ? 'menu-open' : ''}}">
+                    <a href="#" class="nav-link {{currentRequest('level') ? 'active' : ''}}">
+                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <p>
+                            المستويات
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview" style="display: {{currentRequest('level') ? 'block' : 'none'}};">
+                        <li class="nav-item">
+                            <a href="{{route('level.index')}}"
+                                class="nav-link {{currentRequest('level') ? 'active' : ''}}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>جدول المستويات</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+
             </ul>
+
+
+
+
+
+
         </nav>
         <!-- /.sidebar-menu -->
     </div>

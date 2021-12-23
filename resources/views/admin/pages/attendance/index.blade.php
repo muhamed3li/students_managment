@@ -6,31 +6,43 @@
 
     <div class="card">
         <div class="card-header">
-            <h3 class="card-title">Departments</h3>
-            <a href="{{route('department.create')}}" class="btn btn-success">Create</a>
+            <h3 class="card-title">الحضور</h3>
+            <a href="{{route($model.'.create')}}" class="btn btn-success float-right">انشاء</a>
         </div>
+        @if (session()->has('success'))
+        <div class="alert alert-success" id="success">
+            {{session()->get('success')}}
+        </div>
+        @endif
         <!-- /.card-header -->
         <div class="card-body">
             <table id="example1" class="table table-bordered table-striped">
                 <thead>
                     <tr>
-                        <th>id</th>
-                        <th>name</th>
-                        <th>description</th>
-                        <th>action</th>
+                        @foreach ($columns as $column)
+                        <th>{{$column}}</th>
+                        @endforeach
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($all as $item)
+                    @foreach ($all as $index => $item)
                     <tr>
-                        <td>{{$item->id}}</td>
-                        <td>{{$item->name}}</td>
-                        <td>{{$item->description}}</td>
+                        <td>{{++$index}}</td>
+                        <td>{{$item->student->name}}</td>
+
+                        <td class="{{$item->attend ?'text-success' : 'text-danger'}}">
+                            {{$item->attend ? 'حضر' : 'غائب'}}
+                        </td>
+
+                        <td>{{$item->day}}</td>
+                        <td>{{$item->created_at}}</td>
+                        <td>{{$item->updated_at}}</td>
                         <td class="text-right">
-                            <a class="btn btn-primary" href="{{route('department.edit',$item->id)}}">
+                            <a class="btn btn-primary" href="{{route($model.'.edit',$item->id)}}">
                                 <i class="fas fa-pen"></i>
                             </a>
-                            <form method="POST" action="{{route('department.destroy',$item->id)}}">
+                            <form method="POST" action="{{route($model.'.destroy',$item->id)}}">
                                 @csrf
                                 @method('DELETE')
                                 <input type="hidden" name="id" value="{{$item->id}}">
@@ -44,10 +56,10 @@
                 </tbody>
                 <tfoot>
                     <tr>
-                        <th>id</th>
-                        <th>name</th>
-                        <th>description</th>
-                        <th>action</th>
+                        @foreach ($columns as $column)
+                        <th>{{$column}}</th>
+                        @endforeach
+                        <th>Action</th>
                     </tr>
                 </tfoot>
             </table>
@@ -66,7 +78,7 @@
 <script>
     $(function () {
       $("#example1").DataTable({
-        "responsive": true, "lengthChange": false, "autoWidth": false,
+        "responsive": true, "lengthChange": true, "autoWidth": false,
         "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
       }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
       $('#example2').DataTable({

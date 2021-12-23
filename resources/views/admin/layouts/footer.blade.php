@@ -17,7 +17,7 @@
 
 <!-- REQUIRED SCRIPTS -->
 <!-- jQuery -->
-<script src="{{ asset('/adminLTE') }}/plugins/jquery/jquery.js"></script>
+<script src="{{ asset('/adminLTE') }}/plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap -->
 <script src="{{ asset('/adminLTE') }}/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- overlayScrollbars -->
@@ -34,10 +34,11 @@
 <!-- ChartJS -->
 <script src="{{ asset('/adminLTE') }}/plugins/chart.js/Chart.min.js"></script>
 
+{{--
 <!-- AdminLTE for demo purposes -->
 <script src="{{ asset('/adminLTE') }}/dist/js/demo.js"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script src="{{ asset('/adminLTE') }}/dist/js/pages/dashboard2.js"></script>
+<script src="{{ asset('/adminLTE') }}/dist/js/pages/dashboard2.js"></script> --}}
 
 
 
