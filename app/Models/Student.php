@@ -9,4 +9,14 @@ class Student extends Model
 {
     use HasFactory;
     protected $guarded = [];
+
+    public function group()
+    {
+        return $this->belongsTo(Group::class ,'group_id');
+    }
+
+    public function level()
+    {
+        return $this->belongsTo(Level::class ,'level_id');
+    }
 }

@@ -26,8 +26,8 @@ class ExamController extends Controller
             'level_id' => 'required|int|exists:levels,id',
             'group_id' => 'required|int|exists:groups,id',
             'exam_date' => 'required|date',
-            'exam_max' => 'required|float',
-            'exam_min' => 'required|float',
+            'exam_max' => 'required|numeric',
+            'exam_min' => 'required|numeric',
         ]);
     }
 

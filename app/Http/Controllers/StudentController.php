@@ -22,18 +22,36 @@ class StudentController extends Controller
     private function validation()
     {
         request()->validate([
-            'student_id' => 'required|int',
-            'attend' => 'boolean',
-            'day' => 'required|date',
+            'name' => 'required|string',
+            'gender' => 'boolean',
+            'address' => 'nullable|string',
+            'home_phone' => 'nullable|string',
+            'phone' => 'nullable|string',
+            'father_name' => 'required|string',
+            'father_phone' => 'nullable|string',
+            'school' => 'nullable|string',
+            'status' => 'required|in:reserve,in,out,fired', //
+            'reserve_paid' => 'required|numeric',
+            'level_id' => 'required|int|exists:levels,id',
+            'group_id' => 'required|int|exists:groups,id',
         ]);
     }
 
     public function attReq()
     {
         return [
-            'student_id' => request('student_id'),
-            'attend' => request('attend',false),
-            'day' => request('day'),
+            'name' => request('name'),
+            'gender' => request('gender',false),
+            'address' => request('address'),
+            'home_phone' => request('home_phone'),
+            'phone' => request('phone'),
+            'father_name' => request('father_name'),
+            'father_phone' => request('father_phone'),
+            'school' => request('school'),
+            'status' => request('status'),
+            'reserve_paid' => request('reserve_paid'),
+            'level_id' => request('level_id'),
+            'group_id' => request('group_id'),
         ];
     }
 }

@@ -41,38 +41,7 @@
 
 
 
-                <li class="nav-item {{currentRequest('attendance') ? 'menu-open' : ''}}">
-                    <a href="#" class="nav-link {{currentRequest('attendance') ? 'active' : ''}}">
-                        <i class="nav-icon fas fa-tachometer-alt"></i>
-                        <p>
-                            الحضور
-                            <i class="right fas fa-angle-left"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview" style="display: {{currentRequest('attendance') ? 'block' : 'none'}};">
-                        <li class="nav-item">
-                            <a href="{{route('attendance.index')}}"
-                                class="nav-link {{currentRequest('attendance') ? 'active' : ''}}">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>جدول الحضور</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="./index2.html" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Dashboard v2</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="./index3.html" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Dashboard v3</p>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-
-
+                {{-- groups --}}
                 <li class="nav-item {{currentRequest('groups') ? 'menu-open' : ''}}">
                     <a href="#" class="nav-link {{currentRequest('groups') ? 'active' : ''}}">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
@@ -102,6 +71,80 @@
 
 
 
+                {{-- students --}}
+                <li class="nav-item {{currentRequest('students') ? 'menu-open' : ''}}">
+                    <a href="#" class="nav-link {{currentRequest('students') ? 'active' : ''}}">
+                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <p>
+                            الطلبة
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview" style="display: {{currentRequest('students') ? 'block' : 'none'}};">
+                        <li class="nav-item">
+                            <a href="{{route('student.index')}}"
+                                class="nav-link {{currentRequest('students/student') ? 'active' : ''}}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>جدول الطلبة</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{route('attendance.index')}}"
+                                class="nav-link {{currentRequest('students/attendance') ? 'active' : ''}}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>جدول الحضور</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{route('note.index')}}"
+                                class="nav-link {{currentRequest('students/note') ? 'active' : ''}}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>جدول الملاحظات</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{route('payment.index')}}"
+                                class="nav-link {{currentRequest('students/payment') ? 'active' : ''}}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>جدول الماليات</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+
+
+                {{-- exams --}}
+                <li class="nav-item {{currentRequest('exams') ? 'menu-open' : ''}}">
+                    <a href="#" class="nav-link {{currentRequest('exams') ? 'active' : ''}}">
+                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <p>
+                            الامتحانات
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview" style="display: {{currentRequest('exams') ? 'block' : 'none'}};">
+                        <li class="nav-item">
+                            <a href="{{route('exam.index')}}"
+                                class="nav-link {{currentRequest('exams/exam') ? 'active' : ''}}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>جدول الامتحانات</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{route('examattindance.index')}}"
+                                class="nav-link {{currentRequest('exams/examattindance') ? 'active' : ''}}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>جدول حضور الامتحانات</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+
+
+
+                {{-- Levels --}}
                 <li class="nav-item {{currentRequest('level') ? 'menu-open' : ''}}">
                     <a href="#" class="nav-link {{currentRequest('level') ? 'active' : ''}}">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
@@ -121,6 +164,27 @@
                     </ul>
                 </li>
 
+
+
+                {{-- Expences --}}
+                <li class="nav-item {{currentRequest('expence') ? 'menu-open' : ''}}">
+                    <a href="#" class="nav-link {{currentRequest('expence') ? 'active' : ''}}">
+                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <p>
+                            المصروفات
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview" style="display: {{currentRequest('expence') ? 'block' : 'none'}};">
+                        <li class="nav-item">
+                            <a href="{{route('expence.index')}}"
+                                class="nav-link {{currentRequest('expence') ? 'active' : ''}}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>جدول المصروفات</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
 
             </ul>
 

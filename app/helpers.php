@@ -18,6 +18,21 @@ if(!function_exists('form_text'))
 }
 
 
+if(!function_exists('form_textarea'))
+{
+    function form_textarea($name,$old = "")
+    {
+        echo <<<END
+        <div class="card-body">
+            <div class="form-group">
+                <label for="$name">$name</label>
+                <textarea type="text" class="form-control" id="$name" placeholder="$name" name="$name">$old</textarea>
+            </div>
+        </div>
+        END;
+    }
+}
+
 
 if(!function_exists('form_select'))
 {
@@ -56,6 +71,42 @@ if(!function_exists('form_select'))
         echo $result;
     }
 }
+
+
+if(!function_exists('form_select_array'))
+{
+    function form_select_array($name,$arr,$selected = "")
+    {
+        $result = <<<END
+        <div class="card-body">
+            <div class="form-group">
+                <label for="$name">$name</label>
+                <select class="form-control" name="$name" id="$name">
+        END;
+
+        foreach($arr as $item)
+        {
+            if($item == $selected){
+                $result .= <<<END
+                    <option selected value="{$item}">{$item}</option>
+                END;
+            }
+            else
+            {
+                $result .= <<<END
+                    <option value="{$item}">{$item}</option>
+                END;
+            }
+        }
+        $result .= <<<END
+                </select>
+            </div>
+        </div>
+        END;
+        echo $result;
+    }
+}
+
 
 
 if(!function_exists('form_check'))

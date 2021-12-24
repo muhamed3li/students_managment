@@ -9,4 +9,14 @@ class Exam extends Model
 {
     use HasFactory;
     protected $guarded = [];
+
+    public function level()
+    {
+        return $this->belongsTo(Level::class ,'level_id');
+    }
+
+    public function group()
+    {
+        return $this->belongsTo(Group::class ,'group_id');
+    }
 }

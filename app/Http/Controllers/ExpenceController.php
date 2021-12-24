@@ -24,7 +24,7 @@ class ExpenceController extends Controller
         request()->validate([
             'name' => 'required|string',
             'reason' => 'nullable|string',
-            'amount' => 'required|float',
+            'amount' => 'required|numeric',
             'date' => 'nullable|date',
         ]);
     }

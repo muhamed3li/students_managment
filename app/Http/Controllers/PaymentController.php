@@ -22,18 +22,26 @@ class PaymentController extends Controller
     private function validation()
     {
         request()->validate([
-            'student_id' => 'required|int',
-            'attend' => 'boolean',
-            'day' => 'required|date',
+            'pay_from' => 'required|date',
+            'pay_to' => 'required|date',
+            'month_paid' => 'required|numeric',
+            'malazem_paid' => 'required|numeric',
+            'discount' => 'required|numeric',
+            'student_id' => 'required|int|exists:students,id',
+            'group_id' => 'required|int|exists:groups,id',
         ]);
     }
 
     public function attReq()
     {
         return [
+            'pay_from' => request('pay_from'),
+            'pay_to' => request('pay_to'),
+            'month_paid' => request('month_paid'),
+            'malazem_paid' => request('malazem_paid'),
+            'discount' => request('discount'),
             'student_id' => request('student_id'),
-            'attend' => request('attend',false),
-            'day' => request('day'),
+            'group_id' => request('group_id'),
         ];
     }
 }

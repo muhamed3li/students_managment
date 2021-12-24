@@ -21,11 +21,17 @@ class CreatePaymentsTable extends Migration
             $table->decimal('malazem_paid');
             $table->decimal('discount');
             $table->unsignedBigInteger('student_id')->nullable();
+            $table->unsignedBigInteger('group_id')->nullable();
             $table->timestamps();
 
             $table->foreign('student_id')
             ->references('id')
             ->on('students')
+            ->onDelete('set null');
+
+            $table->foreign('group_id')
+            ->references('id')
+            ->on('groups')
             ->onDelete('set null');
         });
     }

@@ -19,7 +19,8 @@ class PaymentFactory extends Factory
             'month_paid' => $this->faker->randomFloat(2,0,100),
             'malazem_paid' => $this->faker->randomFloat(2,0,100),
             'discount' => $this->faker->randomFloat(2,0,100),
-            'student_id' => rand(1,9)
+            'student_id' => rand(1,9),
+            'group_id' => rand(1,9)
         ];
     }
 }
