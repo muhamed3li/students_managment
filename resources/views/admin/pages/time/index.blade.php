@@ -29,27 +29,13 @@
                     @foreach ($all as $index => $item)
                     <tr>
                         <td>{{++$index}}</td>
-                        <td class="{{strtotime($item->sat) == strtotime('00:00') ? 'bg-success' : 'bg-primary'}}">
-                            {{$item->sat}}
-                        </td>
-                        <td class="{{strtotime($item->sun) == strtotime('00:00') ? 'bg-success' : 'bg-primary'}}">
-                            {{$item->sun}}
-                        </td>
-                        <td class="{{strtotime($item->mon) == strtotime('00:00') ? 'bg-success' : 'bg-primary'}}">
-                            {{$item->mon}}
-                        </td>
-                        <td class="{{strtotime($item->tus) == strtotime('00:00') ? 'bg-success' : 'bg-primary'}}">
-                            {{$item->tus}}
-                        </td>
-                        <td class="{{strtotime($item->wed) == strtotime('00:00') ? 'bg-success' : 'bg-primary'}}">
-                            {{$item->wed}}
-                        </td>
-                        <td class="{{strtotime($item->thu) == strtotime('00:00') ? 'bg-success' : 'bg-primary'}}">
-                            {{$item->thu}}
-                        </td>
-                        <td class="{{strtotime($item->fri) == strtotime('00:00') ? 'bg-success' : 'bg-primary'}}">
-                            {{$item->fri}}
-                        </td>
+                        {!! render_time($item->sat) !!}
+                        {!! render_time($item->sun) !!}
+                        {!! render_time($item->mon) !!}
+                        {!! render_time($item->tus) !!}
+                        {!! render_time($item->wed) !!}
+                        {!! render_time($item->thu) !!}
+                        {!! render_time($item->fri) !!}
                         <td>{{$item->created_at}}</td>
                         <td>{{$item->updated_at}}</td>
                         <td class="text-right">

@@ -139,6 +139,7 @@ if(!function_exists('form_date'))
 {
     function form_date($name,$date = '')
     {
+        // dd($date);
         echo <<<END
         <div class="card-body">
             <div class="form-group">
@@ -172,5 +173,62 @@ if(!function_exists('currentRequest'))
     function currentRequest($name)
     {
         return Request::is("$name","$name/*");
+    }
+}
+
+
+if(!function_exists('is_time_zero'))
+{
+    function is_time_zero($time)
+    {
+        return strtotime($time) == strtotime('00:00');
+    }
+}
+
+
+if(!function_exists('format_time_to_twelve'))
+{
+    function format_time_to_twelve($time)
+    {
+        return date_format(date_create($time),'h:i A');
+    }
+}
+
+
+if(!function_exists('render_time'))
+{
+    function render_time($time)
+    {
+        $is_zero = is_time_zero($time) ? 'bg-success' : 'bg-primary';
+        $renderString = is_time_zero($time) ? '' : format_time_to_twelve($time);
+        return <<<END
+        <td class="$is_zero">
+        $renderString
+        </td>
+        END;
+    }
+}
+
+
+if(!function_exists('render_time_in_table'))
+{
+    function render_time_in_table($time,$lable)
+    {
+        
+        if(is_time_zero($time))
+        {
+            return "";
+        }
+        else
+        {
+            $renderString = format_time_to_twelve($time);
+            return <<<END
+            <tr>
+                <td>$lable</td>
+                <td>$renderString</td>
+            </tr>
+            END;
+        }
+        
     }
 }

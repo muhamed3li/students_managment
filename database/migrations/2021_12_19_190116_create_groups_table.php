@@ -17,7 +17,7 @@ class CreateGroupsTable extends Migration
             $table->id();
             $table->string('name');
             $table->unsignedBigInteger('level_id')->nullable();
-            $table->unsignedBigInteger('time_id')->nullable();
+            $table->unsignedBigInteger('time_id')->nullable()->unique();
             $table->timestamps();
 
             $table->foreign('level_id')

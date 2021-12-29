@@ -74,3 +74,30 @@
 
 
 @endsection
+
+
+
+@section('specificScript')
+<!-- Page specific script -->
+<script>
+    $("#group_id").html("")
+    $('#student_id').change(function(){
+        $.ajax("/student/getGroups/" + this.value ,
+        {
+            dataType: 'json',
+            success:function(data,status){
+                $("#group_id").html("")
+
+                $("#group_id").append(`
+                    <option value="${data.id}">${data.name}</option>
+                `)
+
+            },
+            error: function (jqXhr, textStatus, errorMessage) { 
+                console.log(errorMessage)
+            }
+        })
+    });
+    
+</script>
+@endsection

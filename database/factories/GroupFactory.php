@@ -16,7 +16,7 @@ class GroupFactory extends Factory
         return [
             'name' => $this->faker->name(),
             'level_id' => rand(1,9),
-            'time_id' => rand(1,9),
+            'time_id' => $this->faker->unique()->numberBetween(1,10),
         ];
     }
 }

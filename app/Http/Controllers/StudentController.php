@@ -19,6 +19,12 @@ class StudentController extends Controller
         $this->modelName = strtolower(class_basename($model));
     }
 
+    public function getGroups(Student $student)
+    {
+        $group = $student->group;
+        echo json_encode($group);
+    }
+
     private function validation()
     {
         request()->validate([

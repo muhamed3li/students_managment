@@ -19,6 +19,12 @@ class LevelController extends Controller
         $this->modelName = strtolower(class_basename($model));
     }
 
+    public function getGroups(Level $level)
+    {
+        $groups = $level->groups;
+        echo json_encode($groups);
+    }
+
     private function validation()
     {
         request()->validate([

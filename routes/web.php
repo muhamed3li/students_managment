@@ -11,30 +11,18 @@ use App\Http\Controllers\NoteController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\TimeController;
-use App\Models\ExamAttindance;
-use App\Models\Level;
 use Illuminate\Support\Facades\Route;
 
 
 /**
- * جعل الوقت نظام 12 ساعة
- * اظهار المواعيد المتاحه فقط في اضافة مجموعة
- * اخفاء اليوم الذي يظهر فيه الوقت صفر في جدول المجاميع
- * اظهار المجمايع المتاحه في المستوى عند انشاء طالب
- * اظهار تاريخ اليوم عند انشاء حضور
+ * جعل الوقت نظام 12 ساعة ^^^^^^^
+ * اظهار المواعيد المتاحه فقط في اضافة مجموعة ^^^^^^^^
+ * اخفاء اليوم الذي يظهر فيه الوقت صفر في جدول المجاميع ^^^^^^
+ * اظهار المجمايع المتاحه في المستوى عند انشاء طالب ^^^^^^
+ * اظهار تاريخ اليوم عند انشاء حضور ^^^^^^^^
  * عند اختيار طالب تظهر مجموعته عند الانشاء في جدول الماليات
 */
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
 
 Route::get('/', function () {
     return view('admin.welcome');
@@ -61,4 +49,9 @@ Route::prefix('exams')->group(function(){
 });
 
 Route::resource('level',LevelController::class);
+
+Route::get('level/getGroups/{level}',[LevelController::class,"getGroups"])->name('level.getGroups');
+
+Route::get('student/getGroups/{student}',[StudentController::class,"getGroups"])->name('student.getGroups');
+
 Route::resource('expence',ExpenceController::class);

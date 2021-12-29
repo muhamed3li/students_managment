@@ -105,3 +105,29 @@
 </div>
 
 @endsection
+
+
+@section('specificScript')
+<!-- Page specific script -->
+<script>
+    $("#group_id").html("")
+    $('#level_id').change(function(){
+        $.ajax("/level/getGroups/" + this.value ,
+    {
+        dataType: 'json',
+        success:function(data,status){
+            $("#group_id").html("")
+            data.forEach(element => {
+            $("#group_id").append(`
+            <option value="${element.id}">${element.name}</option>
+            `)
+            });
+        },
+        error: function (jqXhr, textStatus, errorMessage) { 
+            console.log(errorMessage)
+        }
+    })
+    });
+    
+</script>
+@endsection

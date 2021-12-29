@@ -43,51 +43,15 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @if ($item->time->sat != null)
-                                    <tr>
-                                        <td>السبت</td>
-                                        <td>{{$item->time->sat}}</td>
-                                    </tr>
-                                    @endif
-                                    @if ($item->time->sun != null)
-                                    <tr>
-                                        <td>الأحد</td>
-                                        <td>{{$item->time->sun}}</td>
-                                    </tr>
-                                    @endif
-                                    @if ($item->time->mon != null)
-                                    <tr>
-                                        <td>الإثنين</td>
-                                        <td>{{$item->time->mon}}</td>
-                                    </tr>
-                                    @endif
-                                    @if ($item->time->tus != null)
-                                    <tr>
-                                        <td>الثلاثاء</td>
-                                        <td>{{$item->time->tus}}</td>
-                                    </tr>
-                                    @endif
-                                    @if ($item->time->wed != null)
-                                    <tr>
-                                        <td>الأربعاء</td>
-                                        <td>{{$item->time->wed}}</td>
-                                    </tr>
-                                    @endif
-                                    @if ($item->time->thu != null)
-                                    <tr>
-                                        <td>الخميس</td>
-                                        <td>{{$item->time->thu}}</td>
-                                    </tr>
-                                    @endif
-                                    @if ($item->time->fri != null)
-                                    <tr>
-                                        <td>الجمعة</td>
-                                        <td>{{$item->time->fri}}</td>
-                                    </tr>
-                                    @endif
+                                    {!! render_time_in_table($item->time->sat,'سبت') !!}
+                                    {!! render_time_in_table($item->time->sun,'حد') !!}
+                                    {!! render_time_in_table($item->time->mon,'اثنين') !!}
+                                    {!! render_time_in_table($item->time->tus,'ثلاثاء') !!}
+                                    {!! render_time_in_table($item->time->wed,'اربعاء') !!}
+                                    {!! render_time_in_table($item->time->thu,'خميس') !!}
+                                    {!! render_time_in_table($item->time->fri,'جمعة') !!}
                                 </tbody>
                             </table>
-
                         </td>
                         <td>{{$item->created_at}}</td>
                         <td>{{$item->updated_at}}</td>

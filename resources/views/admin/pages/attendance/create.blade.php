@@ -33,7 +33,7 @@
             @enderror
 
 
-            {!! form_date('day') !!}
+            {!! form_date('day',date("Y-m-d")) !!}
             @error('day')
             <p class="text-danger" id="myError">{{$message}}</p>
             @enderror

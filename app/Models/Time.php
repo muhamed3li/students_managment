@@ -9,4 +9,9 @@ class Time extends Model
 {
     use HasFactory;
     protected $guarded = [];
+
+    public function group()
+    {
+        return $this->hasOne(Group::class,'time_id');
+    }
 }

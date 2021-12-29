@@ -35,15 +35,24 @@
             <div class="form-group">
                 <label for="time">Example select</label>
                 <select name="time_id" class="form-control" id="time">
-                    @foreach (App\Models\Time::get() as $item)
-                    <option value="{{$item->id}}" {{$item->id == $obj->time_id ? 'selected' : ''}}>
-                        {{$item->sat == null ? " " : " // سبت $item->sat "}}
-                        {{$item->sun == null ? " " : " // حد $item->sun "}}
-                        {{$item->mon == null ? " " : " // اثنين $item->mon "}}
-                        {{$item->tus == null ? " " : " // ثلاثاء $item->tus "}}
-                        {{$item->wed == null ? " " : " // اربعاء $item->wed "}}
-                        {{$item->thu == null ? " " : " // خميس $item->thu "}}
-                        {{$item->fri == null ? " " : " // جمعة $item->fri "}}
+                    <option value="{{$obj->time_id}}" selected>
+                        {{is_time_zero($obj->time->sat) ? " " : " // سبت" . format_time_to_twelve($obj->time->sat)}}
+                        {{is_time_zero($obj->time->sun) ? " " : " // حد" . format_time_to_twelve($obj->time->sun)}}
+                        {{is_time_zero($obj->time->mon) ? " " : " // اثنين" . format_time_to_twelve($obj->time->mon)}}
+                        {{is_time_zero($obj->time->tus) ? " " : " // ثلاثاء" . format_time_to_twelve($obj->time->tus)}}
+                        {{is_time_zero($obj->time->wed) ? " " : " // اربعاء" . format_time_to_twelve($obj->time->wed)}}
+                        {{is_time_zero($obj->time->thu) ? " " : " // خميس" . format_time_to_twelve($obj->time->thu)}}
+                        {{is_time_zero($obj->time->fri) ? " " : " // جمعة" . format_time_to_twelve($obj->time->fri)}}
+                    </option>
+                    @foreach (App\Models\Time::doesntHave('group')->get() as $item)
+                    <option value="{{$item->id}}">
+                        {{is_time_zero($item->sat) ? " " : " // سبت" . format_time_to_twelve($item->sat)}}
+                        {{is_time_zero($item->sun) ? " " : " // حد" . format_time_to_twelve($item->sun)}}
+                        {{is_time_zero($item->mon) ? " " : " // اثنين" . format_time_to_twelve($item->mon)}}
+                        {{is_time_zero($item->tus) ? " " : " // ثلاثاء" . format_time_to_twelve($item->tus)}}
+                        {{is_time_zero($item->wed) ? " " : " // اربعاء" . format_time_to_twelve($item->wed)}}
+                        {{is_time_zero($item->thu) ? " " : " // خميس" . format_time_to_twelve($item->thu)}}
+                        {{is_time_zero($item->fri) ? " " : " // جمعة" . format_time_to_twelve($item->fri)}}
                     </option>
                     @endforeach
                 </select>

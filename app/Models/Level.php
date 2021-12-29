@@ -9,4 +9,9 @@ class Level extends Model
 {
     use HasFactory;
     protected $guarded = [];
+
+    public function groups()
+    {
+        return $this->hasMany(Group::class,'level_id');
+    }
 }

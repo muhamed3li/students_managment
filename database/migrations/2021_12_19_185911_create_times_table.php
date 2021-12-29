@@ -15,13 +15,13 @@ class CreateTimesTable extends Migration
     {
         Schema::create('times', function (Blueprint $table) {
             $table->id();
-            $table->time('sat')->default('00:00');
-            $table->time('sun')->default('00:00');
-            $table->time('mon')->default('00:00');
-            $table->time('tus')->default('00:00');
-            $table->time('wed')->default('00:00');
-            $table->time('thu')->default('00:00');
-            $table->time('fri')->default('00:00');
+            $table->timeTz('sat')->default('00:00');
+            $table->timeTz('sun')->default('00:00');
+            $table->timeTz('mon')->default('00:00');
+            $table->timeTz('tus')->default('00:00');
+            $table->timeTz('wed')->default('00:00');
+            $table->timeTz('thu')->default('00:00');
+            $table->timeTz('fri')->default('00:00');
             $table->timestamps();
         });
     }

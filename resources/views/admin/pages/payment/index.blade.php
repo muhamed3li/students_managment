@@ -35,7 +35,7 @@
                         <td>{{$item->malazem_paid}}</td>
                         <td>{{$item->discount}}</td>
                         <td>{{$item->student->name}}</td>
-                        <td>{{$item->group->name}}</td>
+                        <td>{{$item->group->name ?? ""}}</td>
                         <td>{{$item->created_at}}</td>
                         <td>{{$item->updated_at}}</td>
                         <td class="text-right">
