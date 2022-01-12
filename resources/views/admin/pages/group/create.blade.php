@@ -20,20 +20,20 @@
         <form action="{{route($model.'.store')}}" method="POST">
             @csrf
 
-            {!! form_text('name') !!}
+            {!! form_text('name','اسم المجموعة') !!}
             @error('name')
             <p class="text-danger" id="myError">{{$message}}</p>
             @enderror
 
 
-            {!! form_select('level_id') !!}
+            {!! form_select('level_id','المستوى الدراسي') !!}
             @error('level_id')
             <p class="text-danger" id="myError">{{$message}}</p>
             @enderror
 
 
             <div class="form-group">
-                <label for="time">Example select</label>
+                <label for="time">الميعاد</label>
                 <select name="time_id" class="form-control" id="time">
                     @foreach (App\Models\Time::doesntHave('group')->get() as $item)
                     <option value="{{$item->id}}">
@@ -55,7 +55,7 @@
             <!-- /.card-body -->
 
             <div class="card-footer text-right">
-                <button type="submit" class="btn btn-primary swalDefaultSuccess">Submit</button>
+                <button type="submit" class="btn btn-primary swalDefaultSuccess">تأكيد</button>
             </div>
         </form>
     </div>

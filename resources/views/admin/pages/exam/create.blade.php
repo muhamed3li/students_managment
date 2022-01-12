@@ -22,44 +22,44 @@
 
 
 
-            {!! form_text('name') !!}
+            {!! form_text('name','اسم الامتحان') !!}
             @error('name')
             <p class="text-danger" id="myError">{{$message}}</p>
             @enderror
 
 
-            {!! form_select('level_id') !!}
+            {!! form_select('level_id','المستوى الدراسي') !!}
             @error('level_id')
             <p class="text-danger" id="myError">{{$message}}</p>
             @enderror
 
 
-            {!! form_select('group_id') !!}
+            {!! form_select('group_id','المجموعة') !!}
             @error('group_id')
             <p class="text-danger" id="myError">{{$message}}</p>
             @enderror
 
 
-            {!! form_date('exam_date') !!}
+            {!! form_date('exam_date','تاريخ الامتحان') !!}
             @error('exam_date')
             <p class="text-danger" id="myError">{{$message}}</p>
             @enderror
 
 
-            {!! form_text('exam_max') !!}
+            {!! form_text('exam_max','الدرجة العليا') !!}
             @error('exam_max')
             <p class="text-danger" id="myError">{{$message}}</p>
             @enderror
 
 
-            {!! form_text('exam_min') !!}
+            {!! form_text('exam_min','الدرجة الصغرى') !!}
             @error('exam_min')
             <p class="text-danger" id="myError">{{$message}}</p>
             @enderror
             <!-- /.card-body -->
 
             <div class="card-footer text-right">
-                <button type="submit" class="btn btn-primary swalDefaultSuccess">Submit</button>
+                <button type="submit" class="btn btn-primary swalDefaultSuccess">تأكيد</button>
             </div>
         </form>
     </div>

@@ -21,14 +21,14 @@
 
 
 
-            {!! form_select('student_id',$obj->student_id) !!}
+            {!! form_select('student_id','اسم الطالب',$obj->student_id) !!}
             @error('student_id')
             <p class="text-danger" id="myError">{{$message}}</p>
             @enderror
 
 
 
-            {!! form_textarea('note',$obj->note) !!}
+            {!! form_textarea('note','الملاحظة',$obj->note) !!}
             @error('note')
             <p class="text-danger" id="myError">{{$message}}</p>
             @enderror

@@ -21,37 +21,37 @@
 
 
 
-            {!! form_text('name',$obj->name) !!}
+            {!! form_text('name','اسم الامتحان',$obj->name) !!}
             @error('name')
             <p class="text-danger" id="myError">{{$message}}</p>
             @enderror
 
 
-            {!! form_select('level_id',$obj->level_id) !!}
+            {!! form_select('level_id','المستوى الدراسي',$obj->level_id) !!}
             @error('level_id')
             <p class="text-danger" id="myError">{{$message}}</p>
             @enderror
 
 
-            {!! form_select('group_id',$obj->group_id) !!}
+            {!! form_select('group_id','اسم المجموعة',$obj->group_id) !!}
             @error('group_id')
             <p class="text-danger" id="myError">{{$message}}</p>
             @enderror
 
 
-            {!! form_date('exam_date',$obj->exam_date) !!}
+            {!! form_date('exam_date','تاريخ الامتحان',$obj->exam_date) !!}
             @error('exam_date')
             <p class="text-danger" id="myError">{{$message}}</p>
             @enderror
 
 
-            {!! form_text('exam_max',$obj->exam_max) !!}
+            {!! form_text('exam_max','الدرجة العظمى',$obj->exam_max) !!}
             @error('exam_max')
             <p class="text-danger" id="myError">{{$message}}</p>
             @enderror
 
 
-            {!! form_text('exam_min',$obj->exam_min) !!}
+            {!! form_text('exam_min','الدرجة الصغرى',$obj->exam_min) !!}
             @error('exam_min')
             <p class="text-danger" id="myError">{{$message}}</p>
             @enderror

@@ -21,82 +21,88 @@
             @csrf
 
 
-            {!! form_text('name') !!}
+            {!! form_text('name','اسم الطالب') !!}
             @error('name')
             <p class="text-danger" id="myError">{{$message}}</p>
             @enderror
 
 
-            {!! form_check('gender') !!}
+            {!! form_check('gender','مذكر ؟') !!}
             @error('gender')
             <p class="text-danger" id="myError">{{$message}}</p>
             @enderror
 
 
-            {!! form_text('address') !!}
+            {!! form_text('address','العنوان') !!}
             @error('address')
             <p class="text-danger" id="myError">{{$message}}</p>
             @enderror
 
 
-            {!! form_text('home_phone') !!}
+            {!! form_text('home_phone','هاتف المنزل') !!}
             @error('home_phone')
             <p class="text-danger" id="myError">{{$message}}</p>
             @enderror
 
 
-            {!! form_text('phone') !!}
+            {!! form_text('phone','هاتف المحمول') !!}
             @error('phone')
             <p class="text-danger" id="myError">{{$message}}</p>
             @enderror
 
 
-            {!! form_text('father_name') !!}
+            {!! form_text('father_name','اسم الأب') !!}
             @error('father_name')
             <p class="text-danger" id="myError">{{$message}}</p>
             @enderror
 
 
-            {!! form_text('father_phone') !!}
+            {!! form_text('father_phone','هاتف الأب') !!}
             @error('father_phone')
             <p class="text-danger" id="myError">{{$message}}</p>
             @enderror
 
 
-            {!! form_text('school') !!}
+            {!! form_text('school','اسم المدرسة') !!}
             @error('school')
             <p class="text-danger" id="myError">{{$message}}</p>
             @enderror
 
 
-            {!! form_select_array('status',['reserve','in','out','fired']) !!}
+            {!! form_select_array('status','الحالة الدراسية',[
+            'reserve' => 'قيد الحجز',
+            'in' => 'يدرس',
+            'out' => 'لا يدرس',
+            'fired' => 'مطرود'
+            ]
+            ) !!}
             @error('status')
             <p class="text-danger" id="myError">{{$message}}</p>
             @enderror
 
 
 
-            {!! form_text('reserve_paid') !!}
+            {!! form_text('reserve_paid','قيمة الحجز المدفوع') !!}
             @error('reserve_paid')
             <p class="text-danger" id="myError">{{$message}}</p>
             @enderror
 
 
-            {!! form_select('level_id') !!}
+            {!! form_select('level_id','اسم المستوى') !!}
             @error('level_id')
             <p class="text-danger" id="myError">{{$message}}</p>
             @enderror
 
 
 
-            {!! form_select('group_id') !!}
+            {!! form_select('group_id','اسم المجموعة') !!}
             @error('group_id')
             <p class="text-danger" id="myError">{{$message}}</p>
             @enderror
             <!-- /.card-body -->
 
             <div class="card-footer text-right">
-                <button type="submit" class="btn btn-primary swalDefaultSuccess">Submit</button>
+                <button type="submit" class="btn btn-primary swalDefaultSuccess">تأكيد</button>
             </div>
         </form>
     </div>

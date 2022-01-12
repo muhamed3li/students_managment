@@ -21,25 +21,25 @@
 
 
 
-            {!! form_text('name',$obj->name) !!}
+            {!! form_text('name','اسم المستوى الدراسي',$obj->name) !!}
             @error('name')
             <p class="text-danger" id="myError">{{$message}}</p>
             @enderror
 
 
-            {!! form_text('reserve_cost',$obj->reserve_cost) !!}
+            {!! form_text('reserve_cost','مصاريف الحجز',$obj->reserve_cost) !!}
             @error('reserve_cost')
             <p class="text-danger" id="myError">{{$message}}</p>
             @enderror
 
 
-            {!! form_text('malazem_cost',$obj->malazem_cost) !!}
+            {!! form_text('malazem_cost','مصاريف الملازم',$obj->malazem_cost) !!}
             @error('malazem_cost')
             <p class="text-danger" id="myError">{{$message}}</p>
             @enderror
 
 
-            {!! form_text('month_cost',$obj->month_cost) !!}
+            {!! form_text('month_cost','الشهرية',$obj->month_cost) !!}
             @error('month_cost')
             <p class="text-danger" id="myError">{{$message}}</p>
             @enderror
@@ -47,7 +47,7 @@
             <!-- /.card-body -->
 
             <div class="card-footer text-right">
-                <button type="submit" class="btn btn-primary swalDefaultSuccess">Submit</button>
+                <button type="submit" class="btn btn-primary swalDefaultSuccess">تأكيد</button>
             </div>
         </form>
     </div>

@@ -4,13 +4,14 @@ use Illuminate\Support\Facades\Request;
 
 if(!function_exists('form_text'))
 {
-    function form_text($name,$old = "")
+    function form_text($name,$label ="",$old = "")
     {
+        $label = $label == "" ? $name : $label;
         echo <<<END
         <div class="card-body">
             <div class="form-group">
-                <label for="$name">$name</label>
-                <input type="text" class="form-control" id="$name" placeholder="$name" name="$name" value="$old">
+                <label for="$name">$label</label>
+                <input type="text" class="form-control" id="$name" placeholder="اكتب $label" name="$name" value="$old">
             </div>
         </div>
         END;
@@ -20,13 +21,14 @@ if(!function_exists('form_text'))
 
 if(!function_exists('form_textarea'))
 {
-    function form_textarea($name,$old = "")
+    function form_textarea($name,$label ="",$old = "")
     {
+        $label = $label == "" ? $name : $label;
         echo <<<END
         <div class="card-body">
             <div class="form-group">
-                <label for="$name">$name</label>
-                <textarea type="text" class="form-control" id="$name" placeholder="$name" name="$name">$old</textarea>
+                <label for="$name">$label</label>
+                <textarea type="text" class="form-control" id="$name" placeholder="اكتب $label" name="$name">$old</textarea>
             </div>
         </div>
         END;
@@ -36,8 +38,9 @@ if(!function_exists('form_textarea'))
 
 if(!function_exists('form_select'))
 {
-    function form_select($name,$selected = 0)
+    function form_select($name,$label ="",$selected = 0)
     {
+        $label = $label == "" ? $name : $label;
         $x = explode('_',$name);
         $model = ucwords($x[0]);
         $class = "App\\Models\\$model";
@@ -45,7 +48,7 @@ if(!function_exists('form_select'))
         $result = <<<END
         <div class="card-body">
             <div class="form-group">
-                <label for="$name">$model</label>
+                <label for="$name">$label</label>
                 <select class="form-control" name="$name" id="$name">
         END;
 
@@ -75,26 +78,27 @@ if(!function_exists('form_select'))
 
 if(!function_exists('form_select_array'))
 {
-    function form_select_array($name,$arr,$selected = "")
+    function form_select_array($name,$label = "",$arr,$selected = "")
     {
+        $label = $label == "" ? $name : $label;
         $result = <<<END
         <div class="card-body">
             <div class="form-group">
-                <label for="$name">$name</label>
+                <label for="$name">$label</label>
                 <select class="form-control" name="$name" id="$name">
         END;
 
-        foreach($arr as $item)
+        foreach($arr as $key=>$item)
         {
-            if($item == $selected){
+            if($key == $selected){
                 $result .= <<<END
-                    <option selected value="{$item}">{$item}</option>
+                    <option selected value="{$key}">{$item}</option>
                 END;
             }
             else
             {
                 $result .= <<<END
-                    <option value="{$item}">{$item}</option>
+                    <option value="{$key}">{$item}</option>
                 END;
             }
         }
@@ -111,14 +115,15 @@ if(!function_exists('form_select_array'))
 
 if(!function_exists('form_check'))
 {
-    function form_check($name,$checked = 0)
+    function form_check($name,$label ="",$checked = 0)
     {
+        $label = $label == "" ? $name : $label;
         $checked = $checked == 0 ? '' : 'checked';
         echo <<<END
             <div class="card-body">
                 <div class="form-group form-check">
                     <input type="checkbox" class="form-check-input" id="$name" name="$name" value="1" $checked>
-                    <label for="$name" class="form-check-label">$name</label>
+                    <label for="$name" class="form-check-label">$label</label>
                 </div>
             </div>
         END;
@@ -137,13 +142,13 @@ if(!function_exists('form_radio'))
 
 if(!function_exists('form_date'))
 {
-    function form_date($name,$date = '')
+    function form_date($name,$label ="",$date = '')
     {
-        // dd($date);
+        $label = $label == "" ? $name : $label;
         echo <<<END
         <div class="card-body">
             <div class="form-group">
-                <label for="$name">$name</label>
+                <label for="$name">$label</label>
                 <input type="date" class="form-control" id="$name" placeholder="$name" name="$name" value="$date">
             </div>
         </div>
@@ -154,12 +159,13 @@ if(!function_exists('form_date'))
 
 if(!function_exists('form_time'))
 {
-    function form_time($name,$old = "")
+    function form_time($name,$label ="",$old = "")
     {
+        $label = $label == "" ? $name : $label;
         echo <<<END
         <div class="card-body">
             <div class="form-group">
-                <label for="$name">$name</label>
+                <label for="$name">$label</label>
                 <input type="time" class="form-control" id="$name" placeholder="$name" name="$name" value="$old">
             </div>
         </div>
@@ -199,7 +205,7 @@ if(!function_exists('render_time'))
 {
     function render_time($time)
     {
-        $is_zero = is_time_zero($time) ? 'bg-success' : 'bg-primary';
+        $is_zero = is_time_zero($time) ? 'bg-success' : '';
         $renderString = is_time_zero($time) ? '' : format_time_to_twelve($time);
         return <<<END
         <td class="$is_zero">

@@ -21,19 +21,19 @@
             @csrf
 
 
-            {!! form_select('student_id') !!}
+            {!! form_select('student_id','اسم الطالب') !!}
             @error('student_id')
             <p class="text-danger" id="myError">{{$message}}</p>
             @enderror
 
 
-            {!! form_select('exam_id') !!}
+            {!! form_select('exam_id','اسم الامتحان') !!}
             @error('exam_id')
             <p class="text-danger" id="myError">{{$message}}</p>
             @enderror
 
 
-            {!! form_text('degree') !!}
+            {!! form_text('degree','الدرجة') !!}
             @error('degree')
             <p class="text-danger" id="myError">{{$message}}</p>
             @enderror
@@ -41,7 +41,7 @@
             <!-- /.card-body -->
 
             <div class="card-footer text-right">
-                <button type="submit" class="btn btn-primary swalDefaultSuccess">Submit</button>
+                <button type="submit" class="btn btn-primary swalDefaultSuccess">تأكيد</button>
             </div>
         </form>
     </div>

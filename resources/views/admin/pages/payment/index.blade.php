@@ -19,10 +19,15 @@
             <table id="example1" class="table table-bordered table-striped">
                 <thead>
                     <tr>
-                        @foreach ($columns as $column)
-                        <th>{{$column}}</th>
-                        @endforeach
-                        <th>Action</th>
+                        <th>التسلسل</th>
+                        <th>دفع من</th>
+                        <th>دفع إلى</th>
+                        <th>الشرية</th>
+                        <th>الملازم</th>
+                        <th>الخصم</th>
+                        <th>اسم الطالب</th>
+                        <th>اسم المجموعة</th>
+                        <th>حذف وتعديل</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -36,9 +41,7 @@
                         <td>{{$item->discount}}</td>
                         <td>{{$item->student->name}}</td>
                         <td>{{$item->group->name ?? ""}}</td>
-                        <td>{{$item->created_at}}</td>
-                        <td>{{$item->updated_at}}</td>
-                        <td class="text-right">
+                        <td class="d-flex justify-content-center">
                             <a class="btn btn-primary" href="{{route($model.'.edit',$item->id)}}">
                                 <i class="fas fa-pen"></i>
                             </a>
@@ -56,10 +59,15 @@
                 </tbody>
                 <tfoot>
                     <tr>
-                        @foreach ($columns as $column)
-                        <th>{{$column}}</th>
-                        @endforeach
-                        <th>Action</th>
+                        <th>التسلسل</th>
+                        <th>دفع من</th>
+                        <th>دفع إلى</th>
+                        <th>الشرية</th>
+                        <th>الملازم</th>
+                        <th>الخصم</th>
+                        <th>اسم الطالب</th>
+                        <th>اسم المجموعة</th>
+                        <th>حذف وتعديل</th>
                     </tr>
                 </tfoot>
             </table>

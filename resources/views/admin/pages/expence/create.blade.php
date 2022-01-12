@@ -21,25 +21,25 @@
             @csrf
 
 
-            {!! form_text('name') !!}
+            {!! form_text('name','اسم المصروف او العنوان') !!}
             @error('name')
             <p class="text-danger" id="myError">{{$message}}</p>
             @enderror
 
 
-            {!! form_textarea('reason') !!}
+            {!! form_textarea('reason','السبب') !!}
             @error('reason')
             <p class="text-danger" id="myError">{{$message}}</p>
             @enderror
 
 
-            {!! form_text('amount') !!}
+            {!! form_text('amount','الكمية') !!}
             @error('amount')
             <p class="text-danger" id="myError">{{$message}}</p>
             @enderror
 
 
-            {!! form_date('date') !!}
+            {!! form_date('date','التاريخ',date("Y-m-d")) !!}
             @error('date')
             <p class="text-danger" id="myError">{{$message}}</p>
             @enderror
@@ -49,7 +49,7 @@
             <!-- /.card-body -->
 
             <div class="card-footer text-right">
-                <button type="submit" class="btn btn-primary swalDefaultSuccess">Submit</button>
+                <button type="submit" class="btn btn-primary swalDefaultSuccess">تأكيد</button>
             </div>
         </form>
     </div>

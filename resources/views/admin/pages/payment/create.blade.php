@@ -20,43 +20,43 @@
         <form action="{{route($model.'.store')}}" method="POST">
             @csrf
 
-            {!! form_date('pay_from') !!}
+            {!! form_date('pay_from','من') !!}
             @error('pay_from')
             <p class="text-danger" id="myError">{{$message}}</p>
             @enderror
 
 
-            {!! form_date('pay_to') !!}
+            {!! form_date('pay_to','إلى') !!}
             @error('pay_to')
             <p class="text-danger" id="myError">{{$message}}</p>
             @enderror
 
 
-            {!! form_text('month_paid') !!}
+            {!! form_text('month_paid','الشهرية') !!}
             @error('month_paid')
             <p class="text-danger" id="myError">{{$message}}</p>
             @enderror
 
 
-            {!! form_text('malazem_paid') !!}
+            {!! form_text('malazem_paid','الملازم') !!}
             @error('malazem_paid')
             <p class="text-danger" id="myError">{{$message}}</p>
             @enderror
 
 
-            {!! form_text('discount') !!}
+            {!! form_text('discount','الخصم') !!}
             @error('discount')
             <p class="text-danger" id="myError">{{$message}}</p>
             @enderror
 
 
-            {!! form_select('student_id') !!}
+            {!! form_select('student_id','الطالب') !!}
             @error('student_id')
             <p class="text-danger" id="myError">{{$message}}</p>
             @enderror
 
 
-            {!! form_select('group_id') !!}
+            {!! form_select('group_id','المجموعة') !!}
             @error('group_id')
             <p class="text-danger" id="myError">{{$message}}</p>
             @enderror
@@ -64,7 +64,7 @@
             <!-- /.card-body -->
 
             <div class="card-footer text-right">
-                <button type="submit" class="btn btn-primary swalDefaultSuccess">Submit</button>
+                <button type="submit" class="btn btn-primary swalDefaultSuccess">تأكيد</button>
             </div>
         </form>
     </div>

@@ -21,26 +21,26 @@
             @csrf
 
 
-            {!! form_select('student_id') !!}
+            {!! form_select('student_id','الطالب') !!}
             @error('student_id')
             <p class="text-danger" id="myError">{{$message}}</p>
             @enderror
 
 
-            {!! form_check('attend') !!}
+            {!! form_check('attend','حضر؟') !!}
             @error('attend')
             <p class="text-danger" id="myError">{{$message}}</p>
             @enderror
 
 
-            {!! form_date('day',date("Y-m-d")) !!}
+            {!! form_date('day','التاريخ',date("Y-m-d")) !!}
             @error('day')
             <p class="text-danger" id="myError">{{$message}}</p>
             @enderror
             <!-- /.card-body -->
 
             <div class="card-footer text-right">
-                <button type="submit" class="btn btn-primary swalDefaultSuccess">Submit</button>
+                <button type="submit" class="btn btn-primary swalDefaultSuccess">تأكيد</button>
             </div>
         </form>
     </div>

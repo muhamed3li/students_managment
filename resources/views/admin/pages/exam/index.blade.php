@@ -19,10 +19,14 @@
             <table id="example1" class="table table-bordered table-striped">
                 <thead>
                     <tr>
-                        @foreach ($columns as $column)
-                        <th>{{$column}}</th>
-                        @endforeach
-                        <th>Action</th>
+                        <th>التسلسل</th>
+                        <th>اسم الامتحان</th>
+                        <th>المستوى</th>
+                        <th>المجموعة</th>
+                        <th>تاريخ الامتحان</th>
+                        <th>الدرجة العظمى</th>
+                        <th>الدرجة الصغرى</th>
+                        <th>حذف وتعديل</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -35,9 +39,7 @@
                         <td>{{$item->exam_date}}</td>
                         <td>{{$item->exam_max}}</td>
                         <td>{{$item->exam_min}}</td>
-                        <td>{{$item->created_at}}</td>
-                        <td>{{$item->updated_at}}</td>
-                        <td class="text-right">
+                        <td class="d-flex justify-content-center">
                             <a class="btn btn-primary" href="{{route($model.'.edit',$item->id)}}">
                                 <i class="fas fa-pen"></i>
                             </a>
@@ -55,10 +57,14 @@
                 </tbody>
                 <tfoot>
                     <tr>
-                        @foreach ($columns as $column)
-                        <th>{{$column}}</th>
-                        @endforeach
-                        <th>Action</th>
+                        <th>التسلسل</th>
+                        <th>اسم الامتحان</th>
+                        <th>المستوى</th>
+                        <th>المجموعة</th>
+                        <th>تاريخ الامتحان</th>
+                        <th>الدرجة العظمى</th>
+                        <th>الدرجة الصغرى</th>
+                        <th>حذف وتعديل</th>
                     </tr>
                 </tfoot>
             </table>

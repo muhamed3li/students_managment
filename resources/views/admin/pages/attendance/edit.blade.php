@@ -21,20 +21,20 @@
 
 
 
-            {!! form_select('student_id',$obj->student_id) !!}
+            {!! form_select('student_id','الطالب',$obj->student_id) !!}
             @error('student_id')
             <p class="text-danger" id="myError">{{$message}}</p>
             @enderror
 
 
-            {!! form_check('attend',$obj->attend) !!}
+            {!! form_check('attend','حضر؟',$obj->attend) !!}
             @error('attend')
             <p class="text-danger" id="myError">{{$message}}</p>
             @enderror
 
 
 
-            {!! form_date('day',$obj->day) !!}
+            {!! form_date('day','التاريخ',$obj->day) !!}
             @error('day')
             <p class="text-danger" id="myError">{{$message}}</p>
             @enderror
@@ -42,7 +42,7 @@
             <!-- /.card-body -->
 
             <div class="card-footer text-right">
-                <button type="submit" class="btn btn-primary swalDefaultSuccess">Submit</button>
+                <button type="submit" class="btn btn-primary swalDefaultSuccess">تأكيد</button>
             </div>
         </form>
     </div>

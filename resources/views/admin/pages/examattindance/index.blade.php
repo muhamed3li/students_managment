@@ -6,7 +6,7 @@
 
     <div class="card">
         <div class="card-header">
-            <h3 class="card-title">الحضور</h3>
+            <h3 class="card-title">حضور الامتحان</h3>
             <a href="{{route($model.'.create')}}" class="btn btn-success float-right">انشاء</a>
         </div>
         @if (session()->has('success'))
@@ -19,10 +19,11 @@
             <table id="example1" class="table table-bordered table-striped">
                 <thead>
                     <tr>
-                        @foreach ($columns as $column)
-                        <th>{{$column}}</th>
-                        @endforeach
-                        <th>Action</th>
+                        <th>التسلسل</th>
+                        <th>اسم الطالب</th>
+                        <th>اسم الامتحان</th>
+                        <th>الدرجة</th>
+                        <th>حذف وتعديل</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -32,9 +33,7 @@
                         <td>{{$item->student->name}}</td>
                         <td>{{$item->exam->name}}</td>
                         <td class="{{$item->degree < 50 ? 'text-danger' : 'text-success'}}">{{$item->degree}}</td>
-                        <td>{{$item->created_at}}</td>
-                        <td>{{$item->updated_at}}</td>
-                        <td class="text-right">
+                        <td class="d-flex justify-content-center">
                             <a class="btn btn-primary" href="{{route($model.'.edit',$item->id)}}">
                                 <i class="fas fa-pen"></i>
                             </a>
@@ -52,10 +51,11 @@
                 </tbody>
                 <tfoot>
                     <tr>
-                        @foreach ($columns as $column)
-                        <th>{{$column}}</th>
-                        @endforeach
-                        <th>Action</th>
+                        <th>التسلسل</th>
+                        <th>اسم الطالب</th>
+                        <th>اسم الامتحان</th>
+                        <th>الدرجة</th>
+                        <th>حذف وتعديل</th>
                     </tr>
                 </tfoot>
             </table>

@@ -21,14 +21,14 @@
             @csrf
 
 
-            {!! form_select('student_id') !!}
+            {!! form_select('student_id','اسم الطالب') !!}
             @error('student_id')
             <p class="text-danger" id="myError">{{$message}}</p>
             @enderror
 
 
 
-            {!! form_textarea('note') !!}
+            {!! form_textarea('note','الملاحظة') !!}
             @error('note')
             <p class="text-danger" id="myError">{{$message}}</p>
             @enderror

@@ -21,44 +21,44 @@
 
 
 
-            {!! form_time('sat',$obj->sat) !!}
+            {!! form_time('sat','السبت',$obj->sat) !!}
             @error('sat')
             <p class="text-danger" id="myError">{{$message}}</p>
             @enderror
 
 
 
-            {!! form_time('sun',$obj->sun) !!}
+            {!! form_time('sun','الأحد',$obj->sun) !!}
             @error('sun')
             <p class="text-danger" id="myError">{{$message}}</p>
             @enderror
 
 
-            {!! form_time('mon',$obj->mon) !!}
+            {!! form_time('mon','الإثنين',$obj->mon) !!}
             @error('mon')
             <p class="text-danger" id="myError">{{$message}}</p>
             @enderror
 
 
-            {!! form_time('tus',$obj->tus) !!}
+            {!! form_time('tus','الثلاثاء',$obj->tus) !!}
             @error('tus')
             <p class="text-danger" id="myError">{{$message}}</p>
             @enderror
 
 
-            {!! form_time('wed',$obj->wed) !!}
+            {!! form_time('wed','الأربعاء',$obj->wed) !!}
             @error('wed')
             <p class="text-danger" id="myError">{{$message}}</p>
             @enderror
 
 
-            {!! form_time('thu',$obj->thu) !!}
+            {!! form_time('thu','الخميس',$obj->thu) !!}
             @error('thu')
             <p class="text-danger" id="myError">{{$message}}</p>
             @enderror
 
 
-            {!! form_time('fri',$obj->fri) !!}
+            {!! form_time('fri','الجمعة',$obj->fri) !!}
             @error('fri')
             <p class="text-danger" id="myError">{{$message}}</p>
             @enderror
@@ -66,7 +66,7 @@
             <!-- /.card-body -->
 
             <div class="card-footer text-right">
-                <button type="submit" class="btn btn-primary swalDefaultSuccess">Submit</button>
+                <button type="submit" class="btn btn-primary swalDefaultSuccess">تأكيد</button>
             </div>
         </form>
     </div>

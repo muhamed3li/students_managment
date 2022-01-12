@@ -21,19 +21,19 @@
 
 
 
-            {!! form_text('name',$obj->name) !!}
+            {!! form_text('name','اسم المجموعة',$obj->name) !!}
             @error('name')
             <p class="text-danger" id="myError">{{$message}}</p>
             @enderror
 
-            {!! form_select('level_id',$obj->level_id) !!}
+            {!! form_select('level_id','المستوى الدراسي',$obj->level_id) !!}
             @error('level_id')
             <p class="text-danger" id="myError">{{$message}}</p>
             @enderror
 
 
             <div class="form-group">
-                <label for="time">Example select</label>
+                <label for="time">الميعاد</label>
                 <select name="time_id" class="form-control" id="time">
                     <option value="{{$obj->time_id}}" selected>
                         {{is_time_zero($obj->time->sat) ? " " : " // سبت" . format_time_to_twelve($obj->time->sat)}}
@@ -63,7 +63,7 @@
             <!-- /.card-body -->
 
             <div class="card-footer text-right">
-                <button type="submit" class="btn btn-primary swalDefaultSuccess">Submit</button>
+                <button type="submit" class="btn btn-primary swalDefaultSuccess">تأكيد</button>
             </div>
         </form>
     </div>

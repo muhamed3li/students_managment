@@ -21,25 +21,25 @@
             @csrf
 
 
-            {!! form_text('name') !!}
+            {!! form_text('name','اسم المستوى الدراسي') !!}
             @error('name')
             <p class="text-danger" id="myError">{{$message}}</p>
             @enderror
 
 
-            {!! form_text('reserve_cost') !!}
+            {!! form_text('reserve_cost','مصاريف الحجز') !!}
             @error('reserve_cost')
             <p class="text-danger" id="myError">{{$message}}</p>
             @enderror
 
 
-            {!! form_text('malazem_cost') !!}
+            {!! form_text('malazem_cost','مصاريف الملازم') !!}
             @error('malazem_cost')
             <p class="text-danger" id="myError">{{$message}}</p>
             @enderror
 
 
-            {!! form_text('month_cost') !!}
+            {!! form_text('month_cost','الشهرية') !!}
             @error('month_cost')
             <p class="text-danger" id="myError">{{$message}}</p>
             @enderror
@@ -49,7 +49,7 @@
             <!-- /.card-body -->
 
             <div class="card-footer text-right">
-                <button type="submit" class="btn btn-primary swalDefaultSuccess">Submit</button>
+                <button type="submit" class="btn btn-primary swalDefaultSuccess">تأكيد</button>
             </div>
         </form>
     </div>

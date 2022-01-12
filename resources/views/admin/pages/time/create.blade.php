@@ -21,51 +21,51 @@
             @csrf
 
 
-            {!! form_time('sat') !!}
+            {!! form_time('sat','السبت') !!}
             @error('sat')
             <p class="text-danger" id="myError">{{$message}}</p>
             @enderror
 
 
 
-            {!! form_time('sun') !!}
+            {!! form_time('sun','الأحد') !!}
             @error('sun')
             <p class="text-danger" id="myError">{{$message}}</p>
             @enderror
 
 
-            {!! form_time('mon') !!}
+            {!! form_time('mon','الإثنين') !!}
             @error('mon')
             <p class="text-danger" id="myError">{{$message}}</p>
             @enderror
 
 
-            {!! form_time('tus') !!}
+            {!! form_time('tus','الثلاثاء') !!}
             @error('tus')
             <p class="text-danger" id="myError">{{$message}}</p>
             @enderror
 
 
-            {!! form_time('wed') !!}
+            {!! form_time('wed','الأربعاء') !!}
             @error('wed')
             <p class="text-danger" id="myError">{{$message}}</p>
             @enderror
 
 
-            {!! form_time('thu') !!}
+            {!! form_time('thu','الخميس') !!}
             @error('thu')
             <p class="text-danger" id="myError">{{$message}}</p>
             @enderror
 
 
-            {!! form_time('fri') !!}
+            {!! form_time('fri','الجمعة') !!}
             @error('fri')
             <p class="text-danger" id="myError">{{$message}}</p>
             @enderror
             <!-- /.card-body -->
 
             <div class="card-footer text-right">
-                <button type="submit" class="btn btn-primary swalDefaultSuccess">Submit</button>
+                <button type="submit" class="btn btn-primary swalDefaultSuccess">تأكيد</button>
             </div>
         </form>
     </div>

@@ -6,7 +6,7 @@
     <!-- general form elements -->
     <div class="card card-primary">
         <div class="card-header">
-            <h3 class="card-title">تعديل حضور</h3>
+            <h3 class="card-title">تعديل حضور الامتحان</h3>
         </div>
         @if (session()->has('success'))
         <div class="alert alert-success" id="success">
@@ -21,19 +21,19 @@
 
 
 
-            {!! form_select('student_id',$obj->student_id) !!}
+            {!! form_select('student_id','اسم الطالب',$obj->student_id) !!}
             @error('student_id')
             <p class="text-danger" id="myError">{{$message}}</p>
             @enderror
 
 
-            {!! form_select('exam_id',$obj->exam_id) !!}
+            {!! form_select('exam_id','اسم الامتحان',$obj->exam_id) !!}
             @error('exam_id')
             <p class="text-danger" id="myError">{{$message}}</p>
             @enderror
 
 
-            {!! form_text('degree',$obj->degree) !!}
+            {!! form_text('degree','الدرجة',$obj->degree) !!}
             @error('degree')
             <p class="text-danger" id="myError">{{$message}}</p>
             @enderror
@@ -41,7 +41,7 @@
             <!-- /.card-body -->
 
             <div class="card-footer text-right">
-                <button type="submit" class="btn btn-primary swalDefaultSuccess">Submit</button>
+                <button type="submit" class="btn btn-primary swalDefaultSuccess">تأكيد</button>
             </div>
         </form>
     </div>
