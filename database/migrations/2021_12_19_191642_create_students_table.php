@@ -20,11 +20,11 @@ class CreateStudentsTable extends Migration
             $table->string('address')->nullable();
             $table->string('home_phone')->nullable();
             $table->string('phone')->nullable();
-            $table->string('father_name');
+            // $table->string('father_name');
             $table->string('father_phone')->nullable();
             $table->string('school')->nullable();
             $table->enum('status',['reserve','in','out','fired']);
-            $table->decimal('reserve_paid');
+            $table->decimal('reserve_paid')->nullable();
             $table->unsignedBigInteger('level_id')->nullable();
             $table->unsignedBigInteger('group_id')->nullable();
             $table->timestamps();

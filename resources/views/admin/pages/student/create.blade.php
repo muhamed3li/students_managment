@@ -10,18 +10,14 @@
         <div class="card-header">
             <h3 class="card-title">اضافة طالب</h3>
         </div>
-        @if (session()->has('success'))
-        <div class="alert alert-success" id="success">
-            {{session()->get('success')}}
-        </div>
-        @endif
+
         <!-- /.card-header -->
         <!-- form start -->
         <form action="{{route($model.'.store')}}" method="POST">
             @csrf
 
 
-            {!! form_text('name','اسم الطالب') !!}
+            {!! form_text('name','*اسم الطالب') !!}
             @error('name')
             <p class="text-danger" id="myError">{{$message}}</p>
             @enderror
@@ -50,14 +46,14 @@
             <p class="text-danger" id="myError">{{$message}}</p>
             @enderror
 
-
+            {{--
             {!! form_text('father_name','اسم الأب') !!}
             @error('father_name')
             <p class="text-danger" id="myError">{{$message}}</p>
-            @enderror
+            @enderror --}}
 
 
-            {!! form_text('father_phone','هاتف الأب') !!}
+            {!! form_text('father_phone','هاتف ولى الأمر') !!}
             @error('father_phone')
             <p class="text-danger" id="myError">{{$message}}</p>
             @enderror
@@ -118,20 +114,20 @@
     $("#group_id").html("")
     $('#level_id').change(function(){
         $.ajax("/level/getGroups/" + this.value ,
-    {
-        dataType: 'json',
-        success:function(data,status){
-            $("#group_id").html("")
-            data.forEach(element => {
-            $("#group_id").append(`
-            <option value="${element.id}">${element.name}</option>
-            `)
-            });
-        },
-        error: function (jqXhr, textStatus, errorMessage) { 
-            console.log(errorMessage)
-        }
-    })
+        {
+            dataType: 'json',
+            success:function(data,status){
+                $("#group_id").html("")
+                data.forEach(element => {
+                $("#group_id").append(`
+                <option value="${element.id}">${element.name}</option>
+                `)
+                });
+            },
+            error: function (jqXhr, textStatus, errorMessage) { 
+                console.log(errorMessage)
+            }
+        })
     });
     
 </script>

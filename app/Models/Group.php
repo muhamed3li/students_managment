@@ -20,4 +20,9 @@ class Group extends Model
     {
         return $this->belongsTo(Time::class ,'time_id');
     }
+
+    public function students()
+    {
+        return $this->hasMany(Student::class,'group_id');
+    }
 }

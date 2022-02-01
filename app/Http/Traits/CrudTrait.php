@@ -2,6 +2,8 @@
 namespace  App\Http\Traits;
 
 use Illuminate\Support\Facades\Schema;
+use RealRashid\SweetAlert\Facades\Alert;
+
 
 trait CrudTrait
 {
@@ -28,7 +30,8 @@ trait CrudTrait
     {
         $this->validation();
         $this->model::create($this->attReq());
-        return redirect()->back()->with('success', "{$this->modelName} was Created successfully");
+        Alert::success('Success', "{$this->modelName} was Created successfully");
+        return redirect()->back();
     }
 
     public function edit($id)
@@ -45,7 +48,8 @@ trait CrudTrait
         $this->validation();
         $obj = $this->model::find($id);
         $obj->update($this->attReq());
-        return redirect()->back()->with('success', "{$this->modelName} was Updated successfully");
+        Alert::success('Success', "{$this->modelName} was Updated successfully");
+        return redirect()->back();
     }
 
     
@@ -54,6 +58,14 @@ trait CrudTrait
     {
         $obj = $this->model::find($id);
         $obj->delete();
-        return redirect()->back()->with('success', "{$this->modelName} was Deleted successfully");
+        Alert::success('Success', "{$this->modelName} was Deleted successfully");
+        return redirect()->back();
+    }
+
+    public function deleteAll()
+    {
+        $this->model::getQuery()->delete();
+        Alert::success('Success', "All Data Was Deleted");
+        return redirect()->back();
     }
 }

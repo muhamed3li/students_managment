@@ -9,11 +9,7 @@
             <h3 class="card-title">المستويات</h3>
             <a href="{{route($model.'.create')}}" class="btn btn-success float-right">انشاء</a>
         </div>
-        @if (session()->has('success'))
-        <div class="alert alert-success" id="success">
-            {{session()->get('success')}}
-        </div>
-        @endif
+
         <!-- /.card-header -->
         <div class="card-body">
             <table id="example1" class="table table-bordered table-striped">
@@ -21,7 +17,7 @@
                     <tr>
                         <th>التسلسل</th>
                         <th>اسم المستوى</th>
-                        <th>الحجز</th>
+                        {{-- <th>الحجز</th> --}}
                         <th>الملازم</th>
                         <th>الشهرية</th>
                         <th>حذف وتعديل</th>
@@ -32,7 +28,7 @@
                     <tr>
                         <td>{{++$index}}</td>
                         <td>{{$item->name}}</td>
-                        <td>{{$item->reserve_cost}}</td>
+                        {{-- <td>{{$item->reserve_cost}}</td> --}}
                         <td>{{$item->malazem_cost}}</td>
                         <td>{{$item->month_cost}}</td>
                         <td class="d-flex justify-content-center">
@@ -55,7 +51,7 @@
                     <tr>
                         <th>التسلسل</th>
                         <th>اسم المستوى</th>
-                        <th>الحجز</th>
+                        {{-- <th>الحجز</th> --}}
                         <th>الملازم</th>
                         <th>الشهرية</th>
                         <th>حذف وتعديل</th>
@@ -66,7 +62,13 @@
         <!-- /.card-body -->
     </div>
     <!-- /.card -->
-
+    <form method="POST" action="{{route($model.'.deleteAll')}}">
+        @csrf
+        <button type="submit" class="btn btn-danger mt-5 mb-1">
+            حذف كل البيانات
+            <i class="fas fa-trash"></i>
+        </button>
+    </form>
 </div>
 
 

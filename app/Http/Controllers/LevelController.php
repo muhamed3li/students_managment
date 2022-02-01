@@ -29,7 +29,7 @@ class LevelController extends Controller
     {
         request()->validate([
             'name' => 'required|string',
-            'reserve_cost' => 'required|numeric',
+            // 'reserve_cost' => 'required|numeric',
             'malazem_cost' => 'required|numeric',
             'month_cost' => 'required|numeric',
         ]);
@@ -39,7 +39,7 @@ class LevelController extends Controller
     {
         return [
             'name' => request('name'),
-            'reserve_cost' => request('reserve_cost'),
+            // 'reserve_cost' => request('reserve_cost'),
             'malazem_cost' => request('malazem_cost'),
             'month_cost' => request('month_cost'),
         ];

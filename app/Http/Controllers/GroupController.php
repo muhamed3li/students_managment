@@ -20,6 +20,12 @@ class GroupController extends Controller
         $this->modelName = strtolower(class_basename($model));
     }
 
+    public function getStudents(Group $group)
+    {
+        $students = $group->students;
+        echo json_encode($students);
+    }
+
     private function validation()
     {
         request()->validate([

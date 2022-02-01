@@ -9,11 +9,7 @@
             <h3 class="card-title">المدفوعات</h3>
             <a href="{{route($model.'.create')}}" class="btn btn-success float-right">انشاء</a>
         </div>
-        @if (session()->has('success'))
-        <div class="alert alert-success" id="success">
-            {{session()->get('success')}}
-        </div>
-        @endif
+
         <!-- /.card-header -->
         <div class="card-body">
             <table id="example1" class="table table-bordered table-striped">
@@ -25,6 +21,7 @@
                         <th>الشرية</th>
                         <th>الملازم</th>
                         <th>الخصم</th>
+                        <th>الإجمالي</th>
                         <th>اسم الطالب</th>
                         <th>اسم المجموعة</th>
                         <th>حذف وتعديل</th>
@@ -39,8 +36,16 @@
                         <td>{{$item->month_paid}}</td>
                         <td>{{$item->malazem_paid}}</td>
                         <td>{{$item->discount}}</td>
-                        <td>{{$item->student->name}}</td>
-                        <td>{{$item->group->name ?? ""}}</td>
+                        <td>{{$item->total}}</td>
+
+                        <td class="{{$item->student->name ?? " text-danger"}}">{{$item->student->name ?? "لا يوجد
+                            طالب"}}</td>
+
+                        <td class="{{$item->student->group->name ?? " text-danger"}}">{{$item->student->group->name ??
+                            "لا يوجد
+                            مجموعة"}}
+                        </td>
+
                         <td class="d-flex justify-content-center">
                             <a class="btn btn-primary" href="{{route($model.'.edit',$item->id)}}">
                                 <i class="fas fa-pen"></i>
@@ -65,6 +70,7 @@
                         <th>الشرية</th>
                         <th>الملازم</th>
                         <th>الخصم</th>
+                        <th>الإجمالي</th>
                         <th>اسم الطالب</th>
                         <th>اسم المجموعة</th>
                         <th>حذف وتعديل</th>
@@ -75,7 +81,13 @@
         <!-- /.card-body -->
     </div>
     <!-- /.card -->
-
+    <form method="POST" action="{{route($model.'.deleteAll')}}">
+        @csrf
+        <button type="submit" class="btn btn-danger mt-5 mb-1">
+            حذف كل البيانات
+            <i class="fas fa-trash"></i>
+        </button>
+    </form>
 </div>
 
 

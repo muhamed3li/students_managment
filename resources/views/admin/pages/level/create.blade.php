@@ -10,11 +10,7 @@
         <div class="card-header">
             <h3 class="card-title">اضافة مستوي</h3>
         </div>
-        @if (session()->has('success'))
-        <div class="alert alert-success" id="success">
-            {{session()->get('success')}}
-        </div>
-        @endif
+
         <!-- /.card-header -->
         <!-- form start -->
         <form action="{{route($model.'.store')}}" method="POST">
@@ -27,10 +23,10 @@
             @enderror
 
 
-            {!! form_text('reserve_cost','مصاريف الحجز') !!}
+            {{-- {!! form_text('reserve_cost','مصاريف الحجز') !!}
             @error('reserve_cost')
             <p class="text-danger" id="myError">{{$message}}</p>
-            @enderror
+            @enderror --}}
 
 
             {!! form_text('malazem_cost','مصاريف الملازم') !!}

@@ -9,11 +9,7 @@
             <h3 class="card-title">المواعيد</h3>
             <a href="{{route($model.'.create')}}" class="btn btn-success float-right">انشاء</a>
         </div>
-        @if (session()->has('success'))
-        <div class="alert alert-success" id="success">
-            {{session()->get('success')}}
-        </div>
-        @endif
+
         <!-- /.card-header -->
         <div class="card-body">
             <table id="example1" class="table table-bordered table-striped">
@@ -75,7 +71,13 @@
         <!-- /.card-body -->
     </div>
     <!-- /.card -->
-
+    <form method="POST" action="{{route($model.'.deleteAll')}}">
+        @csrf
+        <button type="submit" class="btn btn-danger mt-5 mb-1">
+            حذف كل البيانات
+            <i class="fas fa-trash"></i>
+        </button>
+    </form>
 </div>
 
 

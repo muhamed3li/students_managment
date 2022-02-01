@@ -9,11 +9,7 @@
             <h3 class="card-title">حضور الامتحان</h3>
             <a href="{{route($model.'.create')}}" class="btn btn-success float-right">انشاء</a>
         </div>
-        @if (session()->has('success'))
-        <div class="alert alert-success" id="success">
-            {{session()->get('success')}}
-        </div>
-        @endif
+
         <!-- /.card-header -->
         <div class="card-body">
             <table id="example1" class="table table-bordered table-striped">
@@ -30,8 +26,13 @@
                     @foreach ($all as $index => $item)
                     <tr>
                         <td>{{++$index}}</td>
-                        <td>{{$item->student->name}}</td>
-                        <td>{{$item->exam->name}}</td>
+
+                        <td class="{{$item->student->name ?? " text-danger"}}">{{$item->student->name ?? "لا يوجد
+                            طالب"}}</td>
+
+                        <td class="{{$item->exam->name ?? " text-danger"}}">{{$item->exam->name ?? "لا يوجد امتحان"}}
+                        </td>
+
                         <td class="{{$item->degree < 50 ? 'text-danger' : 'text-success'}}">{{$item->degree}}</td>
                         <td class="d-flex justify-content-center">
                             <a class="btn btn-primary" href="{{route($model.'.edit',$item->id)}}">
@@ -63,7 +64,13 @@
         <!-- /.card-body -->
     </div>
     <!-- /.card -->
-
+    <form method="POST" action="{{route($model.'.deleteAll')}}">
+        @csrf
+        <button type="submit" class="btn btn-danger mt-5 mb-1">
+            حذف كل البيانات
+            <i class="fas fa-trash"></i>
+        </button>
+    </form>
 </div>
 
 

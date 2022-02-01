@@ -15,14 +15,14 @@ class CreateNotesTable extends Migration
     {
         Schema::create('notes', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('student_id');
+            $table->unsignedBigInteger('student_id')->nullable();
             $table->text('note');
             $table->timestamps();
 
             $table->foreign('student_id')
             ->references('id')
             ->on('students')
-            ->onDelete('cascade');
+            ->onDelete('set null');
         });
     }
 

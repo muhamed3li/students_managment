@@ -43,7 +43,7 @@
                             <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>
-                    <ul class="nav nav-treeview" style="display: {{currentRequest('groups') ? 'block' : 'none'}};">
+                    <ul class="nav nav-treeview ml-3" style="display: {{currentRequest('groups') ? 'block' : 'none'}};">
                         <li class="nav-item">
                             <a href="{{route('group.index')}}"
                                 class="nav-link {{currentRequest('groups/group') ? 'active' : ''}}">
@@ -73,7 +73,8 @@
                             <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>
-                    <ul class="nav nav-treeview" style="display: {{currentRequest('students') ? 'block' : 'none'}};">
+                    <ul class="nav nav-treeview ml-3"
+                        style="display: {{currentRequest('students') ? 'block' : 'none'}};">
                         <li class="nav-item">
                             <a href="{{route('student.index')}}"
                                 class="nav-link {{currentRequest('students/student') ? 'active' : ''}}">
@@ -86,6 +87,13 @@
                                 class="nav-link {{currentRequest('students/attendance') ? 'active' : ''}}">
                                 <i class="fas fa-user-clock nav-icon"></i>
                                 <p>جدول الحضور</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{route('attendance.barcodePage')}}"
+                                class="nav-link {{currentRequest('students/attendanceBarcodePage') ? 'active' : ''}}">
+                                <i class="fas fa-barcode nav-icon"></i>
+                                <p>حضور بالباركود</p>
                             </a>
                         </li>
                         <li class="nav-item">
@@ -116,7 +124,7 @@
                             <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>
-                    <ul class="nav nav-treeview" style="display: {{currentRequest('exams') ? 'block' : 'none'}};">
+                    <ul class="nav nav-treeview ml-3" style="display: {{currentRequest('exams') ? 'block' : 'none'}};">
                         <li class="nav-item">
                             <a href="{{route('exam.index')}}"
                                 class="nav-link {{currentRequest('exams/exam') ? 'active' : ''}}">
@@ -146,7 +154,7 @@
                             <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>
-                    <ul class="nav nav-treeview" style="display: {{currentRequest('level') ? 'block' : 'none'}};">
+                    <ul class="nav nav-treeview ml-3" style="display: {{currentRequest('level') ? 'block' : 'none'}};">
                         <li class="nav-item">
                             <a href="{{route('level.index')}}"
                                 class="nav-link {{currentRequest('level') ? 'active' : ''}}">
@@ -168,7 +176,8 @@
                             <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>
-                    <ul class="nav nav-treeview" style="display: {{currentRequest('expence') ? 'block' : 'none'}};">
+                    <ul class="nav nav-treeview ml-3"
+                        style="display: {{currentRequest('expence') ? 'block' : 'none'}};">
                         <li class="nav-item">
                             <a href="{{route('expence.index')}}"
                                 class="nav-link {{currentRequest('expence') ? 'active' : ''}}">

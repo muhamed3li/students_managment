@@ -8,12 +8,7 @@
         <div class="card-header">
             <h3 class="card-title">تعديل حضور</h3>
         </div>
-        @if (session()->has('success'))
-        <div class="alert alert-success" id="success">
-            {{session()->get('success')}}
-        </div>
-        @endif
-        <!-- /.card-header -->
+
         <!-- form start -->
         <form action="{{route($model.'.update',$obj->id)}}" method="POST">
             @csrf

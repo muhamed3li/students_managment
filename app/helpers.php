@@ -11,7 +11,7 @@ if(!function_exists('form_text'))
         <div class="card-body">
             <div class="form-group">
                 <label for="$name">$label</label>
-                <input type="text" class="form-control" id="$name" placeholder="اكتب $label" name="$name" value="$old">
+                <input type="text" class="form-control" id="$name" name="$name" value="$old">
             </div>
         </div>
         END;
@@ -28,7 +28,7 @@ if(!function_exists('form_textarea'))
         <div class="card-body">
             <div class="form-group">
                 <label for="$name">$label</label>
-                <textarea type="text" class="form-control" id="$name" placeholder="اكتب $label" name="$name">$old</textarea>
+                <textarea type="text" class="form-control" id="$name" name="$name">$old</textarea>
             </div>
         </div>
         END;
@@ -50,6 +50,7 @@ if(!function_exists('form_select'))
             <div class="form-group">
                 <label for="$name">$label</label>
                 <select class="form-control" name="$name" id="$name">
+                <option selected disabled>اختر</option>
         END;
 
         foreach($all as $item)
@@ -149,7 +150,7 @@ if(!function_exists('form_date'))
         <div class="card-body">
             <div class="form-group">
                 <label for="$name">$label</label>
-                <input type="date" class="form-control" id="$name" placeholder="$name" name="$name" value="$date">
+                <input type="date" class="form-control datepicker" id="$name"  name="$name" value="$date">
             </div>
         </div>
         END;
@@ -166,7 +167,7 @@ if(!function_exists('form_time'))
         <div class="card-body">
             <div class="form-group">
                 <label for="$name">$label</label>
-                <input type="time" class="form-control" id="$name" placeholder="$name" name="$name" value="$old">
+                <input type="time" class="form-control" id="$name"  name="$name" value="$old">
             </div>
         </div>
         END;

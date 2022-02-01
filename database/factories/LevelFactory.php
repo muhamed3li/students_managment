@@ -15,7 +15,7 @@ class LevelFactory extends Factory
     {
         return [
             'name' => $this->faker->name(),
-            'reserve_cost' => $this->faker->randomFloat(4,0,1000),
+            // 'reserve_cost' => $this->faker->randomFloat(4,0,1000),
             'malazem_cost' => $this->faker->randomFloat(4,0,1000),
             'month_cost' => $this->faker->randomFloat(4,0,1000),
         ];

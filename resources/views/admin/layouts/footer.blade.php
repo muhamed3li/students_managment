@@ -25,6 +25,8 @@
 <!-- AdminLTE App -->
 <script src="{{ asset('/adminLTE') }}/dist/js/adminlte.js"></script>
 
+
+
 <!-- PAGE PLUGINS -->
 <!-- jQuery Mapael -->
 <script src="{{ asset('/adminLTE') }}/plugins/jquery-mousewheel/jquery.mousewheel.js"></script>
@@ -40,7 +42,7 @@
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="{{ asset('/adminLTE') }}/dist/js/pages/dashboard2.js"></script> --}}
 
-
+<script src="{{ asset('/adminLTE/dist/js/jQuery.print.min.js') }}"></script>
 
 {{-- data table blugins --}}
 <script src="{{ asset('/adminLTE') }}/plugins/datatables/jquery.dataTables.min.js"></script>
@@ -56,14 +58,39 @@
 <script src="{{ asset('/adminLTE') }}/plugins/datatables-buttons/js/buttons.print.min.js"></script>
 <script src="{{ asset('/adminLTE') }}/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
 
+<!-- select 2 -->
+<script src="{{ asset('/adminLTE') }}/plugins/select2/js/select2.full.min.js"></script>
+
+<!-- Bootstrap4 Duallistbox -->
+<script src="{{ asset('/adminLTE') }}/plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min.js"></script>
+
+
+@include('sweetalert::alert')
 
 <script>
     $( document ).ready(function() {
-        setTimeout(() => {
-            $('#success').slideUp('slow')
-            $('#myError').slideUp('slow')
-        }, 3000);
+        $('.select2').select2()
+        // $('.duallistbox').bootstrapDualListbox()
+
+        // console.log($('.select2'));
+
+        // $('.select2').each((element,item) => {
+        //     $(item).select2()
+        //     // console.log(item);
+        // });
+        // $('select').selectize({
+        //     sortField: 'text'
+        // });
     });
+
+    function idFromBarcode(id)
+    {
+        if(id.length >=5)
+        {
+            id = id.slice(0,-1);
+        }
+        return id
+    }
 </script>
 
 @yield('specificScript')

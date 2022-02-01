@@ -19,7 +19,7 @@ class StudentFactory extends Factory
             'address' => $this->faker->address(),
             'home_phone' => $this->faker->phoneNumber(),
             'phone' => $this->faker->phoneNumber(),
-            'father_name' => $this->faker->name(),
+            // 'father_name' => $this->faker->name(),
             'father_phone' => $this->faker->phoneNumber(),
             'school' => $this->faker->name(),
             'status' => $this->faker->randomElement(['reserve','in','out','fired']),

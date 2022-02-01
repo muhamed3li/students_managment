@@ -8,11 +8,7 @@
         <div class="card-header">
             <h3 class="card-title">تعديل طالب</h3>
         </div>
-        @if (session()->has('success'))
-        <div class="alert alert-success" id="success">
-            {{session()->get('success')}}
-        </div>
-        @endif
+
         <!-- /.card-header -->
         <!-- form start -->
         <form action="{{route($model.'.update',$obj->id)}}" method="POST">
@@ -51,13 +47,13 @@
             @enderror
 
 
-            {!! form_text('father_name','اسم الأب',$obj->father_name) !!}
+            {{-- {!! form_text('father_name','اسم الأب',$obj->father_name) !!}
             @error('father_name')
             <p class="text-danger" id="myError">{{$message}}</p>
-            @enderror
+            @enderror --}}
 
 
-            {!! form_text('father_phone','هاتف الأب',$obj->father_phone) !!}
+            {!! form_text('father_phone','هاتف ولى الأمر',$obj->father_phone) !!}
             @error('father_phone')
             <p class="text-danger" id="myError">{{$message}}</p>
             @enderror

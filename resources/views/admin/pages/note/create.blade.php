@@ -10,11 +10,7 @@
         <div class="card-header">
             <h3 class="card-title">اضافة ملاحظة لطالب</h3>
         </div>
-        @if (session()->has('success'))
-        <div class="alert alert-success" id="success">
-            {{session()->get('success')}}
-        </div>
-        @endif
+
         <!-- /.card-header -->
         <!-- form start -->
         <form action="{{route($model.'.store')}}" method="POST">

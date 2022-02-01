@@ -9,11 +9,7 @@
             <h3 class="card-title">الامتحانات</h3>
             <a href="{{route($model.'.create')}}" class="btn btn-success float-right">انشاء</a>
         </div>
-        @if (session()->has('success'))
-        <div class="alert alert-success" id="success">
-            {{session()->get('success')}}
-        </div>
-        @endif
+
         <!-- /.card-header -->
         <div class="card-body">
             <table id="example1" class="table table-bordered table-striped">
@@ -34,8 +30,13 @@
                     <tr>
                         <td>{{++$index}}</td>
                         <td>{{$item->name}}</td>
-                        <td>{{$item->level->name}}</td>
-                        <td>{{$item->group->name}}</td>
+
+                        <td class="{{$item->level->name ?? 'text-danger'}}">{{$item->level->name ?? "لا يوجد مستوى"}}
+                        </td>
+
+                        <td class="{{$item->group->name ?? 'text-danger'}}">{{$item->group->name ?? "لا يوجد مجموعة"}}
+                        </td>
+
                         <td>{{$item->exam_date}}</td>
                         <td>{{$item->exam_max}}</td>
                         <td>{{$item->exam_min}}</td>
@@ -72,7 +73,13 @@
         <!-- /.card-body -->
     </div>
     <!-- /.card -->
-
+    <form method="POST" action="{{route($model.'.deleteAll')}}">
+        @csrf
+        <button type="submit" class="btn btn-danger mt-5 mb-1">
+            حذف كل البيانات
+            <i class="fas fa-trash"></i>
+        </button>
+    </form>
 </div>
 
 

@@ -19,9 +19,10 @@ class CreatePaymentsTable extends Migration
             $table->date('pay_to');
             $table->decimal('month_paid');
             $table->decimal('malazem_paid');
-            $table->decimal('discount');
+            $table->decimal('discount')->default(0);
+            $table->decimal('total');
             $table->unsignedBigInteger('student_id')->nullable();
-            $table->unsignedBigInteger('group_id')->nullable();
+            // $table->unsignedBigInteger('group_id')->nullable();
             $table->timestamps();
 
             $table->foreign('student_id')
@@ -29,10 +30,10 @@ class CreatePaymentsTable extends Migration
             ->on('students')
             ->onDelete('set null');
 
-            $table->foreign('group_id')
-            ->references('id')
-            ->on('groups')
-            ->onDelete('set null');
+            // $table->foreign('group_id')
+            // ->references('id')
+            // ->on('groups')
+            // ->onDelete('set null');
         });
     }
 

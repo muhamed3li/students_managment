@@ -8,11 +8,7 @@
         <div class="card-header">
             <h3 class="card-title">تعديل مستوى</h3>
         </div>
-        @if (session()->has('success'))
-        <div class="alert alert-success" id="success">
-            {{session()->get('success')}}
-        </div>
-        @endif
+
         <!-- /.card-header -->
         <!-- form start -->
         <form action="{{route($model.'.update',$obj->id)}}" method="POST">
@@ -27,10 +23,10 @@
             @enderror
 
 
-            {!! form_text('reserve_cost','مصاريف الحجز',$obj->reserve_cost) !!}
+            {{-- {!! form_text('reserve_cost','مصاريف الحجز',$obj->reserve_cost) !!}
             @error('reserve_cost')
             <p class="text-danger" id="myError">{{$message}}</p>
-            @enderror
+            @enderror --}}
 
 
             {!! form_text('malazem_cost','مصاريف الملازم',$obj->malazem_cost) !!}

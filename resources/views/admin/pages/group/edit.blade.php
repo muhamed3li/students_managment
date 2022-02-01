@@ -8,11 +8,7 @@
         <div class="card-header">
             <h3 class="card-title">تعديل مجموعة</h3>
         </div>
-        @if (session()->has('success'))
-        <div class="alert alert-success" id="success">
-            {{session()->get('success')}}
-        </div>
-        @endif
+
         <!-- /.card-header -->
         <!-- form start -->
         <form action="{{route($model.'.update',$obj->id)}}" method="POST">
@@ -35,6 +31,7 @@
             <div class="form-group">
                 <label for="time">الميعاد</label>
                 <select name="time_id" class="form-control" id="time">
+                    @if ($obj->time)
                     <option value="{{$obj->time_id}}" selected>
                         {{is_time_zero($obj->time->sat) ? " " : " // سبت" . format_time_to_twelve($obj->time->sat)}}
                         {{is_time_zero($obj->time->sun) ? " " : " // حد" . format_time_to_twelve($obj->time->sun)}}
@@ -44,6 +41,7 @@
                         {{is_time_zero($obj->time->thu) ? " " : " // خميس" . format_time_to_twelve($obj->time->thu)}}
                         {{is_time_zero($obj->time->fri) ? " " : " // جمعة" . format_time_to_twelve($obj->time->fri)}}
                     </option>
+                    @endif
                     @foreach (App\Models\Time::doesntHave('group')->get() as $item)
                     <option value="{{$item->id}}">
                         {{is_time_zero($item->sat) ? " " : " // سبت" . format_time_to_twelve($item->sat)}}

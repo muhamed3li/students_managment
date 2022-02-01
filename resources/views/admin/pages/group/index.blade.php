@@ -9,11 +9,7 @@
             <h3 class="card-title">المجاميع</h3>
             <a href="{{route($model.'.create')}}" class="btn btn-success float-right">انشاء</a>
         </div>
-        @if (session()->has('success'))
-        <div class="alert alert-success" id="success">
-            {{session()->get('success')}}
-        </div>
-        @endif
+
         <!-- /.card-header -->
         <div class="card-body">
             <table id="example1" class="table table-bordered table-striped">
@@ -35,6 +31,7 @@
                             مستوى" :
                             $item->level->name}}</td>
                         <td>
+                            @if ($item->time)
                             <table class="table table-bordered" style="display: none">
                                 <thead>
                                     <button class="btn btn-outline-primary show-time-table">show</button>
@@ -43,6 +40,7 @@
                                         <th>الوقت</th>
                                     </tr>
                                 </thead>
+
                                 <tbody>
                                     {!! render_time_in_table($item->time->sat,'سبت') !!}
                                     {!! render_time_in_table($item->time->sun,'حد') !!}
@@ -53,6 +51,9 @@
                                     {!! render_time_in_table($item->time->fri,'جمعة') !!}
                                 </tbody>
                             </table>
+                            @else
+                            <span class="text-danger">لا يوجد موعد</span>
+                            @endif
                         </td>
                         <td class="d-flex justify-content-center">
                             <a class="btn btn-primary" href="{{route($model.'.edit',$item->id)}}">
@@ -84,7 +85,13 @@
         <!-- /.card-body -->
     </div>
     <!-- /.card -->
-
+    <form method="POST" action="{{route($model.'.deleteAll')}}">
+        @csrf
+        <button type="submit" class="btn btn-danger mt-5 mb-1">
+            حذف كل البيانات
+            <i class="fas fa-trash"></i>
+        </button>
+    </form>
 </div>
 
 
