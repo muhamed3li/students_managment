@@ -18,7 +18,8 @@
             <table id="example1" class="table table-bordered table-striped">
                 <thead>
                     <tr>
-                        <th>ID</th>
+                        <th>التسلسل</th>
+                        <th>رقم الهوية</th>
                         <th>اسم الطالب</th>
                         <th>النوع</th>
                         <th>العنوان</th>
@@ -36,8 +37,9 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($all as $item)
+                    @foreach ($all as $index => $item)
                     <tr>
+                        <td>{{++$index}}</td>
                         <td>{{$item->id}}</td>
                         <td>{{$item->name}}</td>
                         <td>{{$item->gender == 1 ? 'مذكر' : 'مؤنث'}}</td>
@@ -81,7 +83,8 @@
                 </tbody>
                 <tfoot>
                     <tr>
-                        <th>ID</th>
+                        <th>التسلسل</th>
+                        <th>رقم الهوية</th>
                         <th>اسم الطالب</th>
                         <th>النوع</th>
                         <th>العنوان</th>

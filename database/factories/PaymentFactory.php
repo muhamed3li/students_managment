@@ -21,7 +21,6 @@ class PaymentFactory extends Factory
             'discount' => $this->faker->randomFloat(2,0,100),
             'total' => 0,
             'student_id' => rand(1,9),
-            'group_id' => rand(1,9)
         ];
     }
 }

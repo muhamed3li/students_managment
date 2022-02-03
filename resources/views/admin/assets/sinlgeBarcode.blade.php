@@ -14,13 +14,17 @@
         .barcode div {
             height: 50px !important;
         }
+
+        svg {
+            transform: scale(1, 2.5)
+        }
     </style>
 </head>
 
 <body>
     <div style="margin-top:2em" class="barcode col-4">
-        <p style="font-size: 2em">{{$student->name}}</p>
-        {!! DNS1D::getBarcodeHTML("$student->id", 'UPCA') !!}
+        <p style="font-size: 2em;margin-bottom:1em">{{$student->name}}</p>
+        {!! DNS1D::getBarcodeSVG("$student->id", 'UPCA') !!}
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"

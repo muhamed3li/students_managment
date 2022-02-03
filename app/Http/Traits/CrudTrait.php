@@ -9,7 +9,7 @@ trait CrudTrait
 {
     public function index()
     {
-        $all = $this->model::get();
+        $all = $this->model::orderBy('id', 'DESC')->get();
         $columns = Schema::getColumnListing($this->model->getTable());
         $model = $this->modelName;
         return view("admin.pages.{$this->modelName}.index",compact('all','columns','model'));

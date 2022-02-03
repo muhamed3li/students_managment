@@ -26,7 +26,7 @@ class AttendanceController extends Controller
 
     public function index()
     {
-        $all = $this->model::get();
+        $all = $this->model::orderBy('id', 'DESC')->get();
         $model = $this->modelName;
         $levels = Level::get();
 

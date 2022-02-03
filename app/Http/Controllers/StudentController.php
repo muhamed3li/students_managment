@@ -19,6 +19,14 @@ class StudentController extends Controller
         $this->modelName = strtolower(class_basename($model));
     }
 
+    public function create()
+    {
+        $model = $this->modelName;
+        $id = Student::all()->last()->id ?? "";
+
+        return view("admin.pages.{$this->modelName}.create",compact('model'));
+    }
+
     public function getGroups(Student $student)
     {
         $group = $student->group;

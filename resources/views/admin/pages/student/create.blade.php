@@ -129,6 +129,25 @@
             }
         })
     });
+
+
+    $('.button_for_print_barcode').on('click', function() {
+        let input = $(this).siblings('.parcode_id_for_print')[0];
+        var id = $(input).val()
+        console.log(id);
+          
+        $.ajax({
+            type: "POST",
+            url: '/printSinlgeBarcode/' + id,
+            data: { _token: '{{csrf_token()}}' },
+            success: function (data) {
+                // $.print(data);
+            },
+            error: function (data, textStatus, errorThrown) {
+                console.log(data);
+            },
+        });
+    });
     
 </script>
 @endsection

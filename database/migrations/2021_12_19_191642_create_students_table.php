@@ -20,6 +20,7 @@ class CreateStudentsTable extends Migration
             $table->string('address')->nullable();
             $table->string('home_phone')->nullable();
             $table->string('phone')->nullable();
+            $table->string('image')->nullable();
             // $table->string('father_name');
             $table->string('father_phone')->nullable();
             $table->string('school')->nullable();

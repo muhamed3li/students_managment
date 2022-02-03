@@ -14,6 +14,10 @@
         .barcode div {
             height: 50px !important;
         }
+
+        svg {
+            transform: scale(1, 2.5)
+        }
     </style>
 </head>
 
@@ -23,8 +27,8 @@
         <div class="row">
             @foreach (App\Models\Student::get() as $student)
             <div style="margin-top:2em" class="barcode col-4">
-                <p style="font-size: 2em">{{$student->name}}</p>
-                {!! DNS1D::getBarcodeHTML("$student->id", 'UPCA') !!}
+                <p style="font-size: 2em;margin-bottom:1em">{{$student->name}}</p>
+                {!! DNS1D::getBarcodeSVG("$student->id", 'UPCA') !!}
             </div>
             @endforeach
         </div>
