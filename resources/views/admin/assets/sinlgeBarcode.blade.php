@@ -11,6 +11,13 @@
 
     <title>Print Student parcode</title>
     <style>
+        .body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            /* height: 100vh; */
+        }
+
         .barcode div {
             height: 50px !important;
         }
@@ -21,7 +28,7 @@
     </style>
 </head>
 
-<body>
+<body class="body">
     <div style="margin-top:2em" class="barcode col-4">
         <p style="font-size: 2em;margin-bottom:1em">{{$student->name}}</p>
         {!! DNS1D::getBarcodeSVG("$student->id", 'UPCA') !!}

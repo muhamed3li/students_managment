@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Http\Traits\CrudTrait;
+use App\Models\Level;
 use App\Models\Note;
 
 class NoteController extends Controller
@@ -17,6 +17,13 @@ class NoteController extends Controller
     {
         $this->model = $model;
         $this->modelName = strtolower(class_basename($model));
+    }
+
+    public function create()
+    {
+        $model = $this->modelName;
+        $levels = Level::get();
+        return view("admin.pages.{$this->modelName}.create",compact('model','levels'));
     }
 
     private function validation()

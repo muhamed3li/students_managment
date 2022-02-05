@@ -53,4 +53,9 @@ class Student extends Model
             'total' => $data->month_paid + $data->malazem_paid - $data->discount,
         ]);
     }
+
+    public function didAttendIn($date)
+    {
+        return $this->attend()->where([['attend',true],['day',$date]])->exists();
+    }
 }

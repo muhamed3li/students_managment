@@ -20,7 +20,7 @@ class PaymentFactory extends Factory
             'malazem_paid' => $this->faker->randomFloat(2,0,100),
             'discount' => $this->faker->randomFloat(2,0,100),
             'total' => 0,
-            'student_id' => rand(1,9),
+            'student_id' => rand(1,100),
         ];
     }
 }

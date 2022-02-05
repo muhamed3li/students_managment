@@ -15,8 +15,8 @@ class ExamFactory extends Factory
     {
         return [
             'name' => $this->faker->name(),
-            'level_id' => rand(1,9),
-            'group_id' => rand(1,9),
+            'level_id' => rand(1,100),
+            'group_id' => rand(1,100),
             'exam_date' => $this->faker->date(),
             'exam_max' => 100,
             'exam_min' => 50,

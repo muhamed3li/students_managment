@@ -8,7 +8,6 @@ use App\Models\Group;
 use App\Models\Level;
 use App\Models\Student;
 use Illuminate\Http\Request;
-use Milon\Barcode\DNS1D;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class AttendanceController extends Controller

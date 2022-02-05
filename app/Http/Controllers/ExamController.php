@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Traits\CrudTrait;
 use App\Models\Exam;
-use Illuminate\Http\Request;
 
 class ExamController extends Controller
 {

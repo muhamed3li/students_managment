@@ -13,19 +13,19 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        \App\Models\User::factory(10)->create();
-        \App\Models\Level::factory(10)->create();
-        \App\Models\Time::factory(10)->create();
-        for($i =1 ; $i <= 10 ; $i++)
+        \App\Models\User::factory(100)->create();
+        \App\Models\Level::factory(100)->create();
+        \App\Models\Time::factory(100)->create();
+        for($i =1 ; $i <= 100 ; $i++)
         {
             \App\Models\Group::factory()->create();
         }
-        \App\Models\Exam::factory(10)->create();
-        \App\Models\Student::factory(10)->create();
-        \App\Models\Note::factory(10)->create();
-        \App\Models\Payment::factory(10)->create();
-        \App\Models\Expence::factory(10)->create();
-        \App\Models\Attendance::factory(10)->create();
-        \App\Models\ExamAttindance::factory(10)->create();
+        \App\Models\Exam::factory(100)->create();
+        \App\Models\Student::factory(100)->create();
+        \App\Models\Note::factory(100)->create();
+        \App\Models\Payment::factory(100)->create();
+        \App\Models\Expence::factory(100)->create();
+        \App\Models\Attendance::factory(100)->create();
+        \App\Models\ExamAttindance::factory(100)->create();
     }
 }

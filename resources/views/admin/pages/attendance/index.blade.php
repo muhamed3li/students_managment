@@ -91,7 +91,9 @@
                 <thead>
                     <tr>
                         <th>الرقم التسلسلي</th>
+                        <th>هوية الطالب</th>
                         <th>اسم الطالب</th>
+                        <th>المجموعة</th>
                         <th>حالة الحضور</th>
                         <th>التاريخ</th>
                         <th>حذف وتعديل</th>
@@ -101,8 +103,11 @@
                     @foreach ($all as $index => $item)
                     <tr>
                         <td>{{++$index}}</td>
+                        <td>{{$item->student->id ?? ""}}</td>
                         <td class="{{$item->student->name ?? " text-danger"}}">{{$item->student->name ?? "لا يوجد
                             طالب"}}</td>
+
+                        <td>{{$item->student->group->name ?? ""}}</td>
 
                         <td class="{{$item->attend ?'text-success' : 'text-danger'}}">
                             {{$item->attend ? 'حضر' : 'غائب'}}
@@ -128,7 +133,9 @@
                 <tfoot>
                     <tr>
                         <th>الرقم التسلسلي</th>
+                        <th>هوية الطالب</th>
                         <th>اسم الطالب</th>
+                        <th>المجموعة</th>
                         <th>حالة الحضور</th>
                         <th>التاريخ</th>
                         <th>حذف وتعديل</th>

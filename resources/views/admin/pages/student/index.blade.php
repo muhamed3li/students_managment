@@ -11,6 +11,8 @@
 
             <a class="btn btn-info float-right mr-5" id="print_parcode">طباعة كل الباركود</a>
 
+            <a class="btn btn-warning float-right mr-5" id="print_cards" href="{{route('printAllStudentCards')}}">طباعة
+                كل البطاقات</a>
         </div>
 
         <!-- /.card-header -->
@@ -32,7 +34,7 @@
                         <th>حجز مدفوع</th>
                         <th>المستوى</th>
                         <th>المجموعة</th>
-                        <th>الباركود</th>
+                        <th> طباعة الباركود و البطاقة</th>
                         <th>حذف وتعديل</th>
                     </tr>
                 </thead>
@@ -63,6 +65,14 @@
                             <button type="submit" class="btn btn-info button_for_print_barcode">
                                 طباعة الباركود
                             </button>
+
+                            <form action="{{route('printSingleCard',$item->id)}}">
+                                @csrf
+
+                                <button type="submit" class="btn btn-warning button_for_print_card mt-3">
+                                    طباعة البطاقة
+                                </button>
+                            </form>
                         </td>
 
                         <td class="text-right d-flex justify-content-around">
@@ -97,7 +107,7 @@
                         <th>حجز مدفوع</th>
                         <th>المستوى</th>
                         <th>المجموعة</th>
-                        <th>الباركود</th>
+                        <th> طباعة الباركود و البطاقة</th>
                         <th>حذف وتعديل</th>
                     </tr>
                 </tfoot>
@@ -141,7 +151,6 @@
                 },
             });
         });
-
 
       $('.button_for_print_barcode').on('click', function() {
           let input = $(this).siblings('.parcode_id_for_print')[0];

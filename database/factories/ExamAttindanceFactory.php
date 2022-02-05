@@ -14,8 +14,8 @@ class ExamAttindanceFactory extends Factory
     public function definition()
     {
         return [
-            'student_id' => rand(1,9),
-            'exam_id' => rand(1,9),
+            'student_id' => rand(1,100),
+            'exam_id' => rand(1,100),
             'degree' => $this->faker->randomFloat(2,0,100)
         ];
     }

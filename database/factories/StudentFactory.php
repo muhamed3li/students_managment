@@ -24,8 +24,8 @@ class StudentFactory extends Factory
             'school' => $this->faker->name(),
             'status' => $this->faker->randomElement(['reserve','in','out','fired']),
             'reserve_paid' => $this->faker->randomFloat(2,0,100),
-            'level_id' => rand(1,9),
-            'group_id' => rand(1,9),
+            'level_id' => rand(1,100),
+            'group_id' => rand(1,100),
         ];
     }
 }

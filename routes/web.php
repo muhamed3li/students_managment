@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminHomeController;
 use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\BarcodeController;
 use App\Http\Controllers\DepartmentController;
@@ -25,15 +26,17 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::get('/', function () {
-    return view('admin.welcome');
-});
+Route::get('/', [AdminHomeController::class,'index'])->name('admin.home');
 
 Route::resource('department',DepartmentController::class);
 
 Route::post('/printBarcode', function() { return view('admin.assets.allBarcodes'); });
 
 Route::post('/printSinlgeBarcode/{student}',[BarcodeController::class,'printSinlgeBarcode']);
+
+Route::get('/printAllStudentCards',[StudentController::class,'printAllStudentCards'])->name('printAllStudentCards');
+
+Route::get('/printSingleCard/{student}',[StudentController::class,'printSingleCard'])->name('printSingleCard');
 
 Route::get('/barcode',[BarcodeController::class,'generateBarcode']);
 

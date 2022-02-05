@@ -14,7 +14,7 @@ class NoteFactory extends Factory
     public function definition()
     {
         return [
-            'student_id' => rand(1,9),
+            'student_id' => rand(1,100),
             'note' => $this->faker->text()
         ];
     }

@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Traits\CrudTrait;
 use App\Models\Student;
-use Illuminate\Http\Request;
 
 class StudentController extends Controller
 {
@@ -36,6 +35,20 @@ class StudentController extends Controller
     public function getStudetnById(Student $student)
     {
         echo json_encode($student);
+    }
+
+    public function printAllStudentCards()
+    {
+        return view('admin.assets.allCards',[
+            'students'=> Student::get()
+        ]);
+    }
+
+    public function printSingleCard(Student $student)
+    {
+        return view('admin.assets.singleCard',[
+            'student'=> $student
+        ]);
     }
    
 

@@ -14,7 +14,7 @@ class AttendanceFactory extends Factory
     public function definition()
     {
         return [
-            'student_id' => rand(1,9),
+            'student_id' => rand(1,100),
             'attend' => $this->faker->boolean(),
             'day' => $this->faker->date(),
         ];

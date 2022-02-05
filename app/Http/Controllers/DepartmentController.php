@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Attendance;
 use App\Models\Department;
 use Illuminate\Http\Request;
 
@@ -20,9 +19,6 @@ class DepartmentController extends Controller
      */
     public function index()
     {
-        // $all = $this->department::get();
-        // $x = new Attendance();
-        // dd($x->getAttributes());
         return view('admin.pages.department.index',compact('all'));
     }
 
