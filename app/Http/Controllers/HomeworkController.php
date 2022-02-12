@@ -20,7 +20,7 @@ class HomeworkController extends Controller
 
     public function create()
     {
-        
+        $levels = Level::get();
         return view('admin.pages.homework.create',compact('levels'));
     }
 

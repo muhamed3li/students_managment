@@ -20,7 +20,7 @@
                         <th>المجموعة</th>
                         <th>اسم الطالب</th>
                         <th>الواجب</th>
-                        <th>الحل</th>
+                        <th>الدرجة</th>
                         <th>تاريخ الحل</th>
                         <th>حذف وتعديل</th>
                     </tr>
@@ -37,15 +37,7 @@
 
                         <td>{{$item->homework->name ?? ""}}</td>
 
-                        @if ($item->solved)
-                        <td class="text-success">
-                            <i class="fas fa-check-circle"></i>
-                        </td>
-                        @else
-                        <td class="text-danger">
-                            <i class="fas fa-times-circle"></i>
-                        </td>
-                        @endif
+                        <td>{{$item->degree}}</td>
 
                         <td>{{$item->solved_at}}</td>
                         <td class="d-flex justify-content-center">
@@ -71,7 +63,7 @@
                         <th>المجموعة</th>
                         <th>اسم الطالب</th>
                         <th>الواجب</th>
-                        <th>الحل</th>
+                        <th>الدرجة</th>
                         <th>تاريخ الحل</th>
                         <th>حذف وتعديل</th>
                     </tr>

@@ -33,7 +33,8 @@
                         <td class="{{$item->exam->name ?? " text-danger"}}">{{$item->exam->name ?? "لا يوجد امتحان"}}
                         </td>
 
-                        <td class="{{$item->degree < 50 ? 'text-danger' : 'text-success'}}">{{$item->degree}}</td>
+                        <td class="{{$item->degree < $item->exam->exam_min ? 'text-danger' : 'text-success'}}">
+                            {{$item->degree ?? "غياب"}}</td>
                         <td class="d-flex justify-content-center">
                             <a class="btn btn-primary" href="{{route($model.'.edit',$item->id)}}">
                                 <i class="fas fa-pen"></i>

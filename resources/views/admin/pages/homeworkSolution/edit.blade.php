@@ -17,8 +17,8 @@
 
 
 
-            {!! form_check('solved','تم الحل ؟',$homeworkSolution->solved) !!}
-            @error('solved')
+            {!! form_text('degree','الدرجة',$homeworkSolution->degree) !!}
+            @error('degree')
             <p class="text-danger" id="myError">{{$message}}</p>
             @enderror
 

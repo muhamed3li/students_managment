@@ -17,7 +17,7 @@ class CreateExamAttindancesTable extends Migration
             $table->id();
             $table->unsignedBigInteger('student_id')->nullable();
             $table->unsignedBigInteger('exam_id')->nullable();
-            $table->float('degree');
+            $table->float('degree')->nullable();
             $table->timestamps();
 
             $table->foreign('student_id')

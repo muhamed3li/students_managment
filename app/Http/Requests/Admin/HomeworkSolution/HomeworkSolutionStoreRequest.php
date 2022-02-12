@@ -26,6 +26,7 @@ class HomeworkSolutionStoreRequest extends FormRequest
         return [
             'student_id' => 'exists:students,id',
             'homework_id' => 'exists:homework,id',
+            'degree' => 'nullable|numeric',
             'solved_at' => 'required|date'
         ];
     }

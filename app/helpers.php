@@ -116,7 +116,7 @@ if(!function_exists('form_select_array'))
 
 if(!function_exists('form_check'))
 {
-    function form_check($name,$label ="",$checked = 0)
+    function form_check($name,$label ="",$checked = 1)
     {
         $label = $label == "" ? $name : $label;
         $checked = $checked == 0 ? '' : 'checked';

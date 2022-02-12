@@ -30,4 +30,9 @@ class Group extends Model
     {
         return $this->hasMany(Homework::class,'group_id');
     }
+
+    public function exams()
+    {
+        return $this->hasMany(Exam::class,'group_id');
+    }
 }

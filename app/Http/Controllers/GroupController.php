@@ -32,6 +32,12 @@ class GroupController extends Controller
         echo json_encode($homework);
     }
 
+    public function getExams(Group $group)
+    {
+        $groups = $group->exams;
+        echo json_encode($groups);
+    }
+
     private function validation()
     {
         request()->validate([

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Traits\CrudTrait;
 use App\Models\Exam;
 use App\Models\ExamAttindance;
+use App\Models\Group;
 use App\Models\Level;
 use App\Models\Student;
 use Illuminate\Http\Request;
@@ -39,6 +40,33 @@ class ExamAttindanceController extends Controller
         }
         Alert::success('Success', "تم تحضير الطلاب في ذلك الإمتحان");
         return redirect()->back();
+    }
+
+    public function groupAttendancePage()
+    {
+        $levels = Level::get();
+        return view('admin.pages.examattindance.groupAttendancePage',compact('levels'));
+    }
+
+    public function groupAttendance(Request $request)
+    {
+        $exam = Exam::find($request->exam_id);
+        $group = Group::find($request->group_id);
+        $students = $group->students;
+        return view('admin.pages.examattindance.groupAttendance',compact('exam','students','group'));
+    }
+
+    public function attendGroup(Request $request,Exam $exam)
+    {
+        $students = Student::find($request->id);
+        $degrees = $request->degree;
+        foreach($students as $index => $student)
+        {
+            $student->attendInExam($exam->id,$degrees[$index]);
+        }
+
+        Alert::success('Success', "تم تحضير الطلاب في ذلك الإمتحان");
+        return redirect(route('examattindance.groupAttendancePage'));
     }
 
     private function validation()

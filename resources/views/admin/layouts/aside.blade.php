@@ -148,9 +148,16 @@
                         </li>
                         <li class="nav-item">
                             <a href="{{route('examattindance.index')}}"
-                                class="nav-link {{currentRequest('exams/examattindance') ? 'active' : ''}}">
+                                class="nav-link {{request()->route()->getName() == 'examattindance.index' ? 'active' : ''}}">
                                 <i class="fas fa-user-clock nav-icon"></i>
                                 <p>جدول حضور الامتحانات</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{route('examattindance.groupAttendancePage')}}"
+                                class="nav-link {{request()->route()->getName() == 'examattindance.groupAttendancePage' ? 'active' : ''}}">
+                                <i class="fas fa-users nav-icon"></i>
+                                <p>حضور مجموعة</p>
                             </a>
                         </li>
                     </ul>

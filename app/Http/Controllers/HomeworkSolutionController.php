@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use App\Http\Requests\Admin\HomeworkSolution\HomeworkSolutionDeleteRequest;
 use App\Http\Requests\Admin\HomeworkSolution\HomeworkSolutionStoreRequest;
 use App\Http\Requests\Admin\HomeworkSolution\HomeworkSolutionUpdateRequest;
+use App\Models\Group;
 use App\Models\HomeworkSolution;
 use App\Models\Level;
+use App\Models\Student;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -18,10 +20,21 @@ class HomeworkSolutionController extends Controller
         return view('admin.pages.homeworkSolution.index',compact('all'));
     }
 
+    public function homeworkSolutionByBarcodeOrId(Request $request)
+    {
+        foreach($request->students as $id)
+        {
+            Student::find($id)->solveHomework($request->homework_id2,$request->degree2,$request->solved_at2);
+        }
+        Alert::success('Success', "تم اضافة حل الواجب");
+        return redirect()->back();
+    }
+
     public function create()
     {
         $levels = Level::get();
-        return view('admin.pages.homeworkSolution.create',compact('levels'));
+        $groups = Group::get();
+        return view('admin.pages.homeworkSolution.create',compact('levels','groups'));
     }
 
     public function store(HomeworkSolutionStoreRequest $request)

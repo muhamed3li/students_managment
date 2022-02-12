@@ -16,7 +16,7 @@ class HomeworkSolutionFactory extends Factory
         return [
             'student_id' => rand(1,100),
             'homework_id' => rand(1,100),
-            'solved' => $this->faker->boolean(),
+            'degree' => $this->faker->randomFloat(2,0,100),
             'solved_at' => $this->faker->date(),
         ];
     }

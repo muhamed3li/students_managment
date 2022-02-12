@@ -25,6 +25,8 @@ use Illuminate\Support\Facades\Route;
  * تعديل الطالب فيه مشكله في النوع وفيه مشكله في المجموعة
  * اضافة فيتشر طباعة عدد من الطلبة
  * اضافة درجة عدد من الطلبة سويا مثل الحضور بالباركود
+ * زرار لطباعة بيانات الطالب كاملة
+ * 
 */
 
 
@@ -44,6 +46,7 @@ Route::get('/barcode',[BarcodeController::class,'generateBarcode']);
 
 Route::prefix('groups')->group(function(){
     Route::get('/getStudents/{group}',[GroupController::class,'getStudents']);
+    Route::get('/getExams/{group}',[GroupController::class,'getExams']);
 
     Route::get('/getHomework/{group}',[GroupController::class,'getHomework']);
 
@@ -115,12 +118,29 @@ Route::prefix('exams')->group(function(){
 
     Route::post('examattindance/deleteAll',[ExamAttindanceController::class,'deleteAll'])->name('examattindance.deleteAll');
     Route::post('examattindance/examAttendaceByBarcodeOrId',[ExamAttindanceController::class,'examAttendaceByBarcodeOrId'])->name('examattindance.examAttendaceByBarcodeOrId');
+
+    Route::get('examattindance/groupAttendancePage',[ExamAttindanceController::class,'groupAttendancePage'])->name('examattindance.groupAttendancePage');
+
+    
+
+    Route::post('examattindance/groupAttendance',[ExamAttindanceController::class,'groupAttendance'])->name('examattindance.groupAttendance');
+
+
+    Route::post('examattindance/attendGroup/{exam}',[ExamAttindanceController::class,'attendGroup'])->name('examattindance.attendGroup');
+
     Route::resource('examattindance',ExamAttindanceController::class);
+
+    
+
+
 });
 
 Route::group(['prefix' => 'homeworks'],function(){
     Route::post('homework/deleteAll',[HomeworkController::class,'deleteAll'])->name('homework.deleteAll');
     Route::resource('homework',HomeworkController::class);
+
+
+    Route::post('homeworkSolution/homeworkSolutionByBarcodeOrId',[HomeworkSolutionController::class,'homeworkSolutionByBarcodeOrId'])->name('homework.homeworkSolutionByBarcodeOrId');
 
     Route::post('homeworkSolution/deleteAll',[HomeworkSolutionController::class,'deleteAll'])->name('homeworkSolution.deleteAll');
     Route::resource('homeworkSolution',HomeworkSolutionController::class);

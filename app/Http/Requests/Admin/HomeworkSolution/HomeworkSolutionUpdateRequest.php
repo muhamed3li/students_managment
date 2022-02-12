@@ -24,9 +24,7 @@ class HomeworkSolutionUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'id' => 'required|exists:homework_solutions,id',
-            'student_id' => 'exists:students,id',
-            'homework_id' => 'exists:homework,id',
+            'degree' => 'nullable|numeric',
             'solved_at' => 'required|date'
         ];
     }

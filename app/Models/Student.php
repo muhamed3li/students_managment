@@ -35,6 +35,11 @@ class Student extends Model
         return $this->hasMany(ExamAttindance::class,'student_id');
     }
 
+    public function homeworkSolutions()
+    {
+        return $this->hasMany(HomeworkSolution::class,'student_id');
+    }
+
     public function attendIn($date)
     {
         $this->attend()->updateOrCreate(['student_id' => $this->id,'day' => $date],[
@@ -70,7 +75,24 @@ class Student extends Model
             'student_id' => $this->id,
             'exam_id' => $exam_id
         ],[
-            'degree' => $degree
+            'degree' => $degree ?? null
         ]);
+    }
+
+
+    public function solveHomework($homework_id,$degree,$solved_at)
+    {
+        $this->homeworkSolutions()->updateOrCreate([
+            'student_id' => $this->id,
+            'homework_id' => $homework_id
+        ],[
+            'degree' => $degree,
+            'solved_at' => $solved_at
+        ]);
+    }
+
+    public function getExamAttendance($exam_id)
+    {
+        return $this->attendexam()->where('exam_id',$exam_id)->first();
     }
 }

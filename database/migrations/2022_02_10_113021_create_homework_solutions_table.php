@@ -17,7 +17,8 @@ class CreateHomeworkSolutionsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('student_id')->nullable();
             $table->unsignedBigInteger('homework_id')->nullable();
-            $table->boolean('solved')->default(false);
+            // $table->boolean('solved')->default(false);
+            $table->float('degree')->nullable();
             $table->date('solved_at');
             $table->timestamps();
 
