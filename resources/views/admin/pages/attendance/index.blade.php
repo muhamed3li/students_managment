@@ -83,6 +83,12 @@
 
 
 
+
+            <a href="{{route('attendance.attendStudentsWhoUnattended')}}" class="btn btn-info float-right mr-5"
+                id="unattend_students_who_unattended">تغييب من لم يحضر</a>
+
+
+
         </div>
 
         <!-- /.card-header -->
@@ -94,6 +100,7 @@
                         <th>هوية الطالب</th>
                         <th>اسم الطالب</th>
                         <th>المجموعة</th>
+                        <th>المستوى</th>
                         <th>حالة الحضور</th>
                         <th>التاريخ</th>
                         <th>حذف وتعديل</th>
@@ -108,6 +115,7 @@
                             طالب"}}</td>
 
                         <td>{{$item->student->group->name ?? ""}}</td>
+                        <td>{{$item->student->level->name ?? ""}}</td>
 
                         <td class="{{$item->attend ?'text-success' : 'text-danger'}}">
                             {{$item->attend ? 'حضر' : 'غائب'}}
@@ -136,6 +144,7 @@
                         <th>هوية الطالب</th>
                         <th>اسم الطالب</th>
                         <th>المجموعة</th>
+                        <th>المستوى</th>
                         <th>حالة الحضور</th>
                         <th>التاريخ</th>
                         <th>حذف وتعديل</th>

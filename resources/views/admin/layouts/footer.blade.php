@@ -65,6 +65,10 @@
 <script src="{{ asset('/adminLTE/plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min.js') }}"></script>
 
 
+<!-- ChartJS -->
+<script src="{{asset('/adminLTE/plugins/chart.js/Chart.min.js')}}"></script>
+
+
 @include('sweetalert::alert')
 
 <script>
@@ -94,6 +98,7 @@
 </script>
 
 @yield('specificScript')
+@stack('js')
 </body>
 
 </html>

@@ -15,7 +15,7 @@ class SelectSearch extends Component
      *
      * @return void
      */
-    public function __construct($label,$selectdata,$key = "name",$name)
+    public function __construct($label,$selectdata,$name,$key = "name")
     {
         $this->label = $label;
         $this->selectdata = $selectdata;

@@ -25,4 +25,9 @@ class Group extends Model
     {
         return $this->hasMany(Student::class,'group_id');
     }
+
+    public function homework()
+    {
+        return $this->hasMany(Homework::class,'group_id');
+    }
 }

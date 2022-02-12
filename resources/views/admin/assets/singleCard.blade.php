@@ -99,7 +99,7 @@
             transform: scale(1, 2.5)
         }
     </style>
-    <title>Hello, world!</title>
+    <title>Print Single Card</title>
 </head>
 
 <body>

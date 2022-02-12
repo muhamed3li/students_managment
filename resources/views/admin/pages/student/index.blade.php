@@ -34,7 +34,8 @@
                         <th>حجز مدفوع</th>
                         <th>المستوى</th>
                         <th>المجموعة</th>
-                        <th> طباعة الباركود و البطاقة</th>
+                        <th>طباعة الباركود</th>
+                        <th>طباعة البطاقة</th>
                         <th>حذف وتعديل</th>
                     </tr>
                 </thead>
@@ -65,11 +66,12 @@
                             <button type="submit" class="btn btn-info button_for_print_barcode">
                                 طباعة الباركود
                             </button>
-
+                        </td>
+                        <td>
                             <form action="{{route('printSingleCard',$item->id)}}">
                                 @csrf
 
-                                <button type="submit" class="btn btn-warning button_for_print_card mt-3">
+                                <button type="submit" class="btn btn-warning button_for_print_card">
                                     طباعة البطاقة
                                 </button>
                             </form>
@@ -107,7 +109,8 @@
                         <th>حجز مدفوع</th>
                         <th>المستوى</th>
                         <th>المجموعة</th>
-                        <th> طباعة الباركود و البطاقة</th>
+                        <th>طباعة الباركود</th>
+                        <th>طباعة البطاقة</th>
                         <th>حذف وتعديل</th>
                     </tr>
                 </tfoot>

@@ -65,7 +65,12 @@
             @enderror
 
 
-            {!! form_select_array('status','الحالة الدراسية',['reserve','in','out','fired'],$obj->status) !!}
+            {!! form_select_array('status','الحالة الدراسية',[
+            'reserve' => 'قيد الحجز',
+            'in' => 'يدرس',
+            'out' => 'لا يدرس',
+            'fired' => 'مطرود'
+            ],$obj->status) !!}
             @error('status')
             <p class="text-danger" id="myError">{{$message}}</p>
             @enderror

@@ -7,6 +7,7 @@ use App\Models\Attendance;
 use App\Models\Group;
 use App\Models\Level;
 use App\Models\Student;
+use DateTime;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -105,6 +106,49 @@ class AttendanceController extends Controller
         }
     }
 
+
+
+    public function attendStudentsWhoUnattended()
+    {
+        $groups = Group::get();
+        foreach($groups as $group)
+        {
+            $today = date('l', strtotime(today()));
+            
+            if($today == "Friday")
+            {
+                $this->handleUnattend($group,'fri');                
+            }
+            else if($today == "Saturday")
+            {
+                $this->handleUnattend($group,'sat');
+            }
+            else if($today == "Sunday")
+            {
+                $this->handleUnattend($group,'sun');
+            }
+            else if($today == "Monday")
+            {
+                $this->handleUnattend($group,'mon');
+            }
+            else if($today == "Tuesday")
+            {
+                $this->handleUnattend($group,'tus');
+            }
+            else if($today == "Wednesday")
+            {
+                $this->handleUnattend($group,'wed');
+            }
+            else if($today == "Thursday")
+            {
+                $this->handleUnattend($group,'thu');
+            }
+        }
+
+        Alert::success('Success', "تم تغييب الطلاب في ذلك اليوم");
+        return redirect()->back();
+    }
+
     private function validation()
     {
         request()->validate([
@@ -121,5 +165,23 @@ class AttendanceController extends Controller
             'attend' => request('attend',false),
             'day' => request('day'),
         ];
+    }
+
+
+    public function handleUnattend($group,$day)
+    {
+        $$day = DateTime::createFromFormat("H:i:s",$group->time->$day);
+        $now = now();
+        $difference = $$day->diff($now)->h;
+        if($now > $$day && $difference >= 1)
+        {
+            foreach($group->students as $student)
+            {
+                if( !$student->didAttendIn(today()))
+                {
+                    $student->unAttendIn(today());
+                }
+            }
+        }
     }
 }

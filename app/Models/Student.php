@@ -30,6 +30,11 @@ class Student extends Model
         return $this->hasMany(Payment::class,'student_id');
     }
 
+    public function attendexam()
+    {
+        return $this->hasMany(ExamAttindance::class,'student_id');
+    }
+
     public function attendIn($date)
     {
         $this->attend()->updateOrCreate(['student_id' => $this->id,'day' => $date],[
@@ -49,7 +54,7 @@ class Student extends Model
         $this->payments()->updateOrCreate(['student_id' => $this->id,'pay_from'=>$data->pay_from,'pay_to' => $data->pay_to],[
             'month_paid' => $data->month_paid,
             'malazem_paid' => $data->malazem_paid,
-            'discount' => $data->discount,
+            'discount' => $data->discount ?? 0,
             'total' => $data->month_paid + $data->malazem_paid - $data->discount,
         ]);
     }
@@ -57,5 +62,15 @@ class Student extends Model
     public function didAttendIn($date)
     {
         return $this->attend()->where([['attend',true],['day',$date]])->exists();
+    }
+
+    public function attendInExam($exam_id,$degree)
+    {
+        $this->attendexam()->updateOrCreate([
+            'student_id' => $this->id,
+            'exam_id' => $exam_id
+        ],[
+            'degree' => $degree
+        ]);
     }
 }

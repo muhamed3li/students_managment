@@ -14,4 +14,9 @@ class Level extends Model
     {
         return $this->hasMany(Group::class,'level_id');
     }
+
+    public function students()
+    {
+        return $this->hasMany(Student::class,'level_id');
+    }
 }

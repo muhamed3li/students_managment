@@ -83,6 +83,20 @@
                             </a>
                         </li>
                         <li class="nav-item">
+                            <a href="{{route('barcode.index')}}"
+                                class="nav-link {{currentRequest('students/barcode/index') ? 'active' : ''}}">
+                                <i class="nav-icon fas fa-print"></i>
+                                <p>باركود</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{route('cards.index')}}"
+                                class="nav-link {{currentRequest('students/cards/index') ? 'active' : ''}}">
+                                <i class="nav-icon fas fa-print"></i>
+                                <p>البطاقات</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
                             <a href="{{route('attendance.index')}}"
                                 class="nav-link {{currentRequest('students/attendance') ? 'active' : ''}}">
                                 <i class="fas fa-user-clock nav-icon"></i>
@@ -187,6 +201,71 @@
                         </li>
                     </ul>
                 </li>
+
+
+
+
+
+                {{-- HomeWork --}}
+                <li class="nav-item {{currentRequest('homeworks') ? 'menu-open' : ''}}">
+                    <a href="#" class="nav-link {{currentRequest('homeworks') ? 'active' : ''}}">
+                        <i class="nav-icon fas fa-home"></i>
+                        <p>
+                            الواجبات
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview ml-3"
+                        style="display: {{currentRequest('homeworks') ? 'block' : 'none'}};">
+                        <li class="nav-item">
+                            <a href="{{route('homework.index')}}"
+                                class="nav-link {{currentRequest('homeworks/homework') ? 'active' : ''}}">
+                                <i class="fas fa-table nav-icon"></i>
+                                <p>جدول الواجبات</p>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="{{route('homeworkSolution.index')}}"
+                                class="nav-link {{currentRequest('homeworks/homeworkSolution') ? 'active' : ''}}">
+                                <i class="fas fa-table nav-icon"></i>
+                                <p>جدول حلول الواجبات</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+
+
+
+                {{-- Reports --}}
+                <li class="nav-item {{currentRequest('reports') ? 'menu-open' : ''}}">
+                    <a href="#" class="nav-link {{currentRequest('reports') ? 'active' : ''}}">
+                        <i class="fas fa-poll nav-icon"></i>
+                        <p>
+                            التقارير
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview ml-3"
+                        style="display: {{currentRequest('reports') ? 'block' : 'none'}};">
+                        <li class="nav-item">
+                            <a href="{{route('reports.allStudents')}}"
+                                class="nav-link {{currentRequest('reports') ? 'active' : ''}}">
+                                <i class="fas fa-users nav-icon"></i>
+                                <p>تقارير الطلاب</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+
+
+
+
+
+
+
 
             </ul>
 

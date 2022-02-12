@@ -24,10 +24,7 @@
             <x-select-search :selectdata="$levels" name="student_id" label="الطالب" />
 
 
-            {!! form_select('exam_id','اسم الامتحان') !!}
-            @error('exam_id')
-            <p class="text-danger" id="myError">{{$message}}</p>
-            @enderror
+            <x-select-search :selectdata="$exams" name="exam_id2" label="الإمتحان" />
 
 
             {!! form_text('degree','الدرجة') !!}
@@ -35,6 +32,56 @@
             <p class="text-danger" id="myError">{{$message}}</p>
             @enderror
 
+            <!-- /.card-body -->
+
+            <div class="card-footer text-right">
+                <button type="submit" class="btn btn-primary swalDefaultSuccess">تأكيد</button>
+            </div>
+        </form>
+    </div>
+    <!-- /.card -->
+</div>
+
+
+
+
+
+<div class="col-md-6">
+    <!-- general form elements -->
+    <div class="card card-primary">
+        <div class="card-header">
+            <h3 class="card-title">اضافة حضور برقم الهوية أو الباركود</h3>
+        </div>
+
+        <!-- form start -->
+        <form action="{{route('examattindance.examAttendaceByBarcodeOrId')}}" method="POST">
+            @csrf
+
+
+            <div class="card-body">
+                <div class="form-group">
+                    <label for="barcode">Barcode</label>
+                    <input type="text" class="form-control" id="barcode" name="barcode">
+                </div>
+            </div>
+
+            <div class="card-body">
+                <div class="form-group">
+                    <label>Students</label>
+                    <select class="duallistbox" multiple="multiple" style="display: none;" name="students[]"
+                        id="students">
+                    </select>
+                </div>
+            </div>
+
+
+            <x-select-search :selectdata="$exams" name="exam_id2" label="الإمتحان" />
+
+
+            {!! form_text('degree2','الدرجة') !!}
+            @error('degree2')
+            <p class="text-danger" id="myError">{{$message}}</p>
+            @enderror
             <!-- /.card-body -->
 
             <div class="card-footer text-right">

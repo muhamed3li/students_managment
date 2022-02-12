@@ -3,26 +3,28 @@
 use App\Http\Controllers\AdminHomeController;
 use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\BarcodeController;
+use App\Http\Controllers\CardsController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\ExamAttindanceController;
 use App\Http\Controllers\ExamController;
 use App\Http\Controllers\ExpenceController;
 use App\Http\Controllers\GroupController;
+use App\Http\Controllers\HomeworkController;
+use App\Http\Controllers\HomeworkSolutionController;
 use App\Http\Controllers\LevelController;
 use App\Http\Controllers\NoteController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\StudentReportController;
 use App\Http\Controllers\TimeController;
+use App\Models\HomeworkSolution;
 use Illuminate\Support\Facades\Route;
 
 
 /**
- * جعل الوقت نظام 12 ساعة ^^^^^^^
- * اظهار المواعيد المتاحه فقط في اضافة مجموعة ^^^^^^^^
- * اخفاء اليوم الذي يظهر فيه الوقت صفر في جدول المجاميع ^^^^^^
- * اظهار المجمايع المتاحه في المستوى عند انشاء طالب ^^^^^^
- * اظهار تاريخ اليوم عند انشاء حضور ^^^^^^^^
- * عند اختيار طالب تظهر مجموعته عند الانشاء في جدول الماليات
+ * تعديل الطالب فيه مشكله في النوع وفيه مشكله في المجموعة
+ * اضافة فيتشر طباعة عدد من الطلبة
+ * اضافة درجة عدد من الطلبة سويا مثل الحضور بالباركود
 */
 
 
@@ -42,6 +44,9 @@ Route::get('/barcode',[BarcodeController::class,'generateBarcode']);
 
 Route::prefix('groups')->group(function(){
     Route::get('/getStudents/{group}',[GroupController::class,'getStudents']);
+
+    Route::get('/getHomework/{group}',[GroupController::class,'getHomework']);
+
     Route::post('group/deleteAll',[GroupController::class,'deleteAll'])->name('group.deleteAll');
     Route::resource('group',GroupController::class);
     
@@ -51,7 +56,38 @@ Route::prefix('groups')->group(function(){
 
 Route::prefix('students')->group(function(){
 
+    Route::group(['prefix' => 'barcode','as' => 'barcode.'],function(){
+        Route::get('index',[BarcodeController::class,'index'])->name('index');
+        
+        Route::get('someStudentsPage',[BarcodeController::class,'someStudentsPage'])->name('someStudentsPage');
+        Route::post('printSomeStudentsPage',[BarcodeController::class,'printSomeStudentsPage'])->name('printSomeStudentsPage');
+
+        Route::get('groupStudentsPage',[BarcodeController::class,'groupStudentsPage'])->name('groupStudentsPage');
+        Route::post('printGroupStudentsPage',[BarcodeController::class,'printGroupStudentsPage'])->name('printGroupStudentsPage');
+
+        Route::get('levelStudentsPage',[BarcodeController::class,'levelStudentsPage'])->name('levelStudentsPage');
+        Route::post('printLevelStudentsPage',[BarcodeController::class,'printLevelStudentsPage'])->name('printLevelStudentsPage');
+    });
+
+
+
+    Route::group(['prefix' => 'cards','as' => 'cards.'],function(){
+        Route::get('index',[CardsController::class,'index'])->name('index');
+        
+        Route::get('someStudentsPage',[CardsController::class,'someStudentsPage'])->name('someStudentsPage');
+        Route::post('printSomeStudentsPage',[CardsController::class,'printSomeStudentsPage'])->name('printSomeStudentsPage');
+
+        Route::get('groupStudentsPage',[CardsController::class,'groupStudentsPage'])->name('groupStudentsPage');
+        Route::post('printGroupStudentsPage',[CardsController::class,'printGroupStudentsPage'])->name('printGroupStudentsPage');
+
+        Route::get('levelStudentsPage',[CardsController::class,'levelStudentsPage'])->name('levelStudentsPage');
+        Route::post('printLevelStudentsPage',[CardsController::class,'printLevelStudentsPage'])->name('printLevelStudentsPage');
+    });
+
+
+
     Route::get('attendanceBarcodePage',[AttendanceController::class,'attendanceBarcodePage'])->name('attendance.barcodePage');
+    Route::get('attendStudentsWhoUnattended',[AttendanceController::class,'attendStudentsWhoUnattended'])->name('attendance.attendStudentsWhoUnattended');
     Route::post('attendanceById/{student}',[AttendanceController::class,'attendanceById'])->name('attendance.barcode');
     Route::post('attendance/deleteAll',[AttendanceController::class,'deleteAll'])->name('attendance.deleteAll');
     Route::post('attendance/attendAll',[AttendanceController::class,'attendAll'])->name('students.attendAll');
@@ -78,7 +114,21 @@ Route::prefix('exams')->group(function(){
     Route::resource('exam',ExamController::class);
 
     Route::post('examattindance/deleteAll',[ExamAttindanceController::class,'deleteAll'])->name('examattindance.deleteAll');
+    Route::post('examattindance/examAttendaceByBarcodeOrId',[ExamAttindanceController::class,'examAttendaceByBarcodeOrId'])->name('examattindance.examAttendaceByBarcodeOrId');
     Route::resource('examattindance',ExamAttindanceController::class);
+});
+
+Route::group(['prefix' => 'homeworks'],function(){
+    Route::post('homework/deleteAll',[HomeworkController::class,'deleteAll'])->name('homework.deleteAll');
+    Route::resource('homework',HomeworkController::class);
+
+    Route::post('homeworkSolution/deleteAll',[HomeworkSolutionController::class,'deleteAll'])->name('homeworkSolution.deleteAll');
+    Route::resource('homeworkSolution',HomeworkSolutionController::class);
+});
+
+
+Route::group(['prefix' => 'reports','as' => 'reports.'],function(){
+    Route::get('allStudents',[StudentReportController::class,'allStudents'])->name('allStudents');
 });
 
 Route::post('level/deleteAll',[LevelController::class,'deleteAll'])->name('level.deleteAll');

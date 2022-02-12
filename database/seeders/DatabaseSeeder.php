@@ -27,5 +27,7 @@ class DatabaseSeeder extends Seeder
         \App\Models\Expence::factory(100)->create();
         \App\Models\Attendance::factory(100)->create();
         \App\Models\ExamAttindance::factory(100)->create();
+        \App\Models\Homework::factory(100)->create();
+        \App\Models\HomeworkSolution::factory(100)->create();
     }
 }
