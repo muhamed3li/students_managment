@@ -6,11 +6,10 @@
 
     <div class="card">
         <div class="card-header">
-            <h3 class="card-title">صفحة حضور الامتحانات لمجموعة <span class="text-success">
-                    {{$group->name}}</span> امتحان <span class="text-success">
-                    {{$exam->name}}</span></h3>
+            <h3 class="card-title">صفحة حضور الواجب لمجموعة <span class="text-success">
+                    {{$group->name}}</span> واجب <span class="text-success">
+                    {{$homework->name}}</span></h3>
         </div>
-
 
         <div class="container mt-2 mb-2" style="width: 70%">
             <div class="form-group">
@@ -19,10 +18,9 @@
             </div>
         </div>
 
-
         <!-- /.card-header -->
         <div class="card-body">
-            <form action="{{route('examattindance.attendGroup',$exam)}}" method="POST">
+            <form action="{{route('homeworkSolution.attendGroup',$homework)}}" method="POST">
                 @csrf
 
                 <table id="example1" class="table table-bordered table-striped">
@@ -46,7 +44,7 @@
                                 <div class="form-group mb-0">
                                     <input type="text" class="form-control" id="{{$student->id}}"
                                         name="degree[{{$index}}]"
-                                        value="{{$student->getExamAttendance($exam->id)->degree ?? ''}}">
+                                        value="{{$student->getHomeworkSolution($homework->id)->degree ?? ''}}">
                                 </div>
                             </td>
                         </tr>
@@ -72,6 +70,7 @@
 
 
 @endsection
+
 
 
 

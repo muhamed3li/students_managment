@@ -10,17 +10,20 @@ class SelectSearch extends Component
     public $selectdata;
     public $key;
     public $name;
+    public $old;
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($label,$selectdata,$name,$key = "name")
+    public function __construct($label,$selectdata,$name,
+    $old = null,$key = "name")
     {
         $this->label = $label;
         $this->selectdata = $selectdata;
         $this->key = $key;
         $this->name = $name;
+        $this->old = $old;
     }
 
     /**

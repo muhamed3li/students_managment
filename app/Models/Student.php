@@ -95,4 +95,18 @@ class Student extends Model
     {
         return $this->attendexam()->where('exam_id',$exam_id)->first();
     }
+
+
+    public function getHomeworkSolution($homework_id)
+    {
+        return $this->homeworkSolutions()->where('homework_id',$homework_id)->first();
+    }
+
+    public function didPayIn($pay_from,$pay_to)
+    {
+        return $this->payments()->where([
+            ['pay_from' => $pay_from],
+            ['pay_to' => $pay_to]
+        ])->first();
+    }
 }

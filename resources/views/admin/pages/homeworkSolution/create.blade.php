@@ -55,16 +55,19 @@
         </div>
 
         <!-- form start -->
-        <form action="{{route('homework.homeworkSolutionByBarcodeOrId')}}" method="POST">
+        <form action="{{route('homework.homeworkSolutionByBarcodeOrId')}}" method="POST" id="barcodeOrIdFrom">
             @csrf
 
+            <x-select-search :selectdata="$groups" name="group_id2" label="المجموعة" :old="old('group_id2')" />
 
-            <div class="card-body">
-                <div class="form-group">
-                    <label for="barcode">Barcode</label>
-                    <input type="text" class="form-control" id="barcode" name="barcode">
-                </div>
-            </div>
+
+            <x-select-search :selectdata="$homeworks" name="homework_id2" label="الواجب" :old="old('homework_id2')" />
+
+            {!! form_date('solved_at2','تاريخ تسليم الحل',date("Y-m-d")) !!}
+            @error('solved_at2')
+            <p class="text-danger" id="myError">{{$message}}</p>
+            @enderror
+
 
             <div class="card-body">
                 <div class="form-group">
@@ -74,16 +77,19 @@
                     </select>
                 </div>
             </div>
-
-
-            <x-select-search :selectdata="$groups" name="group_id2" label="المجموعة" />
-
-            <x-select-search :selectdata="$levels" name="homework_id2" label="الواجب" />
-
-            {!! form_date('solved_at2','تاريخ تسليم الحل',date("Y-m-d")) !!}
-            @error('solved_at2')
+            @error('students')
             <p class="text-danger" id="myError">{{$message}}</p>
             @enderror
+
+            <div class="card-body">
+                <div class="form-group">
+                    <label for="barcode">Barcode</label>
+                    <input type="text" class="form-control" id="barcode" name="barcode">
+                </div>
+            </div>
+
+
+
 
             {!! form_text('degree2','الدرجة') !!}
             @error('degree2')
@@ -116,6 +122,7 @@
 <script>
     $('.select2').select2()
     var studentsList = $('.duallistbox').bootstrapDualListbox()
+    $("#barcode").focus()
 
 
     $("#group_id").html("<option>اختر</option>")
@@ -138,7 +145,7 @@
     });
 
     $("#student_id").html("<option>اختر</option>")
-    $("#homework_id").html("<option>اختر</option>")
+    // $("#homework_id").html("<option>اختر</option>")
 
     $('#group_id').change(function(){
         $.ajax("/groups/getStudents/" + this.value ,
@@ -177,7 +184,7 @@
 
 
 
-    $("#homework_id2").html("<option>اختر</option>")
+    // $("#homework_id2").html("<option>اختر</option>")
 
     $('#group_id2').change(function(){
         $.ajax("/groups/getHomework/" + this.value ,
@@ -200,6 +207,14 @@
 
 
 
+
+
+    $("#degree2").on('keypress',function(){
+        var keycode = (event.keyCode ? event.keyCode : event.which);
+        if(keycode == '13'){
+            $("#barcodeOrIdFrom").submit()
+        }
+    })
 
 
     $("#barcode").on('keypress',function(){

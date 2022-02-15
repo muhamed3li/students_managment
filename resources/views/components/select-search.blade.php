@@ -6,7 +6,7 @@
 
             <option>اختر</option>
             @foreach ($selectdata as $item)
-            <option value="{{$item->id}}">{{$item->$key}}</option>
+            <option value="{{$item->id}}" {{$old==$item->id ? 'selected' : ''}}>{{$item->$key}}</option>
             @endforeach
 
         </select>

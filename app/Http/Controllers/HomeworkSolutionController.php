@@ -6,11 +6,13 @@ use App\Http\Requests\Admin\HomeworkSolution\HomeworkSolutionDeleteRequest;
 use App\Http\Requests\Admin\HomeworkSolution\HomeworkSolutionStoreRequest;
 use App\Http\Requests\Admin\HomeworkSolution\HomeworkSolutionUpdateRequest;
 use App\Models\Group;
+use App\Models\Homework;
 use App\Models\HomeworkSolution;
 use App\Models\Level;
 use App\Models\Student;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
+use Symfony\Component\Console\Input\Input;
 
 class HomeworkSolutionController extends Controller
 {
@@ -20,21 +22,54 @@ class HomeworkSolutionController extends Controller
         return view('admin.pages.homeworkSolution.index',compact('all'));
     }
 
+    public function groupAttendancePage()
+    {
+        $levels = Level::get();
+        return view('admin.pages.homeworkSolution.groupAttendancePage',compact('levels'));
+    }
+
+    public function groupAttendance(Request $request)
+    {
+        $homework = Homework::find($request->homework_id);
+        $group = Group::find($request->group_id);
+        $students = $group->students;
+        return view('admin.pages.homeworkSolution.groupAttendance',compact('homework','students','group'));
+    }
+
+    public function attendGroup(Request $request,Homework $homework)
+    {
+        $students = Student::find($request->id);
+        $degrees = $request->degree;
+        foreach($students as $index => $student)
+        {
+            $student->solveHomework($homework->id,$degrees[$index],today());
+        }
+
+        Alert::success('Success', "تم تحضير الطلاب في ذلك الإمتحان");
+        return redirect(route('homeworkSolution.groupAttendancePage'));
+    }
+
     public function homeworkSolutionByBarcodeOrId(Request $request)
     {
+        $request->validate([
+            'homework_id2' => 'integer',
+            'group_id2' => 'integer',
+            'students' => 'required'
+        ]);
         foreach($request->students as $id)
         {
             Student::find($id)->solveHomework($request->homework_id2,$request->degree2,$request->solved_at2);
         }
-        Alert::success('Success', "تم اضافة حل الواجب");
-        return redirect()->back();
+        Alert::toast('Toast Message', 'success');
+        return redirect()->back()->withInput();
     }
 
     public function create()
     {
         $levels = Level::get();
         $groups = Group::get();
-        return view('admin.pages.homeworkSolution.create',compact('levels','groups'));
+        $homeworks = Homework::get();
+        return view('admin.pages.homeworkSolution.create',compact('levels','groups','homeworks'));
     }
 
     public function store(HomeworkSolutionStoreRequest $request)

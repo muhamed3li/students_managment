@@ -22,11 +22,8 @@ use Illuminate\Support\Facades\Route;
 
 
 /**
- * تعديل الطالب فيه مشكله في النوع وفيه مشكله في المجموعة
- * اضافة فيتشر طباعة عدد من الطلبة
- * اضافة درجة عدد من الطلبة سويا مثل الحضور بالباركود
  * زرار لطباعة بيانات الطالب كاملة
- * 
+ * صفحة فيها تقارير عن غياب اليوم بارقام اولياء الامور
 */
 
 
@@ -87,8 +84,6 @@ Route::prefix('students')->group(function(){
         Route::post('printLevelStudentsPage',[CardsController::class,'printLevelStudentsPage'])->name('printLevelStudentsPage');
     });
 
-
-
     Route::get('attendanceBarcodePage',[AttendanceController::class,'attendanceBarcodePage'])->name('attendance.barcodePage');
     Route::get('attendStudentsWhoUnattended',[AttendanceController::class,'attendStudentsWhoUnattended'])->name('attendance.attendStudentsWhoUnattended');
     Route::post('attendanceById/{student}',[AttendanceController::class,'attendanceById'])->name('attendance.barcode');
@@ -101,15 +96,26 @@ Route::prefix('students')->group(function(){
     Route::get('getStudetnById/{student}',[StudentController::class,'getStudetnById']);
 
     Route::post('student/deleteAll',[StudentController::class,'deleteAll'])->name('student.deleteAll');
+
+
+
     Route::resource('student',StudentController::class);
 
 
     Route::post('note/deleteAll',[NoteController::class,'deleteAll'])->name('note.deleteAll');
     Route::resource('note',NoteController::class);
 
-    Route::post('payment/deleteAll',[PaymentController::class,'deleteAll'])->name('payment.deleteAll');
-    Route::post('payment/paymentBarcodeOrId',[PaymentController::class,'paymentBarcodeOrId'])->name('payment.paymentBarcodeOrId');
+    Route::group(['prefix' => 'payment','as' => 'payment.'],function(){
+        Route::get('groupPaymentPage',[PaymentController::class,'groupPaymentPage'])->name('groupPaymentPage');
+
+        Route::post('groupPayment',[PaymentController::class,'groupPayment'])->name('groupPayment');
+    
+        Route::post('payGroup/',[PaymentController::class,'payGroup'])->name('payGroup');
+        Route::post('deleteAll',[PaymentController::class,'deleteAll'])->name('deleteAll');
+        Route::post('paymentBarcodeOrId',[PaymentController::class,'paymentBarcodeOrId'])->name('paymentBarcodeOrId');
+    });
     Route::resource('payment',PaymentController::class);
+
 });
 
 Route::prefix('exams')->group(function(){
@@ -121,10 +127,7 @@ Route::prefix('exams')->group(function(){
 
     Route::get('examattindance/groupAttendancePage',[ExamAttindanceController::class,'groupAttendancePage'])->name('examattindance.groupAttendancePage');
 
-    
-
     Route::post('examattindance/groupAttendance',[ExamAttindanceController::class,'groupAttendance'])->name('examattindance.groupAttendance');
-
 
     Route::post('examattindance/attendGroup/{exam}',[ExamAttindanceController::class,'attendGroup'])->name('examattindance.attendGroup');
 
@@ -143,6 +146,13 @@ Route::group(['prefix' => 'homeworks'],function(){
     Route::post('homeworkSolution/homeworkSolutionByBarcodeOrId',[HomeworkSolutionController::class,'homeworkSolutionByBarcodeOrId'])->name('homework.homeworkSolutionByBarcodeOrId');
 
     Route::post('homeworkSolution/deleteAll',[HomeworkSolutionController::class,'deleteAll'])->name('homeworkSolution.deleteAll');
+
+    Route::get('homeworkSolution/groupAttendancePage',[HomeworkSolutionController::class,'groupAttendancePage'])->name('homeworkSolution.groupAttendancePage');
+
+    Route::post('homeworkSolution/groupAttendance',[HomeworkSolutionController::class,'groupAttendance'])->name('homeworkSolution.groupAttendance');
+
+    Route::post('homeworkSolution/attendGroup/{homework}',[HomeworkSolutionController::class,'attendGroup'])->name('homeworkSolution.attendGroup');
+
     Route::resource('homeworkSolution',HomeworkSolutionController::class);
 });
 

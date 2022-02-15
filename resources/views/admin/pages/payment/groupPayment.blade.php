@@ -6,10 +6,9 @@
 
     <div class="card">
         <div class="card-header">
-            <h3 class="card-title">صفحة حضور الامتحانات لمجموعة <span class="text-success">
-                    {{$group->name}}</span> امتحان <span class="text-success">
-                    {{$exam->name}}</span></h3>
+            <h3 class="card-title">صفحة دفع مجموعة</h3>
         </div>
+
 
 
         <div class="container mt-2 mb-2" style="width: 70%">
@@ -22,14 +21,41 @@
 
         <!-- /.card-header -->
         <div class="card-body">
-            <form action="{{route('examattindance.attendGroup',$exam)}}" method="POST">
+            <form action="{{route('payment.payGroup')}}" method="POST">
                 @csrf
+
+                <div class="container" style="">
+                    <div class="row">
+                        <div class="col">
+                            @if ($pay_from)
+                            {!! form_date('pay_from','من',$pay_from) !!}
+                            @else
+                            {!! form_date('pay_from','من',date("Y-m-d")) !!}
+                            @endif
+                            @error('pay_from')
+                            <p class="text-danger" id="myError">{{$message}}</p>
+                            @enderror
+                        </div>
+                        <div class="col">
+                            @if ($pay_to)
+                            {!! form_date('pay_to','إلى',$pay_to) !!}
+                            @else
+                            {!! form_date('pay_to','إلى',date("Y-m-d")) !!}
+                            @endif
+                            @error('pay_to')
+                            <p class="text-danger" id="myError">{{$message}}</p>
+                            @enderror
+                        </div>
+                    </div>
+                </div>
 
                 <table id="example1" class="table table-bordered table-striped">
                     <thead>
                         <tr>
                             <th>اسم الطالب</th>
-                            <th>الدرجة</th>
+                            <th>الشهرية</th>
+                            <th>الملازم</th>
+                            <th>الخصم</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -44,9 +70,20 @@
                             </td>
                             <td>
                                 <div class="form-group mb-0">
-                                    <input type="text" class="form-control" id="{{$student->id}}"
-                                        name="degree[{{$index}}]"
-                                        value="{{$student->getExamAttendance($exam->id)->degree ?? ''}}">
+                                    <input type="text" class="form-control zero" id="{{$student->id}}"
+                                        name="month_paid[{{$index}}]" value="{{$month_paid ?? 0}}">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="form-group mb-0">
+                                    <input type="text" class="form-control zero" id="" name="malazem_paid[{{$index}}]"
+                                        value="{{$malazem_paid ?? 0}}">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="form-group mb-0">
+                                    <input type="text" class="form-control zero" id="" name="discount[{{$index}}]"
+                                        value="{{$discount ?? 0}}">
                                 </div>
                             </td>
                         </tr>
@@ -55,7 +92,9 @@
                     <tfoot>
                         <tr>
                             <th>اسم الطالب</th>
-                            <th>الدرجة</th>
+                            <th>الشهرية</th>
+                            <th>الملازم</th>
+                            <th>الخصم</th>
                         </tr>
                     </tfoot>
                 </table>
@@ -75,6 +114,7 @@
 
 
 
+
 @section('specificScript')
 <!-- Page specific script -->
 <script>
@@ -85,6 +125,9 @@
             attendAjax()
         }
       })
+        $(document).on("keydown", "form", function(event) { 
+            return event.key != "Enter";
+        });
     });
 
 
@@ -96,7 +139,6 @@
         $(`#${id}`).on('keypress',function(e){
             var keycode = (event.keyCode ? event.keyCode : event.which);
             if(keycode == '13'){
-                e.preventDefault();
                 $("#barcode").focus()
             }
         })

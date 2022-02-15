@@ -37,7 +37,8 @@
 
                         <td>{{$item->homework->name ?? ""}}</td>
 
-                        <td>{{$item->degree}}</td>
+                        <td class="{{$item->degree == null ? 'text-danger' : 'text-success'}}">
+                            {{$item->degree ?? "غياب"}}</td>
 
                         <td>{{$item->solved_at}}</td>
                         <td class="d-flex justify-content-center">
