@@ -27,7 +27,7 @@
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
-                        <form action="{{route('students.attendAll')}}" method="POST">
+                        <form action="{{route('attendance.attendAll')}}" method="POST">
                             <div class="modal-body">
                                 @csrf
 
@@ -64,7 +64,7 @@
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
-                        <form action="{{route('students.unAttendAll')}}" method="POST">
+                        <form action="{{route('attendance.unAttendAll')}}" method="POST">
                             <div class="modal-body">
                                 @csrf
                                 <x-select-search :selectdata="$levels" name="level_id2" label="المستوى" />
@@ -115,7 +115,7 @@
                             طالب"}}</td>
 
                         <td>{{$item->student->group->name ?? ""}}</td>
-                        <td>{{$item->student->level->name ?? ""}}</td>
+                        <td>{{$item->student->group->level->name ?? ""}}</td>
 
                         <td class="{{$item->attend ?'text-success' : 'text-danger'}}">
                             {{$item->attend ? 'حضر' : 'غائب'}}

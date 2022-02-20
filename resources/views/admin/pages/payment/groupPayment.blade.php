@@ -125,9 +125,6 @@
             attendAjax()
         }
       })
-        $(document).on("keydown", "form", function(event) { 
-            return event.key != "Enter";
-        });
     });
 
 
@@ -136,6 +133,7 @@
         id = idFromBarcode(id)
         id = parseInt(id)
         $(`#${id}`).select()
+        $(`#${id}`).get(0).scrollIntoView()
         $(`#${id}`).on('keypress',function(e){
             var keycode = (event.keyCode ? event.keyCode : event.which);
             if(keycode == '13'){
@@ -144,6 +142,26 @@
         })
         $("#barcode").val("")
     }
+
+
+    $(".zero").each(function(index,element){
+        $(element).focusin(function(){
+            $(element).parent().parent().parent().css("background-color",'#AFD5AA')
+        })
+        $(element).focusout(function(){
+            $(element).parent().parent().parent().css("background-color",'transparent')
+        })
+    })
+
+    $(".zero").each(function(index,element){
+        $(element).on('keypress',function(e){
+            var keycode = (event.keyCode ? event.keyCode : event.which);
+            if(keycode == '13'){
+                e.preventDefault();
+                $("#barcode").focus()
+            }
+        })
+    })
 
 </script>
 @endsection

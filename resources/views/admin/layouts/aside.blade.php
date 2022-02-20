@@ -38,6 +38,9 @@
                 @include('admin.layouts.partials.student')
 
 
+                @include('admin.layouts.partials.attend')
+
+
                 @include('admin.layouts.partials.exam')
 
 

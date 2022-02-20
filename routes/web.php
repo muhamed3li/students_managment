@@ -22,8 +22,16 @@ use Illuminate\Support\Facades\Route;
 
 
 /**
+ * اظهار رقم الهوية في جميع صفح المجاميع
+ * مشكلة عند اظهار مكان الطالب في صفح المجاميع
+ * اظهار بحث بالاسم في صفح المجاميع
  * زرار لطباعة بيانات الطالب كاملة
+ * فصل الشهور في جدول منفصل عن جدول الماليات
  * صفحة فيها تقارير عن غياب اليوم بارقام اولياء الامور
+ * صفحة المواعيد فيها شغل
+ * الملازم والخصم يكونو اختياري
+ * ألطالب الي لم يدفع قبل 25 يتم التنبيه
+ * انا مش محتاج المستوى في الجداول الي فيها المجموعة
 */
 
 
@@ -31,15 +39,20 @@ Route::get('/', [AdminHomeController::class,'index'])->name('admin.home');
 
 Route::resource('department',DepartmentController::class);
 
-Route::post('/printBarcode', function() { return view('admin.assets.allBarcodes'); });
-
-Route::post('/printSinlgeBarcode/{student}',[BarcodeController::class,'printSinlgeBarcode']);
-
-Route::get('/printAllStudentCards',[StudentController::class,'printAllStudentCards'])->name('printAllStudentCards');
-
-Route::get('/printSingleCard/{student}',[StudentController::class,'printSingleCard'])->name('printSingleCard');
-
-Route::get('/barcode',[BarcodeController::class,'generateBarcode']);
+Route::group([],function(){
+    Route::get('/allBarcodesSmall', [BarcodeController::class,'allBarcodesSmall'])->name('allBarcodesSmall');
+    
+    Route::get('/allBarcodesBig',[BarcodeController::class,'allBarcodesBig'])->name('allBarcodesBig');
+    
+    //this method is post
+    Route::post('/printSinlgeBarcode/{student}',[BarcodeController::class,'printSinlgeBarcode']);
+    
+    Route::get('/printAllStudentCards',[StudentController::class,'printAllStudentCards'])->name('printAllStudentCards');
+    
+    Route::get('/printSingleCard/{student}',[StudentController::class,'printSingleCard'])->name('printSingleCard');
+    
+    Route::get('/barcode',[BarcodeController::class,'generateBarcode']);
+});
 
 Route::prefix('groups')->group(function(){
     Route::get('/getStudents/{group}',[GroupController::class,'getStudents']);
@@ -52,6 +65,25 @@ Route::prefix('groups')->group(function(){
     
     Route::post('time/deleteAll',[TimeController::class,'deleteAll'])->name('time.deleteAll');
     Route::resource('time',TimeController::class);
+});
+
+Route::group(['prefix' => 'attendances'],function(){
+    Route::group(['as' => 'attendance.'],function(){
+        Route::get('attendanceBarcodePage',[AttendanceController::class,'attendanceBarcodePage'])->name('barcodePage');
+        Route::get('attendStudentsWhoUnattended',[AttendanceController::class,'attendStudentsWhoUnattended'])->name('attendStudentsWhoUnattended');
+        Route::post('attendanceById/{student}',[AttendanceController::class,'attendanceById'])->name('barcode');
+        Route::post('attendance/deleteAll',[AttendanceController::class,'deleteAll'])->name('deleteAll');
+        Route::post('attendance/attendAll',[AttendanceController::class,'attendAll'])->name('attendAll');
+        Route::post('attendance/unAttendAll',[AttendanceController::class,'unAttendAll'])->name('unAttendAll');
+        Route::post('attendance/barcodeOrId',[AttendanceController::class,'attendanceBarcodeOrId'])->name('attendanceBarcodeOrId');
+
+        Route::get('attendance/groupAttendancePage',[AttendanceController::class,'groupAttendancePage'])->name('groupAttendancePage');
+
+        Route::post('attendance/groupAttendance',[AttendanceController::class,'groupAttendance'])->name('groupAttendance');
+
+        Route::post('attendance/attendGroup',[AttendanceController::class,'attendGroup'])->name('attendGroup');
+    });
+    Route::resource('attendance',AttendanceController::class);
 });
 
 Route::prefix('students')->group(function(){
@@ -84,14 +116,10 @@ Route::prefix('students')->group(function(){
         Route::post('printLevelStudentsPage',[CardsController::class,'printLevelStudentsPage'])->name('printLevelStudentsPage');
     });
 
-    Route::get('attendanceBarcodePage',[AttendanceController::class,'attendanceBarcodePage'])->name('attendance.barcodePage');
-    Route::get('attendStudentsWhoUnattended',[AttendanceController::class,'attendStudentsWhoUnattended'])->name('attendance.attendStudentsWhoUnattended');
-    Route::post('attendanceById/{student}',[AttendanceController::class,'attendanceById'])->name('attendance.barcode');
-    Route::post('attendance/deleteAll',[AttendanceController::class,'deleteAll'])->name('attendance.deleteAll');
-    Route::post('attendance/attendAll',[AttendanceController::class,'attendAll'])->name('students.attendAll');
-    Route::post('attendance/unAttendAll',[AttendanceController::class,'unAttendAll'])->name('students.unAttendAll');
-    Route::post('attendance/barcodeOrId',[AttendanceController::class,'attendanceBarcodeOrId'])->name('students.attendanceBarcodeOrId');
-    Route::resource('attendance',AttendanceController::class);
+    
+
+
+
 
     Route::get('getStudetnById/{student}',[StudentController::class,'getStudetnById']);
 
@@ -158,7 +186,10 @@ Route::group(['prefix' => 'homeworks'],function(){
 
 
 Route::group(['prefix' => 'reports','as' => 'reports.'],function(){
-    Route::get('allStudents',[StudentReportController::class,'allStudents'])->name('allStudents');
+    Route::group(['prefix' => 'students','as' => 'students.'],function(){
+        Route::get('/',[StudentReportController::class,'index'])->name('index');
+        Route::get('singleStudentReport',[StudentReportController::class,'singleStudentReport'])->name('singleStudentReport');
+    });
 });
 
 Route::post('level/deleteAll',[LevelController::class,'deleteAll'])->name('level.deleteAll');

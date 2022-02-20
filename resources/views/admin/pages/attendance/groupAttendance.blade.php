@@ -6,13 +6,11 @@
 
     <div class="card">
         <div class="card-header">
-            <h3 class="card-title">صفحة حضور الامتحانات لمجموعة <span class="text-success">
-                    {{$group->name}}</span> امتحان <span class="text-success">
-                    {{$exam->name}}</span></h3>
+            <h3 class="card-title">صفحة حضور لمجموعة</h3>
         </div>
 
 
-        <div class="container mt-2 mb-2" style="width: 70%">
+        <div class="container mt-2" style="width: 70%">
             <div class="form-group">
                 <label for="barcode">Barcode Or Id</label>
                 <input type="text" class="form-control" id="barcode" name="barcode">
@@ -22,14 +20,19 @@
 
         <!-- /.card-header -->
         <div class="card-body">
-            <form action="{{route('examattindance.attendGroup',$exam)}}" method="POST">
+            <form action="{{route('attendance.attendGroup')}}" method="POST">
                 @csrf
+
+                {!! form_date('day','التاريخ',$day) !!}
+                @error('day')
+                <p class="text-danger" id="myError">{{$message}}</p>
+                @enderror
 
                 <table id="example1" class="table table-bordered table-striped">
                     <thead>
                         <tr>
                             <th>اسم الطالب</th>
-                            <th>الدرجة</th>
+                            <th>حضر؟</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -44,9 +47,8 @@
                             </td>
                             <td>
                                 <div class="form-group mb-0">
-                                    <input type="text" class="form-control degree" id="{{$student->id}}"
-                                        name="degree[{{$index}}]"
-                                        value="{{$student->getExamAttendance($exam->id)->degree ?? ''}}">
+                                    <input type="checkbox" class="form-control attend" id="{{$student->id}}"
+                                        name="attend[{{$index}}]" value="">
                                 </div>
                             </td>
                         </tr>
@@ -55,7 +57,7 @@
                     <tfoot>
                         <tr>
                             <th>اسم الطالب</th>
-                            <th>الدرجة</th>
+                            <th>حضر؟</th>
                         </tr>
                     </tfoot>
                 </table>
@@ -92,8 +94,8 @@
         var id = $("#barcode").val()
         id = idFromBarcode(id)
         id = parseInt(id)
-        $(`#${id}`).select()
-        $(`#${id}`).get(0).scrollIntoView()
+        $(`#${id}`).prop('checked',true)
+        // $(`#${id}`).get(0).scrollIntoView(true)
         $(`#${id}`).on('keypress',function(e){
             var keycode = (event.keyCode ? event.keyCode : event.which);
             if(keycode == '13'){
@@ -104,7 +106,7 @@
         $("#barcode").val("")
     }
 
-    $(".degree").each(function(index,element){
+    $(".attend").each(function(index,element){
         $(element).focusin(function(){
             $(element).parent().parent().parent().css("background-color",'#AFD5AA')
         })
@@ -113,7 +115,7 @@
         })
     })
 
-    $(".degree").each(function(index,element){
+    $(".attend").each(function(index,element){
         $(element).on('keypress',function(e){
             var keycode = (event.keyCode ? event.keyCode : event.which);
             if(keycode == '13'){

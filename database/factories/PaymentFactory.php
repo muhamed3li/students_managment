@@ -23,7 +23,7 @@ class PaymentFactory extends Factory
             'malazem_paid' => $malazem,
             'discount' => $discount,
             'total' => $month + $malazem - $discount,
-            'student_id' => rand(1,100),
+            'student_id' => rand(1,1000),
         ];
     }
 }

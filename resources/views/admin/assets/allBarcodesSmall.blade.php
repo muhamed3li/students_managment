@@ -11,27 +11,28 @@
 
     <title>Print parcodes</title>
     <style>
-        .barcode div {
-            height: 50px !important;
+        .row {
+            margin-bottom: 4em;
+            page-break-before: always;
         }
 
         svg {
-            transform: scale(1, 2.5)
+            transform: scale(0.80, 2.5)
         }
     </style>
 </head>
 
 <body>
 
-    <div class="container">
+    <div class="container-fluid">
+        @foreach ($students as $student)
         <div class="row">
-            @foreach (App\Models\Student::get() as $student)
-            <div style="margin-top:2em" class="barcode col-4">
-                <p style="font-size: 2em;margin-bottom:1em">{{$student->name}}</p>
+            <div style="" class="barcode">
+                <p style="font-size: 0.8em;margin-bottom:2em;margin-left:2em;width:100vw">{{$student->name}}</p>
                 {!! DNS1D::getBarcodeSVG("$student->id", 'UPCA') !!}
             </div>
-            @endforeach
         </div>
+        @endforeach
     </div>
 
 

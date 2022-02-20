@@ -18,6 +18,13 @@ class StudentController extends Controller
         $this->modelName = strtolower(class_basename($model));
     }
 
+    public function index()
+    {
+        $all = $this->model::with(['group','level'])->orderBy('id', 'DESC')->get();
+        $model = $this->modelName;
+        return view("admin.pages.{$this->modelName}.index",compact('all','model'));
+    }
+
     public function create()
     {
         $model = $this->modelName;

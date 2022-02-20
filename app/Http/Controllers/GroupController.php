@@ -20,6 +20,14 @@ class GroupController extends Controller
         $this->modelName = strtolower(class_basename($model));
     }
 
+    public function index()
+    {
+        $all = $this->model::with(['level','time'])->orderBy('id', 'DESC')->get();
+        $model = $this->modelName;
+
+        return view("admin.pages.{$this->modelName}.index",compact('all','model'));
+    }
+
     public function getStudents(Group $group)
     {
         $students = $group->students;

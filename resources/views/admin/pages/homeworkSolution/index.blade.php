@@ -29,7 +29,7 @@
                     @foreach ($all as $index => $item)
                     <tr>
                         <td>{{++$index}}</td>
-                        <td>{{$item->student->level->name ?? ""}}</td>
+                        <td>{{$item->student->group->level->name ?? ""}}</td>
 
                         <td>{{$item->student->group->name ?? ""}}</td>
 

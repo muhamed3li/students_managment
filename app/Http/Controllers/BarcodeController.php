@@ -15,6 +15,18 @@ class BarcodeController extends Controller
         return view('admin.pages.student.barcode.index');
     }
 
+    public function allBarcodesSmall()
+    {
+        $students = Student::get(['id','name']);
+        return view('admin.assets.allBarcodesSmall',compact('students'));
+    }
+
+    public function allBarcodesBig()
+    {
+        $students = Student::get(['id','name']);
+        return view('admin.assets.allBarcodesBig',compact('students'));
+    }
+
     public function someStudentsPage()
     {
         $levels = Level::get();

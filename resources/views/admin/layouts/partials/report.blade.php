@@ -9,7 +9,8 @@
     </a>
     <ul class="nav nav-treeview ml-3" style="display: {{currentRequest('reports') ? 'block' : 'none'}};">
         <li class="nav-item">
-            <a href="{{route('reports.allStudents')}}" class="nav-link {{currentRequest('reports') ? 'active' : ''}}">
+            <a href="{{route('reports.students.index')}}"
+                class="nav-link {{currentRequest('reports') ? 'active' : ''}}">
                 <i class="fas fa-users nav-icon"></i>
                 <p>تقارير الطلاب</p>
             </a>

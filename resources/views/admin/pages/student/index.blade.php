@@ -9,12 +9,18 @@
             <h3 class="card-title">الطلاب</h3>
             <a href="{{route($model.'.create')}}" class="btn btn-success float-right">انشاء</a>
 
-            <a class="btn btn-info float-right mr-5" id="print_parcode">طباعة كل الباركود</a>
+
+        </div>
+        <div class="container">
+            <a href="{{route('allBarcodesSmall')}}" class="btn btn-info float-right mr-5" id="print_parcode">طباعة كل
+                الباركود مقاس صغير</a>
+
+            <a href="{{route('allBarcodesBig')}}" class="btn btn-info float-right mr-5" id="print_parcode">طباعة كل
+                الباركود مقاس كبير</a>
 
             <a class="btn btn-warning float-right mr-5" id="print_cards" href="{{route('printAllStudentCards')}}">طباعة
                 كل البطاقات</a>
         </div>
-
         <!-- /.card-header -->
         <div class="card-body">
             <table id="example1" class="table table-bordered table-striped">
@@ -141,19 +147,19 @@
         "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
       }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
 
-      $('#print_parcode').on('click', function() {
-            $.ajax({
-                type: "POST",
-                url: '/printBarcode',
-                data: {_token: '{{csrf_token()}}' },
-                success: function (data) {
-                    $.print(data);
-                },
-                error: function (data, textStatus, errorThrown) {
-                    console.log(data);
-                },
-            });
-        });
+    //   $('#print_parcode').on('click', function() {
+    //         $.ajax({
+    //             type: "POST",
+    //             url: '/printBarcode',
+    //             data: {_token: '{{csrf_token()}}' },
+    //             success: function (data) {
+    //                 $.print(data);
+    //             },
+    //             error: function (data, textStatus, errorThrown) {
+    //                 console.log(data);
+    //             },
+    //         });
+    //     });
 
       $('.button_for_print_barcode').on('click', function() {
           let input = $(this).siblings('.parcode_id_for_print')[0];

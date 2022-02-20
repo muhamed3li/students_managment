@@ -24,6 +24,8 @@ class ExamAttindanceController extends Controller
         $this->modelName = strtolower(class_basename($model));
     }
 
+    
+
     public function create()
     {
         $model = $this->modelName;

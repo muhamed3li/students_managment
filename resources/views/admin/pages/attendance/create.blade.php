@@ -53,7 +53,7 @@
         </div>
 
         <!-- form start -->
-        <form action="{{route('students.attendanceBarcodeOrId')}}" method="POST">
+        <form action="{{route('attendance.attendanceBarcodeOrId')}}" method="POST">
             @csrf
 
 

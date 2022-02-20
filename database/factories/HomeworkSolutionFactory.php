@@ -14,8 +14,8 @@ class HomeworkSolutionFactory extends Factory
     public function definition()
     {
         return [
-            'student_id' => rand(1,100),
-            'homework_id' => rand(1,100),
+            'student_id' => rand(1,1000),
+            'homework_id' => rand(1,1000),
             'degree' => $this->faker->randomFloat(2,0,100),
             'solved_at' => $this->faker->date(),
         ];

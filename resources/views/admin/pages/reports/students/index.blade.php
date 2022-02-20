@@ -11,7 +11,14 @@
 
 
         <div class="card-body">
-            
+            <div class="container">
+                <div class="row mb-5 justify-content-around">
+                    <div class="col">
+                        <a href="{{route('reports.students.singleStudentReport')}}" class="btn btn-lg btn-primary">تقرير
+                            طالب</a>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

@@ -18,6 +18,13 @@ class ExamController extends Controller
         $this->modelName = strtolower(class_basename($model));
     }
 
+    public function index()
+    {
+        $all = $this->model::with(['level','group'])->orderBy('id', 'DESC')->get();
+        $model = $this->modelName;
+        return view("admin.pages.{$this->modelName}.index",compact('all','model'));
+    }
+
     private function validation()
     {
         request()->validate([

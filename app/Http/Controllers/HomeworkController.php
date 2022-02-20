@@ -14,7 +14,7 @@ class HomeworkController extends Controller
 {
     public function index()
     {
-        $all = Homework::orderBy('created_at','desc')->get();
+        $all = Homework::with(['level','group'])->orderBy('created_at','desc')->get();
         return view('admin.pages.homework.index',compact('all'));
     }
 

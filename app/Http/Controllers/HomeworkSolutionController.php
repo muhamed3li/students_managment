@@ -18,7 +18,7 @@ class HomeworkSolutionController extends Controller
 {
     public function index()
     {
-        $all = HomeworkSolution::orderBy('created_at','desc')->get();
+        $all = HomeworkSolution::with(['student.group.level','homework'])->orderBy('created_at','desc')->get();
         return view('admin.pages.homeworkSolution.index',compact('all'));
     }
 

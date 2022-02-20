@@ -17,16 +17,9 @@ class AttendanceController extends Controller
     public $model;
     public $modelName;
 
-
-    public function __construct(Attendance $model)
-    {
-        $this->model = $model;
-        $this->modelName = strtolower(class_basename($model));
-    }
-
     public function index()
     {
-        $all = $this->model::orderBy('id', 'DESC')->get();
+        $all = $this->model::with('student.group.level')->orderBy('id', 'DESC')->get();
         $model = $this->modelName;
         $levels = Level::get();
 
@@ -42,6 +35,49 @@ class AttendanceController extends Controller
             'levels' => $levels
         ]);
     }
+
+    public function __construct(Attendance $model)
+    {
+        $this->model = $model;
+        $this->modelName = strtolower(class_basename($model));
+    }
+
+    public function groupAttendancePage()
+    {
+        $levels = Level::get();
+        return view('admin.pages.attendance.groupAttendancePage',compact('levels'));
+    }
+
+    public function groupAttendance(Request $request)
+    {
+        $group = Group::find($request->group_id);
+        $day = $request->day;
+        $students = $group->students;
+        return view('admin.pages.attendance.groupAttendance',compact('students','group','day'));
+    }
+
+    public function attendGroup(Request $request)
+    {
+        $students = Student::find($request->id);
+        $attends = $request->attend;
+        $day = $request->day;
+        foreach($students as $index => $student)
+        {
+            if(key_exists($index,$attends))
+            {
+                $student->attendIn($day);
+            }
+            else
+            {
+                $student->unAttendIn($day);
+            }
+        }
+
+        Alert::success('Success', "تم تحضير الطلاب في ذلك اليوم");
+        return redirect(route('attendance.groupAttendancePage'));
+    }
+
+    
 
     public function attendAll(Request $request)
     {

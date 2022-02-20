@@ -30,20 +30,6 @@
             </a>
         </li>
         <li class="nav-item">
-            <a href="{{route('attendance.index')}}"
-                class="nav-link {{currentRequest('students/attendance') ? 'active' : ''}}">
-                <i class="fas fa-user-clock nav-icon"></i>
-                <p>جدول الحضور</p>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a href="{{route('attendance.barcodePage')}}"
-                class="nav-link {{currentRequest('students/attendanceBarcodePage') ? 'active' : ''}}">
-                <i class="fas fa-barcode nav-icon"></i>
-                <p>حضور بالباركود</p>
-            </a>
-        </li>
-        <li class="nav-item">
             <a href="{{route('note.index')}}" class="nav-link {{currentRequest('students/note') ? 'active' : ''}}">
                 <i class="fas fa-sticky-note nav-icon"></i>
                 <p>جدول الملاحظات</p>

@@ -42,7 +42,7 @@
                             </td>
                             <td>
                                 <div class="form-group mb-0">
-                                    <input type="text" class="form-control" id="{{$student->id}}"
+                                    <input type="text" class="form-control degree" id="{{$student->id}}"
                                         name="degree[{{$index}}]"
                                         value="{{$student->getHomeworkSolution($homework->id)->degree ?? ''}}">
                                 </div>
@@ -92,6 +92,7 @@
         id = idFromBarcode(id)
         id = parseInt(id)
         $(`#${id}`).select()
+        $(`#${id}`).get(0).scrollIntoView()
         $(`#${id}`).on('keypress',function(e){
             var keycode = (event.keyCode ? event.keyCode : event.which);
             if(keycode == '13'){
@@ -101,6 +102,26 @@
         })
         $("#barcode").val("")
     }
+
+
+    $(".degree").each(function(index,element){
+        $(element).focusin(function(){
+            $(element).parent().parent().parent().css("background-color",'#AFD5AA')
+        })
+        $(element).focusout(function(){
+            $(element).parent().parent().parent().css("background-color",'transparent')
+        })
+    })
+
+    $(".degree").each(function(index,element){
+        $(element).on('keypress',function(e){
+            var keycode = (event.keyCode ? event.keyCode : event.which);
+            if(keycode == '13'){
+                e.preventDefault();
+                $("#barcode").focus()
+            }
+        })
+    })
 
 </script>
 @endsection
