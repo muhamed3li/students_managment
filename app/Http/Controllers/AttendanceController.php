@@ -17,30 +17,26 @@ class AttendanceController extends Controller
     public $model;
     public $modelName;
 
+    public function __construct(Attendance $model)
+    {
+        $this->model = $model;
+        $this->modelName = strtolower(class_basename($model));
+    }
+
     public function index()
     {
         $all = $this->model::with('student.group.level')->orderBy('id', 'DESC')->get();
-        $model = $this->modelName;
-        $levels = Level::get();
-
+        $levels = Level::get(['id', 'name']);
         return view("admin.pages.attendance.index", compact('all', 'levels'));
     }
 
     public function create()
     {
         $levels = Level::get();
-        $model = $this->modelName;
-        return view("admin.pages.{$this->modelName}.create", [
-            'model' => $model,
-            'levels' => $levels
-        ]);
+        return view("admin.pages.attendance.create", compact('levels'));
     }
 
-    public function __construct(Attendance $model)
-    {
-        $this->model = $model;
-        $this->modelName = strtolower(class_basename($model));
-    }
+
 
     public function groupAttendancePage()
     {

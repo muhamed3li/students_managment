@@ -5,14 +5,12 @@
 
 
 <div class="col-md-6">
-    <!-- general form elements -->
     <div class="card card-primary">
         <div class="card-header">
             <h3 class="card-title">اضافة حضور</h3>
         </div>
 
-        <!-- form start -->
-        <form action="{{route($model.'.store')}}" method="POST">
+        <form action="{{route('attendance.store')}}" method="POST">
             @csrf
 
 
