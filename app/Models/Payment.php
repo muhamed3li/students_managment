@@ -15,8 +15,8 @@ class Payment extends Model
         return $this->belongsTo(Student::class ,'student_id');
     }
 
-    public function group()
+    public function month()
     {
-        return $this->belongsTo(Group::class ,'group_id');
+        return $this->belongsTo(Month::class ,'month_id');
     }
 }

@@ -7,7 +7,7 @@
     <div class="card">
         <div class="card-header">
             <h3 class="card-title">الحضور</h3>
-            <a href="{{route($model.'.create')}}" class="btn btn-success float-right">انشاء</a>
+            <a href="{{route('attendance.create')}}" class="btn btn-success float-right">انشاء</a>
 
 
             <!-- Button trigger modal -->
@@ -123,10 +123,10 @@
 
                         <td>{{$item->day}}</td>
                         <td class="d-flex justify-content-center">
-                            <a class="btn btn-primary" href="{{route($model.'.edit',$item->id)}}">
+                            <a class="btn btn-primary" href="{{route('attendance.edit',$item->id)}}">
                                 <i class="fas fa-pen"></i>
                             </a>
-                            <form method="POST" action="{{route($model.'.destroy',$item->id)}}">
+                            <form method="POST" action="{{route('attendance.destroy',$item->id)}}">
                                 @csrf
                                 @method('DELETE')
                                 <input type="hidden" name="id" value="{{$item->id}}">
@@ -155,14 +155,13 @@
         <!-- /.card-body -->
     </div>
     <!-- /.card -->
-    <form method="POST" action="{{route($model.'.deleteAll')}}">
+    <form method="POST" action="{{route('attendance.deleteAll')}}">
         @csrf
         <button type="submit" class="btn btn-danger mt-5 mb-1">
             حذف كل البيانات
             <i class="fas fa-trash"></i>
         </button>
     </form>
-    {{-- <a href="{{route($model.'.deleteAll')}}" class="btn btn-danger mb-5 mt-5">حذف كل البيانات</a> --}}
 
 </div>
 

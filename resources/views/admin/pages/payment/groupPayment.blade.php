@@ -27,22 +27,13 @@
                 <div class="container" style="">
                     <div class="row">
                         <div class="col">
-                            @if ($pay_from)
-                            {!! form_date('pay_from','من',$pay_from) !!}
+                            @if ($month_id)
+                            <x-select-search :selectdata="$months" name="month_id" label="*اسم الشهر"
+                                :old="$month_id" />
                             @else
-                            {!! form_date('pay_from','من',date("Y-m-d")) !!}
+                            <x-select-search :selectdata="$months" name="month_id" label="*اسم الشهر" />
                             @endif
-                            @error('pay_from')
-                            <p class="text-danger" id="myError">{{$message}}</p>
-                            @enderror
-                        </div>
-                        <div class="col">
-                            @if ($pay_to)
-                            {!! form_date('pay_to','إلى',$pay_to) !!}
-                            @else
-                            {!! form_date('pay_to','إلى',date("Y-m-d")) !!}
-                            @endif
-                            @error('pay_to')
+                            @error('month_id')
                             <p class="text-danger" id="myError">{{$message}}</p>
                             @enderror
                         </div>

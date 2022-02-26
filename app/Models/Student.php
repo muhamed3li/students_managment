@@ -56,11 +56,11 @@ class Student extends Model
 
     public function payIn($data)
     {
-        $this->payments()->updateOrCreate(['student_id' => $this->id,'pay_from'=>$data->pay_from,'pay_to' => $data->pay_to],[
-            'month_paid' => $data->month_paid,
-            'malazem_paid' => $data->malazem_paid,
-            'discount' => $data->discount ?? 0,
-            'total' => $data->month_paid + $data->malazem_paid - $data->discount,
+        $this->payments()->updateOrCreate(['student_id' => $this->id,'month_id'=>$data['month_id']],[
+            'month_paid' => $data['month_paid'] ?? 0,
+            'malazem_paid' => $data['malazem_paid'] ?? 0,
+            'discount' => $data['discount'] ?? 0,
+            'total' => $data['month_paid'] + $data['malazem_paid'] - $data['discount'],
         ]);
     }
 

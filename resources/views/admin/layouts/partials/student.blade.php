@@ -35,19 +35,6 @@
                 <p>جدول الملاحظات</p>
             </a>
         </li>
-        <li class="nav-item">
-            <a href="{{route('payment.index')}}"
-                class="nav-link {{request()->route()->getName() == 'payment.index' ? 'active' : ''}}">
-                <i class="fas fa-dollar-sign nav-icon"></i>
-                <p>جدول الماليات</p>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a href="{{route('payment.groupPaymentPage')}}"
-                class="nav-link {{request()->route()->getName() == 'payment.groupPaymentPage' ? 'active' : ''}}">
-                <i class="fas fa-cash-register nav-icon"></i>
-                <p>دفع مجموعة</p>
-            </a>
-        </li>
+
     </ul>
 </li>

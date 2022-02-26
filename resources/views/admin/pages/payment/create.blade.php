@@ -16,41 +16,30 @@
         <form action="{{route($model.'.store')}}" method="POST">
             @csrf
 
-            {!! form_date('pay_from','من') !!}
-            @error('pay_from')
-            <p class="text-danger" id="myError">{{$message}}</p>
-            @enderror
+            <div class="card-body">
 
 
-            {!! form_date('pay_to','إلى') !!}
-            @error('pay_to')
-            <p class="text-danger" id="myError">{{$message}}</p>
-            @enderror
+                <x-select-search :selectdata="$levels" name="level_id" label="المستوى" />
+
+                <x-select-search :selectdata="$levels" name="group_id" label="المجموعة" />
 
 
-            {!! form_text('month_paid','الشهرية') !!}
-            @error('month_paid')
-            <p class="text-danger" id="myError">{{$message}}</p>
-            @enderror
+                <x-select-search :selectdata="$months" name="month_id" label="*اسم الشهر" />
+
+                <x-select-search :selectdata="$students" name="student_id" label="*الطالب" />
 
 
-            {!! form_text('malazem_paid','الملازم') !!}
-            @error('malazem_paid')
-            <p class="text-danger" id="myError">{{$message}}</p>
-            @enderror
+                <x-form.input-text name="month_paid" label="*الشهرية" />
+
+                <x-form.input-text name="malazem_paid" label="*الملازم" />
 
 
-            {!! form_text('discount','الخصم') !!}
-            @error('discount')
-            <p class="text-danger" id="myError">{{$message}}</p>
-            @enderror
+                <x-form.input-text name="discount" label="الخصم" />
 
 
-            <x-select-search :selectdata="$levels" name="level_id" label="المستوى" />
+                <x-form.input-text name="total" label="الاجمالي" />
+            </div>
 
-            <x-select-search :selectdata="$levels" name="group_id" label="المجموعة" />
-
-            <x-select-search :selectdata="$levels" name="student_id" label="الطالب" />
 
             <!-- /.card-body -->
 
@@ -80,54 +69,34 @@
 
             <div class="card-body">
                 <div class="form-group">
-                    <label for="barcode">Barcode</label>
+                    <label for="barcode">Barcode Or Id</label>
                     <input type="text" class="form-control" id="barcode" name="barcode">
                 </div>
-            </div>
 
-            <div class="card-body">
+                <x-select-search :selectdata="$months" name="month_id2" label="*اسم الشهر" />
+
+
                 <div class="form-group">
                     <label>Students</label>
                     <select class="duallistbox" multiple="multiple" style="display: none;" name="students[]"
                         id="students">
                     </select>
                 </div>
+
+
+
+
+                <x-form.input-text name="month_paid2" label="*الشهرية" />
+
+                <x-form.input-text name="malazem_paid2" label="*الملازم" />
+
+
+                <x-form.input-text name="discount2" label="الخصم" />
+
+
+                <x-form.input-text name="total2" label="الاجمالي" />
+
             </div>
-
-
-
-
-
-
-            {!! form_date('pay_from','من') !!}
-            @error('pay_from')
-            <p class="text-danger" id="myError">{{$message}}</p>
-            @enderror
-
-
-            {!! form_date('pay_to','إلى') !!}
-            @error('pay_to')
-            <p class="text-danger" id="myError">{{$message}}</p>
-            @enderror
-
-
-            {!! form_text('month_paid','الشهرية') !!}
-            @error('month_paid')
-            <p class="text-danger" id="myError">{{$message}}</p>
-            @enderror
-
-
-            {!! form_text('malazem_paid','الملازم') !!}
-            @error('malazem_paid')
-            <p class="text-danger" id="myError">{{$message}}</p>
-            @enderror
-
-
-            {!! form_text('discount','الخصم') !!}
-            @error('discount')
-            <p class="text-danger" id="myError">{{$message}}</p>
-            @enderror
-
 
 
             <div class="card-footer text-right">
@@ -152,46 +121,18 @@
     $('#group_id').select2()
     $('#level_id').select2()
     $('#student_id').select2()
+    $('#month_id').select2()
     
-    $("#group_id").html("<option>اختر</option>")
-    $('#level_id').change(function(){
-        $.ajax("/level/getGroups/" + this.value ,
-        {
-            dataType: 'json',
-            success:function(data,status){
-                $("#group_id").html("<option>اختر</option>")
-                data.forEach(element => {
-                $("#group_id").append(`
-                <option value="${element.id}">${element.name}</option>
-                `)
-                });
-            },
-            error: function (jqXhr, textStatus, errorMessage) { 
-                console.log(errorMessage)
-            }
-        })
-    });
+    $("#group_id").html("<option>اختر</option>");
+    getGroupFromLevel();
 
-    $("#student_id").html("<option>اختر</option>")
-    $('#group_id').change(function(){
-        $.ajax("/groups/getStudents/" + this.value ,
-        {
-            dataType: 'json',
-            success:function(data,status){
-                $("#student_id").html("<option>اختر</option>")
-                data.forEach(element => {
-                $("#student_id").append(`
-                <option value="${element.id}">${element.name}</option>
-                `)
-                });
-            },
-            error: function (jqXhr, textStatus, errorMessage) { 
-                console.log(errorMessage)
-            }
-        })
-    });
+    getStudentFromGroup();
 
+    getLevelByIdForMoney('month_paid','malazem_paid','discount','total');
+    getLevelByIdForMoney('month_paid2','malazem_paid2','discount2','total2');
 
+    calculatePaymentTotal('month_paid','malazem_paid','discount','total');
+    calculatePaymentTotal('month_paid2','malazem_paid2','discount2','total2');
 
     $("#barcode").on('keypress',function(){
         var keycode = (event.keyCode ? event.keyCode : event.which);

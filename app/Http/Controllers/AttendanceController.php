@@ -23,14 +23,14 @@ class AttendanceController extends Controller
         $model = $this->modelName;
         $levels = Level::get();
 
-        return view("admin.pages.{$this->modelName}.index",compact('all','model','levels'));
+        return view("admin.pages.attendance.index", compact('all', 'levels'));
     }
 
     public function create()
     {
         $levels = Level::get();
         $model = $this->modelName;
-        return view("admin.pages.{$this->modelName}.create",[
+        return view("admin.pages.{$this->modelName}.create", [
             'model' => $model,
             'levels' => $levels
         ]);
@@ -45,7 +45,7 @@ class AttendanceController extends Controller
     public function groupAttendancePage()
     {
         $levels = Level::get();
-        return view('admin.pages.attendance.groupAttendancePage',compact('levels'));
+        return view('admin.pages.attendance.groupAttendancePage', compact('levels'));
     }
 
     public function groupAttendance(Request $request)
@@ -53,7 +53,7 @@ class AttendanceController extends Controller
         $group = Group::find($request->group_id);
         $day = $request->day;
         $students = $group->students;
-        return view('admin.pages.attendance.groupAttendance',compact('students','group','day'));
+        return view('admin.pages.attendance.groupAttendance', compact('students', 'group', 'day'));
     }
 
     public function attendGroup(Request $request)
@@ -61,14 +61,10 @@ class AttendanceController extends Controller
         $students = Student::find($request->id);
         $attends = $request->attend;
         $day = $request->day;
-        foreach($students as $index => $student)
-        {
-            if(key_exists($index,$attends))
-            {
+        foreach ($students as $index => $student) {
+            if (key_exists($index, $attends)) {
                 $student->attendIn($day);
-            }
-            else
-            {
+            } else {
                 $student->unAttendIn($day);
             }
         }
@@ -77,7 +73,7 @@ class AttendanceController extends Controller
         return redirect(route('attendance.groupAttendancePage'));
     }
 
-    
+
 
     public function attendAll(Request $request)
     {
@@ -85,8 +81,7 @@ class AttendanceController extends Controller
         $group = $request->group_id;
         $group = Group::find($group);
 
-        foreach($group->students as $student)
-        {
+        foreach ($group->students as $student) {
             $student->attendIn($day);
         }
         Alert::success('Success', "تم تحضير الطلاب اليوم");
@@ -99,8 +94,7 @@ class AttendanceController extends Controller
         $day = $request->day;
         $group = $request->group_id2;
         $group = Group::find($group);
-        foreach($group->students as $student)
-        {
+        foreach ($group->students as $student) {
             $student->unAttendIn($day);
         }
         Alert::success('Success', "تم تغييب الطلاب اليوم");
@@ -122,19 +116,14 @@ class AttendanceController extends Controller
 
     public function attendanceBarcodeOrId(Request $request)
     {
-        if($request->attendBarcode)
-        {
-            foreach($request->students as $id)
-            {
+        if ($request->attendBarcode) {
+            foreach ($request->students as $id) {
                 Student::find($id)->attendIn($request->dayBarcode);
             }
             Alert::success('Success', "تم تحضير الطلاب في ذلك اليوم");
             return redirect()->back();
-        }
-        else
-        {
-            foreach($request->students as $id)
-            {
+        } else {
+            foreach ($request->students as $id) {
                 Student::find($id)->unAttendIn($request->dayBarcode);
             }
             Alert::success('Success', "تم تغييب الطلاب في ذلك اليوم");
@@ -147,37 +136,23 @@ class AttendanceController extends Controller
     public function attendStudentsWhoUnattended()
     {
         $groups = Group::get();
-        foreach($groups as $group)
-        {
+        foreach ($groups as $group) {
             $today = date('l', strtotime(today()));
-            
-            if($today == "Friday")
-            {
-                $this->handleUnattend($group,'fri');                
-            }
-            else if($today == "Saturday")
-            {
-                $this->handleUnattend($group,'sat');
-            }
-            else if($today == "Sunday")
-            {
-                $this->handleUnattend($group,'sun');
-            }
-            else if($today == "Monday")
-            {
-                $this->handleUnattend($group,'mon');
-            }
-            else if($today == "Tuesday")
-            {
-                $this->handleUnattend($group,'tus');
-            }
-            else if($today == "Wednesday")
-            {
-                $this->handleUnattend($group,'wed');
-            }
-            else if($today == "Thursday")
-            {
-                $this->handleUnattend($group,'thu');
+
+            if ($today == "Friday") {
+                $this->handleUnattend($group, 'fri');
+            } else if ($today == "Saturday") {
+                $this->handleUnattend($group, 'sat');
+            } else if ($today == "Sunday") {
+                $this->handleUnattend($group, 'sun');
+            } else if ($today == "Monday") {
+                $this->handleUnattend($group, 'mon');
+            } else if ($today == "Tuesday") {
+                $this->handleUnattend($group, 'tus');
+            } else if ($today == "Wednesday") {
+                $this->handleUnattend($group, 'wed');
+            } else if ($today == "Thursday") {
+                $this->handleUnattend($group, 'thu');
             }
         }
 
@@ -198,23 +173,20 @@ class AttendanceController extends Controller
     {
         return [
             'student_id' => request('student_id'),
-            'attend' => request('attend',false),
+            'attend' => request('attend', false),
             'day' => request('day'),
         ];
     }
 
 
-    public function handleUnattend($group,$day)
+    public function handleUnattend($group, $day)
     {
-        $$day = DateTime::createFromFormat("H:i:s",$group->time->$day);
+        $$day = DateTime::createFromFormat("H:i:s", $group->time->$day);
         $now = now();
         $difference = $$day->diff($now)->h;
-        if($now > $$day && $difference >= 1)
-        {
-            foreach($group->students as $student)
-            {
-                if( !$student->didAttendIn(today()))
-                {
+        if ($now > $$day && $difference >= 1) {
+            foreach ($group->students as $student) {
+                if (!$student->didAttendIn(today())) {
                     $student->unAttendIn(today());
                 }
             }

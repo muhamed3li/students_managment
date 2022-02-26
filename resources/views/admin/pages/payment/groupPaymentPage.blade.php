@@ -19,35 +19,14 @@
 
                 <x-select-search :selectdata="$levels" name="group_id" label="المجموعة" />
 
+                <x-select-search :selectdata="$months" name="month_id" label="*اسم الشهر" />
 
-                {!! form_date('pay_from','من') !!}
-                @error('pay_from')
-                <p class="text-danger" id="myError">{{$message}}</p>
-                @enderror
+                <x-form.input-text name="month_paid" label="*الشهرية" />
 
-
-                {!! form_date('pay_to','إلى') !!}
-                @error('pay_to')
-                <p class="text-danger" id="myError">{{$message}}</p>
-                @enderror
+                <x-form.input-text name="malazem_paid" label="*الملازم" />
 
 
-                {!! form_text('month_paid','الشهرية') !!}
-                @error('month_paid')
-                <p class="text-danger" id="myError">{{$message}}</p>
-                @enderror
-
-
-                {!! form_text('malazem_paid','الملازم') !!}
-                @error('malazem_paid')
-                <p class="text-danger" id="myError">{{$message}}</p>
-                @enderror
-
-
-                {!! form_text('discount','الخصم') !!}
-                @error('discount')
-                <p class="text-danger" id="myError">{{$message}}</p>
-                @enderror
+                <x-form.input-text name="discount" label="الخصم" />
 
                 <!-- /.card-body -->
 

@@ -14,50 +14,23 @@
         <form action="{{route($model.'.update',$obj->id)}}" method="POST">
             @csrf
             @method('PUT')
+            <div class="card-body">
+                <x-select-search :selectdata="$months" name="month_id" label="*اسم الشهر" :old="$obj->month_id" />
+
+                <x-select-search :selectdata="$students" name="student_id" label="*الطالب" :old="$obj->student->id" />
 
 
+                <x-form.input-text name="month_paid" label="*الشهرية" :old="$obj->month_paid" />
 
-            {!! form_date('pay_from','من',$obj->pay_from) !!}
-            @error('pay_from')
-            <p class="text-danger" id="myError">{{$message}}</p>
-            @enderror
+                <x-form.input-text name="malazem_paid" label="*الملازم" :old="$obj->malazem_paid" />
 
 
-            {!! form_date('pay_to','إلى',$obj->pay_to) !!}
-            @error('pay_to')
-            <p class="text-danger" id="myError">{{$message}}</p>
-            @enderror
+                <x-form.input-text name="discount" label="الخصم" :old="$obj->discount" />
 
 
-            {!! form_text('month_paid','الشهرية',$obj->month_paid) !!}
-            @error('month_paid')
-            <p class="text-danger" id="myError">{{$message}}</p>
-            @enderror
+                <x-form.input-text name="total" label="الاجمالي" :old="$obj->total" />
 
-
-            {!! form_text('malazem_paid','الملازم',$obj->malazem_paid) !!}
-            @error('malazem_paid')
-            <p class="text-danger" id="myError">{{$message}}</p>
-            @enderror
-
-
-            {!! form_text('discount','الخصم',$obj->discount) !!}
-            @error('discount')
-            <p class="text-danger" id="myError">{{$message}}</p>
-            @enderror
-
-
-            {!! form_select('student_id','الطالب',$obj->student_id) !!}
-            @error('student_id')
-            <p class="text-danger" id="myError">{{$message}}</p>
-            @enderror
-
-
-            {!! form_select('group_id','المجموعة',$obj->group_id) !!}
-            @error('group_id')
-            <p class="text-danger" id="myError">{{$message}}</p>
-            @enderror
-
+            </div>
             <!-- /.card-body -->
 
             <div class="card-footer text-right">
@@ -68,4 +41,18 @@
     <!-- /.card -->
 </div>
 
+@endsection
+
+
+
+@section('specificScript')
+<!-- Page specific script -->
+<script>
+    $('#month_id').select2()
+
+    getLevelByIdForMoney('month_paid','malazem_paid','discount','total');
+
+    calculatePaymentTotal('month_paid','malazem_paid','discount','total');
+    
+</script>
 @endsection

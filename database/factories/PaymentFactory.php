@@ -17,8 +17,7 @@ class PaymentFactory extends Factory
         $malazem = $this->faker->randomFloat(2,0,100);
         $discount = $this->faker->randomFloat(2,0,5);
         return [
-            'pay_from' => $this->faker->dateTimeBetween('+0 days', '+1 years'),
-            'pay_to' => $this->faker->dateTimeBetween('+0 days', '+1 years'),
+            'month_id' => rand(1,10),
             'month_paid' => $month,
             'malazem_paid' => $malazem,
             'discount' => $discount,

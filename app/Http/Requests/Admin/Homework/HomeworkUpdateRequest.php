@@ -24,7 +24,7 @@ class HomeworkUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'id' => 'exists:homework,id',
+            // 'id' => 'exists:homework,id',
             'name' => 'required|string',
             'level_id' => 'exists:levels,id',
             'group_id' => 'exists:groups,id',

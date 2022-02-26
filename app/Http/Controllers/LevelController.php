@@ -18,6 +18,11 @@ class LevelController extends Controller
         $this->modelName = strtolower(class_basename($model));
     }
 
+    public function getLevelById(Level $level)
+    {
+        echo json_encode($level);
+    }
+
     public function getGroups(Level $level)
     {
         $groups = $level->groups;

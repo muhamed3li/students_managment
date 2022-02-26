@@ -16,87 +16,98 @@
         integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
 
     <style>
-        body {
-            margin-top: 20px;
-            background: #eee;
-        }
+        @media print {
+            body {
+                margin-top: 20px;
+                background: #eee;
+                min-height: 100vh;
+                display: flex;
+                align-items: center;
+                transform: rotate(90deg);
+            }
 
-        a {
-            color: #f96332;
-        }
+            a {
+                color: #f96332;
+            }
 
-        .m-t-5 {
-            margin-top: 5px;
-        }
+            .m-t-5 {
+                margin-top: 5px;
+            }
 
-        .card {
-            background: #fff;
-            margin-bottom: 35px;
-            transition: .5s;
-            border: 0;
-            border-radius: .1875rem;
-            display: inline-block;
-            position: relative;
-            width: 100%;
-            box-shadow: none;
-        }
+            .card {
+                background: #fff;
+                margin-bottom: 35px;
+                transition: .5s;
+                border: 0;
+                border-radius: .1875rem;
+                display: inline-block;
+                position: relative;
+                width: 100%;
+                box-shadow: none;
+                transform: scale(5);
+            }
 
-        .card .body {
-            font-size: 14px;
-            color: #424242;
-            padding: 20px;
-            font-weight: 400;
-        }
+            .card .body {
+                font-size: 14px;
+                color: black;
+                padding: 20px;
+                font-weight: 400;
+            }
 
-        .profile-page .profile-header {
-            position: relative
-        }
+            .profile-page .profile-header {
+                position: relative
+            }
 
-        .profile-page .profile-header .profile-image img {
-            border-radius: 50%;
-            width: 140px;
-            border: 3px solid #fff;
-            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23)
-        }
+            .profile-page .profile-header .profile-image img {
+                border-radius: 50%;
+                width: 140px;
+                border: 3px solid #fff;
+                box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23)
+            }
 
-        .profile-page .profile-header .social-icon a {
-            margin: 0 5px
-        }
+            .profile-page .profile-header .social-icon a {
+                margin: 0 5px
+            }
 
-        .profile-page .profile-sub-header {
-            min-height: 60px;
-            width: 100%
-        }
+            .profile-page .profile-sub-header {
+                min-height: 60px;
+                width: 100%
+            }
 
-        .profile-page .profile-sub-header ul.box-list {
-            display: inline-table;
-            table-layout: fixed;
-            width: 100%;
-            background: #eee
-        }
+            .profile-page .profile-sub-header ul.box-list {
+                display: inline-table;
+                table-layout: fixed;
+                width: 100%;
+                background: #eee
+            }
 
-        .profile-page .profile-sub-header ul.box-list li {
-            border-right: 1px solid #e0e0e0;
-            display: table-cell;
-            list-style: none
-        }
+            .profile-page .profile-sub-header ul.box-list li {
+                border-right: 1px solid #e0e0e0;
+                display: table-cell;
+                list-style: none
+            }
 
-        .profile-page .profile-sub-header ul.box-list li:last-child {
-            border-right: none
-        }
+            .profile-page .profile-sub-header ul.box-list li:last-child {
+                border-right: none
+            }
 
-        .profile-page .profile-sub-header ul.box-list li a {
-            display: block;
-            padding: 15px 0;
-            color: #424242
-        }
+            .profile-page .profile-sub-header ul.box-list li a {
+                display: block;
+                padding: 15px 0;
+                color: black`
+            }
 
-        p {
-            margin: 5px;
-        }
+            p {
+                margin: 5px;
+            }
 
-        svg {
-            transform: scale(1, 2.5)
+            svg {
+                transform: scale(1, 2.5)
+            }
+
+            .break {
+                page-break-before: always;
+            }
         }
     </style>
     <title>Print All Cards</title>
@@ -104,7 +115,7 @@
 
 <body>
     <div class="container profile-page">
-        <div class="row" style="text-align: right">
+        <div class="row justify-content-center" style="text-align: right">
             @foreach ($students as $student)
             <div class="col-xl-6 col-lg-6 col-md-6">
                 <div class="card profile-header">
@@ -150,6 +161,7 @@
                     </div>
                 </div>
             </div>
+            {{-- <div class="break"></div> --}}
             @endforeach
 
         </div>

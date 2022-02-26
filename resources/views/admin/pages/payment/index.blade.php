@@ -16,8 +16,7 @@
                 <thead>
                     <tr>
                         <th>التسلسل</th>
-                        <th>دفع من</th>
-                        <th>دفع إلى</th>
+                        <th>الشهر</th>
                         <th>الشرية</th>
                         <th>الملازم</th>
                         <th>الخصم</th>
@@ -31,8 +30,7 @@
                     @foreach ($all as $index => $item)
                     <tr>
                         <td>{{++$index}}</td>
-                        <td>{{$item->pay_from}}</td>
-                        <td>{{$item->pay_to}}</td>
+                        <td>{{$item->month->name ?? ""}}</td>
                         <td>{{$item->month_paid}}</td>
                         <td>{{$item->malazem_paid}}</td>
                         <td>{{$item->discount}}</td>
@@ -65,8 +63,7 @@
                 <tfoot>
                     <tr>
                         <th>التسلسل</th>
-                        <th>دفع من</th>
-                        <th>دفع إلى</th>
+                        <th>الشهر</th>
                         <th>الشرية</th>
                         <th>الملازم</th>
                         <th>الخصم</th>

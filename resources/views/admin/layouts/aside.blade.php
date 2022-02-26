@@ -41,6 +41,12 @@
                 @include('admin.layouts.partials.attend')
 
 
+                @include('admin.layouts.partials.homework')
+
+
+                @include('admin.layouts.partials.payment')
+
+
                 @include('admin.layouts.partials.exam')
 
 
@@ -50,7 +56,6 @@
                 @include('admin.layouts.partials.expence')
 
 
-                @include('admin.layouts.partials.homework')
 
 
                 @include('admin.layouts.partials.report')
