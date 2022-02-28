@@ -17,60 +17,73 @@ class BarcodeController extends Controller
 
     public function allBarcodesSmall()
     {
-        $students = Student::get(['id','name']);
-        return view('admin.assets.allBarcodesSmall',compact('students'));
+        $students = Student::get(['id', 'name']);
+        return view('admin.assets.allBarcodesSmall', compact('students'));
     }
 
     public function allBarcodesBig()
     {
-        $students = Student::get(['id','name']);
-        return view('admin.assets.allBarcodesBig',compact('students'));
+        $students = Student::get(['id', 'name']);
+        return view('admin.assets.allBarcodesBig', compact('students'));
     }
 
     public function someStudentsPage()
     {
         $levels = Level::get();
-        return view('admin.pages.student.barcode.someStudentsBarcode',compact('levels'));
+        return view('admin.pages.student.barcode.someStudentsBarcode', compact('levels'));
     }
 
     public function printSomeStudentsPage(Request $request)
     {
         $students = Student::findMany($request->students);
-        return view('admin.pages.student.barcode.printSomeStudentsBarcode',compact('students'));
+        return view('admin.pages.student.barcode.printSomeStudentsBarcode', compact('students'));
+    }
+
+    public function printSomeSmallPrinterPage()
+    {
+        $levels = Level::get();
+        return view('admin.pages.student.barcode.printSomeSmallPrinterPage', compact('levels'));
+    }
+
+    public function printSomeSmallPrinter(Request $request)
+    {
+        $students = Student::findMany($request->students);
+        return view('admin.pages.student.barcode.printSomeSmallPrinter', compact('students'));
     }
 
     public function groupStudentsPage()
     {
         $levels = Level::get();
-        return view('admin.pages.student.barcode.groupStudentsPage',compact('levels'));
+        return view('admin.pages.student.barcode.groupStudentsPage', compact('levels'));
     }
 
     public function printGroupStudentsPage(Request $request)
     {
         $students = Group::find($request->group_id)->students;
-        return view('admin.pages.student.barcode.printSomeStudentsBarcode',compact('students'));
+        return view('admin.pages.student.barcode.printSomeStudentsBarcode', compact('students'));
     }
 
     public function levelStudentsPage()
     {
         $levels = Level::get();
-        return view('admin.pages.student.barcode.levelStudentsPage',compact('levels'));
+        return view('admin.pages.student.barcode.levelStudentsPage', compact('levels'));
     }
 
     public function printLevelStudentsPage(Request $request)
     {
         $students = Level::find($request->level_id)->students;
-        return view('admin.pages.student.barcode.printSomeStudentsBarcode',compact('students'));
+        return view('admin.pages.student.barcode.printSomeStudentsBarcode', compact('students'));
     }
 
-    public function generateBarcode(Request $request){
+    public function generateBarcode(Request $request)
+    {
         $user = User::find(2);
-        return view('admin.assets.allBarcodes')->with('user',$user);
+        return view('admin.assets.allBarcodes')->with('user', $user);
     }
 
     public function printSinlgeBarcode(Student $student)
     {
-        return view('admin.assets.sinlgeBarcode',[
+        return view('admin.assets.sinlgeBarcode', [
             'student' => $student
         ]);
     }

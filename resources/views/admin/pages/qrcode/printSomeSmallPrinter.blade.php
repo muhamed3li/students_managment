@@ -13,10 +13,8 @@
 
         .visible-print {
             page-break-after: always;
-            /* margin-left: 10px; */
             text-align: center;
             border: 2px solid black;
-            /* padding: 4px; */
             border-radius: 5px;
             max-width: 85%;
             margin: 0 auto;
@@ -39,11 +37,6 @@
             top: 50%;
             transform: rotate(270deg) translateX(10%);
         }
-
-        /* .scan-me {
-            float: left;
-            transform: rotate(270deg) translateX(-60%) translateY(50%);
-        } */
 
         .level-name {
             position: absolute;

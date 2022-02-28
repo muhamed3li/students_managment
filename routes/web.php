@@ -140,6 +140,10 @@ Route::prefix('students')->group(function () {
 
         Route::get('levelStudentsPage', [BarcodeController::class, 'levelStudentsPage'])->name('levelStudentsPage');
         Route::post('printLevelStudentsPage', [BarcodeController::class, 'printLevelStudentsPage'])->name('printLevelStudentsPage');
+
+        Route::get('/printSomeSmallPrinterPage', [BarcodeController::class, 'printSomeSmallPrinterPage'])->name('printSomeSmallPrinterPage');
+
+        Route::post('/printSomeSmallPrinter', [BarcodeController::class, 'printSomeSmallPrinter'])->name('printSomeSmallPrinter');
     });
 
 
