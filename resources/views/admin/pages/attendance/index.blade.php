@@ -93,10 +93,10 @@
 
         <!-- /.card-header -->
         <div class="card-body">
-            <table id="example1" class="table table-bordered table-striped">
+            <table id="example1" class="table table-bordered table-striped td">
                 <thead>
                     <tr>
-                        <th>الرقم التسلسلي</th>
+                        <th class="dt-select">الرقم التسلسلي</th>
                         <th>هوية الطالب</th>
                         <th>اسم الطالب</th>
                         <th>المجموعة</th>
@@ -115,7 +115,7 @@
                             طالب"}}</td>
 
                         <td>{{$item->student->group->name ?? ""}}</td>
-                        <td>{{$item->student->group->level->name ?? ""}}</td>
+                        <td>{{$item->student->level->name ?? ""}}</td>
 
                         <td class="{{$item->attend ?'text-success' : 'text-danger'}}">
                             {{$item->attend ? 'حضر' : 'غائب'}}
@@ -176,10 +176,34 @@
     $('#group_id2').select2()
     $('#level_id2').select2()
     $(function () {
-      $("#example1").DataTable({
-        "responsive": true, "lengthChange": true, "autoWidth": false,
-        "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-      }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+        $('#example1 tfoot th').each( function () {
+            var title = $(this).text();
+            $(this).html( '<input type="text" />' );
+        });
+        $("#example1").DataTable({
+            "responsive": false, "lengthChange": true, "autoWidth": true,
+            "scrollX": true,
+            "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"],
+            initComplete: function () {
+                this.api().columns().every( function () {
+                    var that = this;
+                    $( 'input', this.footer() ).on( 'keyup change clear', function () {
+                        if ( that.search() !== this.value ) {
+                            that
+                                .search( this.value )
+                                .draw();
+                        }
+                    } );
+                } );
+            }
+        }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+
+
+
+        
+    
+       
+
       
         $("#group_id").html("<option>اختر</option>")
         $('#level_id').change(function(){

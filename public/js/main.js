@@ -4,14 +4,14 @@
  * ******************
  */
 
-function getGroupFromLevel() {
-    $("#level_id").change(function () {
+function getGroupFromLevel(levelId = "level_id", groupId = "group_id") {
+    $(`#${levelId}`).change(function () {
         $.ajax("/level/getGroups/" + this.value, {
             dataType: "json",
             success: function (data, status) {
-                $("#group_id").html("<option>اختر</option>");
+                $(`#${groupId}`).html("<option>اختر</option>");
                 data.forEach((element) => {
-                    $("#group_id").append(`
+                    $(`#${groupId}`).append(`
                 <option value="${element.id}">${element.name}</option>
                 `);
                 });
@@ -79,14 +79,14 @@ function calculateTheValue(id1, id2, id3, id4) {
  * ******************
  */
 
-function getStudentFromGroup() {
-    $("#group_id").change(function () {
+function getStudentFromGroup(groupId = "group_id", studentId = "student_id") {
+    $(`#${groupId}`).change(function () {
         $.ajax("/groups/getStudents/" + this.value, {
             dataType: "json",
             success: function (data, status) {
-                $("#student_id").html("<option>اختر</option>");
+                $(`#${studentId}`).html("<option>اختر</option>");
                 data.forEach((element) => {
-                    $("#student_id").append(`
+                    $(`#${studentId}`).append(`
                 <option value="${element.id}">${element.name}</option>
                 `);
                 });
@@ -95,5 +95,38 @@ function getStudentFromGroup() {
                 console.log(errorMessage);
             },
         });
+    });
+}
+
+function studentDualBox(studentsList) {
+    $("#barcode").on("keypress", function (event) {
+        var keycode = event.keyCode ? event.keyCode : event.which;
+        if (keycode == "13") {
+            attendAjax(event, studentsList);
+        }
+    });
+}
+function attendAjax(e, studentsList) {
+    e.preventDefault();
+
+    var id = $("#barcode").val();
+    id = idFromBarcode(id);
+
+    $.ajax({
+        type: "GET",
+        url: "/students/getStudetnById/" + id,
+        data: { _token: "{{csrf_token()}}" },
+        success: function (data) {
+            let student = JSON.parse(data);
+            studentsList.append(`
+            <option value="${student.id}" selected>${student.name}</option>
+            `);
+            studentsList.bootstrapDualListbox("refresh");
+            $("#barcode").val("");
+            $("#barcode").focus();
+        },
+        error: function (data, textStatus, errorThrown) {
+            console.log(data);
+        },
     });
 }

@@ -14,8 +14,6 @@
             @csrf
             @method('PUT')
 
-
-
             {!! form_select('student_id','الطالب',$obj->student_id) !!}
             @error('student_id')
             <p class="text-danger" id="myError">{{$message}}</p>

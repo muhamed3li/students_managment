@@ -17,7 +17,8 @@
         "laravel/tinker": "^2.5",
         "milon/barcode": "^8.0",
         "realrashid/sweet-alert": "^4.1",
-        "santigarcor/laratrust": "^6.3"
+        "santigarcor/laratrust": "^6.3",
+        "simplesoftwareio/simple-qrcode": "~4"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.6",

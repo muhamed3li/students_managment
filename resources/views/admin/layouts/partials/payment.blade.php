@@ -1,6 +1,6 @@
 <li class="nav-item {{currentRequest('payments') ? 'menu-open' : ''}}">
     <a href="#" class="nav-link {{currentRequest('payments') ? 'active' : ''}}">
-        <i class="nav-icon fas fa-tachometer-alt"></i>
+        <i class="fas fa-money-check-alt nav-icon"></i>
         <p>
             الماليات
             <i class="right fas fa-angle-left"></i>

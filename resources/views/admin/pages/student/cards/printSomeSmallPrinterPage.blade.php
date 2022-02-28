@@ -6,47 +6,47 @@
 
     <div class="card">
         <div class="card-header">
-            <h3 class="card-title">طباعة بطاقات لعدد من الطلاب</h3>
+            <h3 class="card-title">QR Code page Small Printer</h3>
         </div>
 
-        <!-- /.card-header -->
         <div class="card-body">
-            <form action="{{route('cards.printSomeStudentsPage')}}" method="POST">
-                @csrf
+            <div class="container">
+                <form action="{{route('cards.printSomeSmallPrinter')}}" method="POST">
+                    @csrf
+
+                    <div class="form-group">
+                        <label for="barcode">باركود او رقم الهوية</label>
+                        <input type="text" class="form-control" id="barcode" name="barcode">
+                    </div>
 
 
-                <div class="form-group">
-                    <label for="barcode">باركود او رقم الهوية</label>
-                    <input type="text" class="form-control" id="barcode" name="barcode">
-                </div>
+                    <x-select-search :selectdata="$levels" name="level_id" label="المستوى" />
 
+                    <x-select-search :selectdata="$levels" name="group_id" label="المجموعة" />
 
-                <x-select-search :selectdata="$levels" name="level_id" label="المستوى" />
+                    <x-select-search :selectdata="$levels" name="student_id" label="الطالب" />
 
-                <x-select-search :selectdata="$levels" name="group_id" label="المجموعة" />
+                    <div class="form-group">
+                        <label>Students</label>
+                        <select class="duallistbox" multiple="multiple" style="display: none;" name="students[]"
+                            id="students">
+                        </select>
+                    </div>
 
-                <x-select-search :selectdata="$levels" name="student_id" label="الطالب" />
-
-                <div class="form-group">
-                    <label>Students</label>
-                    <select class="duallistbox" multiple="multiple" style="display: none;" name="students[]"
-                        id="students">
-                    </select>
-                </div>
-                <div class="card-footer text-right">
-                    <button type="submit" class="btn btn-primary swalDefaultSuccess">تأكيد</button>
-                </div>
-            </form>
+                    <div class="card-footer text-right">
+                        <button type="submit" class="btn btn-primary swalDefaultSuccess">تأكيد</button>
+                    </div>
+                </form>
+            </div>
         </div>
-
-        <!-- /.card -->
     </div>
-
 </div>
 
 
-
 @endsection
+
+
+
 
 @section('specificScript')
 <!-- Page specific script -->

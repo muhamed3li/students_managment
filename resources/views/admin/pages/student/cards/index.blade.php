@@ -26,6 +26,13 @@
                             لمستوى</a>
                     </div>
                 </div>
+                <div class="row mb-5 justify-content-around">
+                    <div class="col">
+                        <a href="{{route('cards.printSomeSmallPrinterPage')}}" class="btn btn-lg btn-primary">طباعة عدد
+                            من
+                            البطاقات طابعة صغيرة</a>
+                    </div>
+                </div>
             </div>
         </div>
         <!-- /.card-body -->

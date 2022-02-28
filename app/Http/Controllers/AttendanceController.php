@@ -25,7 +25,8 @@ class AttendanceController extends Controller
 
     public function index()
     {
-        $all = $this->model::with('student.group.level')->orderBy('id', 'DESC')->get();
+        $all = $this->model::with(['student:id,name,group_id,level_id', 'student.group:id,name', 'student.level:id,name'])->orderBy('id', 'DESC')->get();
+        // $all = $this->model::with('student.group.level')->orderBy('id', 'DESC')->get();
         $levels = Level::get(['id', 'name']);
         return view("admin.pages.attendance.index", compact('all', 'levels'));
     }
@@ -35,8 +36,6 @@ class AttendanceController extends Controller
         $levels = Level::get();
         return view("admin.pages.attendance.create", compact('levels'));
     }
-
-
 
     public function groupAttendancePage()
     {

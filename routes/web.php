@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\QrCodeController;
 use App\Http\Controllers\AdminHomeController;
 use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\BarcodeController;
@@ -26,6 +27,7 @@ use Illuminate\Support\Facades\Route;
  * مشكلة عند اظهار مكان الطالب في صفح المجاميع
  * اظهار بحث بالاسم في صفح المجاميع
  * زرار لطباعة بيانات الطالب كاملة
+ * اضافة درجه صغرى وعظمى في الواجبات
  * فصل الشهور في جدول منفصل عن جدول الماليات
  * صفحة فيها تقارير عن غياب اليوم بارقام اولياء الامور
  * صفحة المواعيد فيها شغل
@@ -34,10 +36,28 @@ use Illuminate\Support\Facades\Route;
  * انا مش محتاج المستوى في الجداول الي فيها المجموعة
  * عدم اخذ الطالب غياب في يوم ليس عليه فيه مجموعة
  * اظهار المجاميع التي معادها اليوم فقط
+ * عمل رقم الهوية برقم لكل مجموعة وكل مستوى
+ * في صفحة انشاء طالب اضهار اختيار المستوى بالأعلى ووضع الاسعار تلقائي
+ * عمل ماكس لعدد الطلبه في المجموعة
+ * عدم ظهور المجموعه الممتلاه او ظهورها مع وجود علامه عل الاتلاء
+ * 
  */
 
 
+
 Route::get('/', [AdminHomeController::class, 'index'])->name('admin.home');
+
+Route::group(['prefix' => 'qrcode', 'as' => 'qrcode.'], function () {
+    Route::get('/', [QrCodeController::class, 'index'])->name('index');
+
+    Route::get('/printSomeSmallPrinterPage', [QrCodeController::class, 'printSomeSmallPrinterPage'])->name('printSomeSmallPrinterPage');
+
+    Route::post('/printSomeSmallPrinter', [QrCodeController::class, 'printSomeSmallPrinter'])->name('printSomeSmallPrinter');
+
+    Route::get('/printSomeBigPrinterPage', [QrCodeController::class, 'printSomeBigPrinterPage'])->name('printSomeBigPrinterPage');
+
+    Route::post('/printSomeBigPrinter', [QrCodeController::class, 'printSomeBigPrinter'])->name('printSomeBigPrinter');
+});
 
 Route::resource('department', DepartmentController::class);
 
@@ -135,6 +155,10 @@ Route::prefix('students')->group(function () {
 
         Route::get('levelStudentsPage', [CardsController::class, 'levelStudentsPage'])->name('levelStudentsPage');
         Route::post('printLevelStudentsPage', [CardsController::class, 'printLevelStudentsPage'])->name('printLevelStudentsPage');
+
+        Route::get('/printSomeSmallPrinterPage', [CardsController::class, 'printSomeSmallPrinterPage'])->name('printSomeSmallPrinterPage');
+
+        Route::post('/printSomeSmallPrinter', [CardsController::class, 'printSomeSmallPrinter'])->name('printSomeSmallPrinter');
     });
 
 

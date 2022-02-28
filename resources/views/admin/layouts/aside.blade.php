@@ -56,6 +56,7 @@
                 @include('admin.layouts.partials.expence')
 
 
+                @include('admin.layouts.partials.qrcode')
 
 
                 @include('admin.layouts.partials.report')
