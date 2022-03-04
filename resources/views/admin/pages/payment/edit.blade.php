@@ -3,35 +3,33 @@
 @section('content')
 
 <div class="col-md-6">
-    <!-- general form elements -->
     <div class="card card-primary">
         <div class="card-header">
             <h3 class="card-title">تعديل دفع</h3>
         </div>
 
-        <!-- /.card-header -->
-        <!-- form start -->
-        <form action="{{route($model.'.update',$obj->id)}}" method="POST">
+        <form action="{{route('payment.update',$payment)}}" method="POST">
             @csrf
             @method('PUT')
             <div class="card-body">
-                <x-select-search :selectdata="$months" name="month_id" label="*اسم الشهر" :old="$obj->month_id" />
 
-                <x-select-search :selectdata="$students" name="student_id" label="*الطالب" :old="$obj->student->id" />
+                <x-select-search :selectdata="$months" name="month_id" label="*اسم الشهر" :old="$payment->month_id" />
 
-
-                <x-form.input-text name="month_paid" label="*الشهرية" :old="$obj->month_paid" />
-
-                <x-form.input-text name="malazem_paid" label="*الملازم" :old="$obj->malazem_paid" />
+                <x-select-search :selectdata="$students" name="student_id" label="*الطالب"
+                    :old="$payment->student->id" />
 
 
-                <x-form.input-text name="discount" label="الخصم" :old="$obj->discount" />
+                <x-form.input-text name="month_paid" label="*الشهرية" :old="$payment->month_paid" />
+
+                <x-form.input-text name="malazem_paid" label="*الملازم" :old="$payment->malazem_paid" />
 
 
-                <x-form.input-text name="total" label="الاجمالي" :old="$obj->total" />
+                <x-form.input-text name="discount" label="الخصم" :old="$payment->discount" />
+
+
+                <x-form.input-text name="total" label="الاجمالي" :old="$payment->total" />
 
             </div>
-            <!-- /.card-body -->
 
             <div class="card-footer text-right">
                 <button type="submit" class="btn btn-primary swalDefaultSuccess">تأكيد</button>

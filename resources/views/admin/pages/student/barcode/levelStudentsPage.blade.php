@@ -9,7 +9,6 @@
             <h3 class="card-title">طباعة باركود لمستوى</h3>
         </div>
 
-        <!-- /.card-header -->
         <div class="card-body">
             <form action="{{route('barcode.printLevelStudentsPage')}}" method="POST">
                 @csrf
@@ -22,7 +21,6 @@
             </form>
         </div>
 
-        <!-- /.card -->
     </div>
 
 </div>
@@ -32,7 +30,6 @@
 @endsection
 
 @section('specificScript')
-<!-- Page specific script -->
 <script>
     $('.select2').select2()
 </script>

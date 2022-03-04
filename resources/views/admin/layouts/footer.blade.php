@@ -36,11 +36,6 @@
 <!-- ChartJS -->
 <script src="{{ asset('/adminLTE/plugins/chart.js/Chart.min.js') }}"></script>
 
-{{--
-<!-- AdminLTE for demo purposes -->
-<script src="{{ asset('/adminLTE') }}/dist/js/demo.js"></script>
-<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script src="{{ asset('/adminLTE') }}/dist/js/pages/dashboard2.js"></script> --}}
 
 <script src="{{ asset('/adminLTE/dist/js/jQuery.print.min.js') }}"></script>
 
@@ -75,27 +70,30 @@
 <script>
     $( document ).ready(function() {
         $('.select2').select2()
-        // $('.duallistbox').bootstrapDualListbox()
-
-        // console.log($('.select2'));
-
-        // $('.select2').each((element,item) => {
-        //     $(item).select2()
-        //     // console.log(item);
-        // });
-        // $('select').selectize({
-        //     sortField: 'text'
-        // });
     });
 
-    function idFromBarcode(id)
-    {
-        if(id.length >=5)
-        {
-            id = id.slice(0,-1);
+    
+
+    $('#example1 tfoot th').each( function () {
+        var title = $(this).text();
+        $(this).html( '<input type="text" style="min-width:200px" />' );
+    });
+    $("#example1").DataTable({
+        "responsive": false, "lengthChange": true, "autoWidth": false,
+        "scrollX": true,
+        "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"],
+        initComplete: function () {
+            this.api().columns().every( function () {
+                var that = this;
+                $( 'input', this.footer() ).on( 'keyup change clear', function () {
+                    if ( that.search() !== this.value ) {
+                        that.search( this.value ).draw();
+                    }
+                } );
+            } );
         }
-        return id
-    }
+    }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+
 </script>
 
 @yield('specificScript')

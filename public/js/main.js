@@ -79,6 +79,69 @@ function calculateTheValue(id1, id2, id3, id4) {
  * ******************
  */
 
+/**
+ * ******************
+ * **** Exam Start ****
+ * ******************
+ */
+function getExamFromGroup(group_id = "group_id", exam_id = "exam_id") {
+    $(`#${group_id}`).change(function () {
+        $.ajax("/groups/getExams/" + this.value, {
+            dataType: "json",
+            success: function (data, status) {
+                $(`#${exam_id}`).html("<option>اختر</option>");
+                data.forEach((element) => {
+                    $(`#${exam_id}`).append(`
+                <option value="${element.id}">${element.name}</option>
+                `);
+                });
+            },
+            error: function (jqXhr, textStatus, errorMessage) {
+                console.log(errorMessage);
+            },
+        });
+    });
+}
+/**
+ * ******************
+ * **** Exam End ****
+ * ******************
+ */
+
+/**
+ * ******************
+ * **** Homwork Start ****
+ * ******************
+ */
+function getHomeworkFromGroup(
+    group_id = "group_id",
+    homework_id = "homework_id"
+) {
+    $(`#${group_id}`).change(function () {
+        $.ajax("/groups/getHomework/" + this.value, {
+            dataType: "json",
+            success: function (data, status) {
+                console.log(data);
+                $(`#${homework_id}`).html("<option>اختر</option>");
+                data.forEach((element) => {
+                    $(`#${homework_id}`).append(`
+                <option value="${element.id}">${element.name}</option>
+                `);
+                });
+            },
+            error: function (jqXhr, textStatus, errorMessage) {
+                console.log(errorMessage);
+            },
+        });
+    });
+}
+
+/**
+ * ******************
+ * **** Homwork End ****
+ * ******************
+ */
+
 function getStudentFromGroup(groupId = "group_id", studentId = "student_id") {
     $(`#${groupId}`).change(function () {
         $.ajax("/groups/getStudents/" + this.value, {
@@ -129,4 +192,11 @@ function attendAjax(e, studentsList) {
             console.log(data);
         },
     });
+}
+
+function idFromBarcode(id) {
+    if (id.length >= 5) {
+        id = id.slice(0, -1);
+    }
+    return id;
 }

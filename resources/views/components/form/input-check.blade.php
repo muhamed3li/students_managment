@@ -4,5 +4,5 @@
     <label for="{{$name}}" class="form-check-label">{{$label}}</label>
 </div>
 @error($name)
-<p class="text-danger" id="myError">{{$message}}</p>
+<p class="alert alert-danger" id="myError">{{$message}}</p>
 @enderror

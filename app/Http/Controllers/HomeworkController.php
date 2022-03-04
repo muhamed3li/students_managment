@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\Admin\Homework\HomeworkDestroyRequest;
 use App\Http\Requests\Admin\Homework\HomeworkStoreRequest;
 use App\Http\Requests\Admin\Homework\HomeworkUpdateRequest;
+use App\Models\Group;
 use App\Models\Homework;
 use App\Models\Level;
 use Illuminate\Http\Request;
@@ -14,36 +15,37 @@ class HomeworkController extends Controller
 {
     public function index()
     {
-        $all = Homework::with(['level','group'])->orderBy('created_at','desc')->get();
-        return view('admin.pages.homework.index',compact('all'));
+        $all = Homework::with(['level:id,name', 'group:id,name'])->orderBy('created_at', 'desc')->get();
+        return view('admin.pages.homework.index', compact('all'));
     }
 
     public function create()
     {
-        $levels = Level::get();
-        return view('admin.pages.homework.create',compact('levels'));
+        $levels = Level::get(['id', 'name']);
+        $groups = Group::get(['id', 'name']);
+        return view('admin.pages.homework.create', compact('levels', 'groups'));
     }
 
     public function store(HomeworkStoreRequest $request)
     {
         Homework::create($request->validated());
         Alert::success('Success', "تمت اضافة الواجب");
-        return redirect()->back();
+        return redirect()->back()->withInput();
     }
 
     public function edit(Homework $homework)
     {
-        return view('admin.pages.homework.edit',compact('homework'));
+        return view('admin.pages.homework.edit', compact('homework'));
     }
 
-    public function update(HomeworkUpdateRequest $request,Homework $homework)
+    public function update(HomeworkUpdateRequest $request, Homework $homework)
     {
         $homework->update($request->validated());
         Alert::success('Success', "تمت عملية التعديل الواجب");
         return redirect()->back();
     }
 
-    public function destroy(HomeworkDestroyRequest $request,Homework $homework)
+    public function destroy(HomeworkDestroyRequest $request, Homework $homework)
     {
         $homework->delete();
         Alert::success('Success', "تم حذف الواجب بنجاح");

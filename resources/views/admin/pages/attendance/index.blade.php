@@ -10,13 +10,11 @@
             <a href="{{route('attendance.create')}}" class="btn btn-success float-right">انشاء</a>
 
 
-            <!-- Button trigger modal -->
             <button type="button" class="btn btn-primary float-right mr-5" data-toggle="modal"
                 data-target="#modelattend">
                 تحضير الطلاب في يوم ما
             </button>
 
-            <!-- Modal -->
             <div class="modal fade" id="modelattend" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
                 aria-hidden="true">
                 <div class="modal-dialog" role="document">
@@ -34,7 +32,7 @@
                                 <x-select-search :selectdata="$levels" name="level_id" label="المستوى" />
 
                                 <x-select-search :selectdata="$levels" name="group_id" label="المجموعة" />
-                                {!! form_date('day','اليوم') !!}
+                                <x-form.input-date name="day" label="التاريخ" :old="date('Y-m-d')" />
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">إغلاق</button>
@@ -47,13 +45,11 @@
 
 
 
-            <!-- Button trigger modal -->
             <button type="button" class="btn btn-warning float-right mr-5" data-toggle="modal"
                 data-target="#modelunattend">
                 تغييب الطلاب في يوم ما
             </button>
 
-            <!-- Modal -->
             <div class="modal fade" id="modelunattend" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
                 aria-hidden="true">
                 <div class="modal-dialog" role="document">
@@ -70,7 +66,8 @@
                                 <x-select-search :selectdata="$levels" name="level_id2" label="المستوى" />
 
                                 <x-select-search :selectdata="$levels" name="group_id2" label="المجموعة" />
-                                {!! form_date('day','اليوم') !!}
+
+                                <x-form.input-date name="day" label="التاريخ" :old="date('Y-m-d')" />
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">إغلاق</button>
@@ -81,17 +78,13 @@
                 </div>
             </div>
 
-
-
-
+            {{--
             <a href="{{route('attendance.attendStudentsWhoUnattended')}}" class="btn btn-info float-right mr-5"
-                id="unattend_students_who_unattended">تغييب من لم يحضر</a>
-
+                id="unattend_students_who_unattended">تغييب من لم يحضر</a> --}}
 
 
         </div>
 
-        <!-- /.card-header -->
         <div class="card-body">
             <table id="example1" class="table table-bordered table-striped td">
                 <thead>
@@ -152,16 +145,9 @@
                 </tfoot>
             </table>
         </div>
-        <!-- /.card-body -->
     </div>
-    <!-- /.card -->
-    <form method="POST" action="{{route('attendance.deleteAll')}}">
-        @csrf
-        <button type="submit" class="btn btn-danger mt-5 mb-1">
-            حذف كل البيانات
-            <i class="fas fa-trash"></i>
-        </button>
-    </form>
+
+    <x-helper.delete-all model="attendance" />
 
 </div>
 
@@ -169,79 +155,18 @@
 @endsection
 
 @section('specificScript')
-<!-- Page specific script -->
 <script>
     $('#group_id').select2()
     $('#level_id').select2()
     $('#group_id2').select2()
     $('#level_id2').select2()
     $(function () {
-        $('#example1 tfoot th').each( function () {
-            var title = $(this).text();
-            $(this).html( '<input type="text" />' );
-        });
-        $("#example1").DataTable({
-            "responsive": false, "lengthChange": true, "autoWidth": true,
-            "scrollX": true,
-            "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"],
-            initComplete: function () {
-                this.api().columns().every( function () {
-                    var that = this;
-                    $( 'input', this.footer() ).on( 'keyup change clear', function () {
-                        if ( that.search() !== this.value ) {
-                            that
-                                .search( this.value )
-                                .draw();
-                        }
-                    } );
-                } );
-            }
-        }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
 
-
-
-        
-    
-       
-
-      
         $("#group_id").html("<option>اختر</option>")
-        $('#level_id').change(function(){
-            $.ajax("/level/getGroups/" + this.value ,
-            {
-                dataType: 'json',
-                success:function(data,status){
-                    $("#group_id").html("<option>اختر</option>")
-                    data.forEach(element => {
-                    $("#group_id").append(`
-                    <option value="${element.id}">${element.name}</option>
-                    `)
-                    });
-                },
-                error: function (jqXhr, textStatus, errorMessage) { 
-                    console.log(errorMessage)
-                }
-            })
-        });
+        getGroupFromLevel();
 
         $("#group_id2").html("<option>اختر</option>")
-        $('#level_id2').change(function(){
-            $.ajax("/level/getGroups/" + this.value ,
-            {
-                dataType: 'json',
-                success:function(data,status){
-                    $("#group_id2").html("<option>اختر</option>")
-                    data.forEach(element => {
-                    $("#group_id2").append(`
-                    <option value="${element.id}">${element.name}</option>
-                    `)
-                    });
-                },
-                error: function (jqXhr, textStatus, errorMessage) { 
-                    console.log(errorMessage)
-                }
-            })
-        });
+        getGroupFromLevel('level_id2','group_id2');
     });
 
 </script>

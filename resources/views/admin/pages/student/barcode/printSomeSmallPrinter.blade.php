@@ -33,6 +33,10 @@
             text-align: right;
             direction: rtl;
         }
+
+        .barcode {
+            text-align: center;
+        }
     </style>
 </head>
 
@@ -43,7 +47,7 @@
         <p class="text"><strong class="title">الطالب :</strong>{{$student->name}}</p>
         <p class="text"><strong class="title">المستوى :</strong>{{$student->level->name}}</p>
         <p class="text"><strong class="title">المجموعة :</strong>{{$student->group->name}}</p>
-        <p class="text">
+        <p class="text barcode">
             {!! DNS1D::getBarcodeSVG("$student->id", 'UPCA',1) !!}
         </p>
     </div>

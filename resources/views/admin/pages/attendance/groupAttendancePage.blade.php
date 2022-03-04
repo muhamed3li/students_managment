@@ -17,12 +17,9 @@
 
                 <x-select-search :selectdata="$levels" name="level_id" label="المستوى" />
 
-                <x-select-search :selectdata="$levels" name="group_id" label="المجموعة" />
+                <x-select-search :selectdata="$groups" name="group_id" label="المجموعة" />
 
-                {!! form_date('day','التاريخ',date("Y-m-d")) !!}
-                @error('day')
-                <p class="text-danger" id="myError">{{$message}}</p>
-                @enderror
+                <x-form.input-date name="day" label="التاريخ" :old="date('Y-m-d')" />
 
                 <!-- /.card-body -->
 
@@ -42,24 +39,6 @@
 <!-- Page specific script -->
 <script>
     $('.select2').select2()
-
-    $("#group_id").html("<option>اختر</option>")
-    $('#level_id').change(function(){
-        $.ajax("/level/getGroups/" + this.value ,
-        {
-            dataType: 'json',
-            success:function(data,status){
-                $("#group_id").html("<option>اختر</option>")
-                data.forEach(element => {
-                $("#group_id").append(`
-                <option value="${element.id}">${element.name}</option>
-                `)
-                });
-            },
-            error: function (jqXhr, textStatus, errorMessage) { 
-                console.log(errorMessage)
-            }
-        })
-    });
+    getGroupFromLevel();    
 </script>
 @endsection

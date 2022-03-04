@@ -5,51 +5,27 @@
 
 
 <div class="col-md-6">
-    <!-- general form elements -->
     <div class="card card-primary">
         <div class="card-header">
             <h3 class="card-title">اضافة مستوي</h3>
         </div>
 
-        <!-- /.card-header -->
-        <!-- form start -->
-        <form action="{{route($model.'.store')}}" method="POST">
+        <form action="{{route('level.store')}}" method="POST">
             @csrf
 
+            <div class="card-body">
+                <x-form.input-text name="name" label="اسم المستوى الدراسي" />
 
-            {!! form_text('name','اسم المستوى الدراسي') !!}
-            @error('name')
-            <p class="text-danger" id="myError">{{$message}}</p>
-            @enderror
+                <x-form.input-text name="malazem_cost" label="مصاريف الملازم" />
 
-
-            {{-- {!! form_text('reserve_cost','مصاريف الحجز') !!}
-            @error('reserve_cost')
-            <p class="text-danger" id="myError">{{$message}}</p>
-            @enderror --}}
-
-
-            {!! form_text('malazem_cost','مصاريف الملازم') !!}
-            @error('malazem_cost')
-            <p class="text-danger" id="myError">{{$message}}</p>
-            @enderror
-
-
-            {!! form_text('month_cost','الشهرية') !!}
-            @error('month_cost')
-            <p class="text-danger" id="myError">{{$message}}</p>
-            @enderror
-
-
-
-            <!-- /.card-body -->
+                <x-form.input-text name="month_cost" label="الشهرية" />
+            </div>
 
             <div class="card-footer text-right">
                 <button type="submit" class="btn btn-primary swalDefaultSuccess">تأكيد</button>
             </div>
         </form>
     </div>
-    <!-- /.card -->
 </div>
 
 

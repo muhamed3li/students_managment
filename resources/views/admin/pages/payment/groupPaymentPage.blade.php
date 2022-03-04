@@ -25,17 +25,13 @@
 
                 <x-form.input-text name="malazem_paid" label="*الملازم" />
 
-
                 <x-form.input-text name="discount" label="الخصم" />
-
-                <!-- /.card-body -->
 
                 <div class="card-footer text-right">
                     <button type="submit" class="btn btn-primary swalDefaultSuccess">تأكيد</button>
                 </div>
             </form>
         </div>
-        <!-- /.card-body -->
     </div>
 </div>
 
@@ -43,28 +39,11 @@
 @endsection
 
 @section('specificScript')
-<!-- Page specific script -->
 <script>
     $('.select2').select2()
 
-    $("#group_id").html("<option>اختر</option>")
-    $('#level_id').change(function(){
-        $.ajax("/level/getGroups/" + this.value ,
-        {
-            dataType: 'json',
-            success:function(data,status){
-                $("#group_id").html("<option>اختر</option>")
-                data.forEach(element => {
-                $("#group_id").append(`
-                <option value="${element.id}">${element.name}</option>
-                `)
-                });
-            },
-            error: function (jqXhr, textStatus, errorMessage) { 
-                console.log(errorMessage)
-            }
-        })
-    });
+    getGroupFromLevel();
    
+    getLevelByIdForMoney('month_paid','malazem_paid','discount','total');
 </script>
 @endsection

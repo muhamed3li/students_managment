@@ -20,14 +20,14 @@
         </div>
 
 
-        <!-- /.card-header -->
         <div class="card-body">
             <form action="{{route('examattindance.attendGroup',$exam)}}" method="POST">
                 @csrf
 
-                <table id="example1" class="table table-bordered table-striped">
+                <table id="group" class="table table-bordered table-striped">
                     <thead>
                         <tr>
+                            <th>رقم الهوية</th>
                             <th>اسم الطالب</th>
                             <th>الدرجة</th>
                         </tr>
@@ -35,6 +35,7 @@
                     <tbody>
                         @foreach ($students as $index => $student)
                         <tr class="{{$student->id}}">
+                            <td>{{$student->id}}</td>
                             <td>
                                 <div class="form-group mb-0">
                                     <label for="">{{$student->name}}</label>
@@ -54,19 +55,18 @@
                     </tbody>
                     <tfoot>
                         <tr>
+                            <th>رقم الهوية</th>
                             <th>اسم الطالب</th>
                             <th>الدرجة</th>
                         </tr>
                     </tfoot>
                 </table>
-                <!-- /.card-body -->
 
                 <div class="card-footer text-right">
                     <button type="submit" class="btn btn-primary swalDefaultSuccess">تأكيد</button>
                 </div>
             </form>
         </div>
-        <!-- /.card-body -->
     </div>
 </div>
 
@@ -93,7 +93,7 @@
         id = idFromBarcode(id)
         id = parseInt(id)
         $(`#${id}`).select()
-        $(`#${id}`).get(0).scrollIntoView()
+        $(`#${id}`).get(0).scrollIntoView({behavior: "smooth", block: "center", inline: "nearest"})
         $(`#${id}`).on('keypress',function(e){
             var keycode = (event.keyCode ? event.keyCode : event.which);
             if(keycode == '13'){

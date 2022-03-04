@@ -3,5 +3,5 @@
     <input type="date" class="form-control datepicker" id="{{$name}}" name="{{$name}}" value="{{$old}}">
 </div>
 @error($name)
-<p class="text-danger">{{$message}}</p>
+<p class="alert alert-danger" id="myError">{{$message}}</p>
 @enderror

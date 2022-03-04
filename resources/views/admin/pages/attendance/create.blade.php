@@ -15,11 +15,11 @@
 
             <div class="card-body">
 
-                <x-select-search :selectdata="$levels" name="level_id" label="المستوى" />
+                <x-select-search :selectdata="$levels" name="level_id" label="المستوى" :old="old('level_id')" />
 
-                <x-select-search :selectdata="$levels" name="group_id" label="المجموعة" />
+                <x-select-search :selectdata="$groups" name="group_id" label="المجموعة" :old="old('group_id')" />
 
-                <x-select-search :selectdata="$levels" name="student_id" label="الطالب" />
+                <x-select-search :selectdata="$students" name="student_id" label="الطالب" :old="old('student_id')" />
 
                 <x-form.input-check name="attend" label="حضر ؟" checked="1" />
 
@@ -83,10 +83,8 @@
     var studentsList = $('.duallistbox').bootstrapDualListbox()
 
 
-    $("#group_id").html("<option>اختر</option>")
     getGroupFromLevel();
 
-    $("#student_id").html("<option>اختر</option>")
     getStudentFromGroup();
 
     studentDualBox(studentsList);

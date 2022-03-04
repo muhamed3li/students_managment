@@ -19,7 +19,6 @@
         </div>
 
 
-        <!-- /.card-header -->
         <div class="card-body">
             <form action="{{route('payment.payGroup')}}" method="POST">
                 @csrf
@@ -33,16 +32,14 @@
                             @else
                             <x-select-search :selectdata="$months" name="month_id" label="*اسم الشهر" />
                             @endif
-                            @error('month_id')
-                            <p class="text-danger" id="myError">{{$message}}</p>
-                            @enderror
                         </div>
                     </div>
                 </div>
 
-                <table id="example1" class="table table-bordered table-striped">
+                <table id="group" class="table table-bordered table-striped">
                     <thead>
                         <tr>
+                            <th>رقم الهوية</th>
                             <th>اسم الطالب</th>
                             <th>الشهرية</th>
                             <th>الملازم</th>
@@ -52,6 +49,7 @@
                     <tbody>
                         @foreach ($students as $index => $student)
                         <tr>
+                            <td>{{$student->id}}</td>
                             <td>
                                 <div class="form-group mb-0">
                                     <label for="">{{$student->name}}</label>
@@ -82,6 +80,7 @@
                     </tbody>
                     <tfoot>
                         <tr>
+                            <th>رقم الهوية</th>
                             <th>اسم الطالب</th>
                             <th>الشهرية</th>
                             <th>الملازم</th>
@@ -124,7 +123,7 @@
         id = idFromBarcode(id)
         id = parseInt(id)
         $(`#${id}`).select()
-        $(`#${id}`).get(0).scrollIntoView()
+        $(`#${id}`).get(0).scrollIntoView({behavior: "smooth", block: "center", inline: "nearest"})
         $(`#${id}`).on('keypress',function(e){
             var keycode = (event.keyCode ? event.keyCode : event.which);
             if(keycode == '13'){

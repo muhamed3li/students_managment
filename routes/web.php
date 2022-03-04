@@ -5,7 +5,6 @@ use App\Http\Controllers\AdminHomeController;
 use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\BarcodeController;
 use App\Http\Controllers\CardsController;
-use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\ExamAttindanceController;
 use App\Http\Controllers\ExamController;
 use App\Http\Controllers\ExpenceController;
@@ -31,6 +30,7 @@ use Illuminate\Support\Facades\Route;
  * فصل الشهور في جدول منفصل عن جدول الماليات
  * صفحة فيها تقارير عن غياب اليوم بارقام اولياء الامور
  * صفحة المواعيد فيها شغل
+ * البطء في كل الجداول
  * الملازم والخصم يكونو اختياري
  * ألطالب الي لم يدفع قبل 25 يتم التنبيه
  * انا مش محتاج المستوى في الجداول الي فيها المجموعة
@@ -40,7 +40,7 @@ use Illuminate\Support\Facades\Route;
  * في صفحة انشاء طالب اضهار اختيار المستوى بالأعلى ووضع الاسعار تلقائي
  * عمل ماكس لعدد الطلبه في المجموعة
  * عدم ظهور المجموعه الممتلاه او ظهورها مع وجود علامه عل الاتلاء
- * 
+ * جدول في الداتابيز بالباركود
  */
 
 
@@ -59,7 +59,6 @@ Route::group(['prefix' => 'qrcode', 'as' => 'qrcode.'], function () {
     Route::post('/printSomeBigPrinter', [QrCodeController::class, 'printSomeBigPrinter'])->name('printSomeBigPrinter');
 });
 
-Route::resource('department', DepartmentController::class);
 
 Route::view('/mybarcode', 'admin.assets.mybarcode');
 

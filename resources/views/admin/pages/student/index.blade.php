@@ -7,11 +7,8 @@
     <div class="card">
         <div class="card-header">
             <h3 class="card-title">الطلاب</h3>
-            <a href="{{route($model.'.create')}}" class="btn btn-success float-right">انشاء</a>
+            <a href="{{route('student.create')}}" class="btn btn-success float-right">انشاء</a>
 
-
-        </div>
-        <div class="container">
             <a href="{{route('allBarcodesSmall')}}" class="btn btn-info float-right mr-5" id="print_parcode">طباعة كل
                 الباركود مقاس صغير</a>
 
@@ -21,7 +18,6 @@
             <a class="btn btn-warning float-right mr-5" id="print_cards" href="{{route('printAllStudentCards')}}">طباعة
                 كل البطاقات</a>
         </div>
-        <!-- /.card-header -->
         <div class="card-body">
             <table id="example1" class="table table-bordered table-striped">
                 <thead>
@@ -33,7 +29,6 @@
                         <th>العنوان</th>
                         <th>هاتف المنزل</th>
                         <th>الهاتف المحمول</th>
-                        {{-- <th>اسم الأب</th> --}}
                         <th>هاتف ولى الأمر</th>
                         <th>اسم المدرسة</th>
                         <th>الحالة</th>
@@ -55,7 +50,6 @@
                         <td>{{$item->address}}</td>
                         <td>{{$item->home_phone}}</td>
                         <td>{{$item->phone}}</td>
-                        {{-- <td>{{$item->father_name}}</td> --}}
                         <td>{{$item->father_phone}}</td>
                         <td>{{$item->school}}</td>
                         <td>{{$item->status}}</td>
@@ -84,10 +78,10 @@
                         </td>
 
                         <td class="text-right d-flex justify-content-around">
-                            <a class="btn btn-primary" href="{{route($model.'.edit',$item->id)}}">
+                            <a class="btn btn-primary" href="{{route('student.edit',$item->id)}}">
                                 <i class="fas fa-pen"></i>
                             </a>
-                            <form method="POST" action="{{route($model.'.destroy',$item->id)}}">
+                            <form method="POST" action="{{route('student.destroy',$item->id)}}">
                                 @csrf
                                 @method('DELETE')
                                 <input type="hidden" name="id" value="{{$item->id}}">
@@ -108,7 +102,6 @@
                         <th>العنوان</th>
                         <th>هاتف المنزل</th>
                         <th>الهاتف المحمول</th>
-                        {{-- <th>اسم الأب</th> --}}
                         <th>هاتف ولى الأمر</th>
                         <th>اسم المدرسة</th>
                         <th>الحالة</th>
@@ -122,31 +115,18 @@
                 </tfoot>
             </table>
         </div>
-        <!-- /.card-body -->
     </div>
-    <!-- /.card -->
-    <form method="POST" action="{{route($model.'.deleteAll')}}">
-        @csrf
-        <button type="submit" class="btn btn-danger mt-5 mb-1">
-            حذف كل البيانات
-            <i class="fas fa-trash"></i>
-        </button>
-    </form>
+
+
+    <x-helper.delete-all model="student" />
 </div>
 
 
 @endsection
 
 @section('specificScript')
-<!-- Page specific script -->
 <script>
     $(function () {
-      $("#example1").DataTable({
-        "responsive": false, "lengthChange": true, "autoWidth": true,
-        "scrollX": true,
-        "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-      }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-
     //   $('#print_parcode').on('click', function() {
     //         $.ajax({
     //             type: "POST",

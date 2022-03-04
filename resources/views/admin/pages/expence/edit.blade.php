@@ -3,51 +3,28 @@
 @section('content')
 
 <div class="col-md-6">
-    <!-- general form elements -->
     <div class="card card-primary">
         <div class="card-header">
             <h3 class="card-title">تعديل مصروف</h3>
         </div>
 
-        <!-- /.card-header -->
-        <!-- form start -->
-        <form action="{{route($model.'.update',$obj->id)}}" method="POST">
+        <form action="{{route('expence.update',$expence)}}" method="POST">
             @csrf
             @method('PUT')
+            <div class="card-body">
+                <x-form.input-text name="name" label="اسم المصروف" :old="$expence->name" />
 
+                <x-form.input-textarea name="reason" label="السبب" :old="$expence->reason" />
 
+                <x-form.input-text name="amount" label="الكمية" :old="$expence->amount" />
 
-            {!! form_text('name','اسم المصروف او العنوان',$obj->name) !!}
-            @error('name')
-            <p class="text-danger" id="myError">{{$message}}</p>
-            @enderror
-
-
-            {!! form_textarea('reason','السبب',$obj->reason) !!}
-            @error('reason')
-            <p class="text-danger" id="myError">{{$message}}</p>
-            @enderror
-
-
-            {!! form_text('amount','الكمية',$obj->amount) !!}
-            @error('amount')
-            <p class="text-danger" id="myError">{{$message}}</p>
-            @enderror
-
-
-            {!! form_date('date','التاريخ',$obj->date) !!}
-            @error('date')
-            <p class="text-danger" id="myError">{{$message}}</p>
-            @enderror
-
-            <!-- /.card-body -->
-
+                <x-form.input-date name="date" label="التاريخ" :old="$expence->date" />
+            </div>
             <div class="card-footer text-right">
                 <button type="submit" class="btn btn-primary swalDefaultSuccess">تأكيد</button>
             </div>
         </form>
     </div>
-    <!-- /.card -->
 </div>
 
 @endsection

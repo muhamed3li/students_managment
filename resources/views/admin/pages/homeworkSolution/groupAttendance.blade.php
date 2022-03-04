@@ -23,7 +23,7 @@
             <form action="{{route('homeworkSolution.attendGroup',$homework)}}" method="POST">
                 @csrf
 
-                <table id="example1" class="table table-bordered table-striped">
+                <table id="group" class="table table-bordered table-striped">
                     <thead>
                         <tr>
                             <th>اسم الطالب</th>
@@ -33,6 +33,7 @@
                     <tbody>
                         @foreach ($students as $index => $student)
                         <tr>
+                            <td>{{$student->id}}</td>
                             <td>
                                 <div class="form-group mb-0">
                                     <label for="">{{$student->name}}</label>
@@ -57,14 +58,12 @@
                         </tr>
                     </tfoot>
                 </table>
-                <!-- /.card-body -->
 
                 <div class="card-footer text-right">
                     <button type="submit" class="btn btn-primary swalDefaultSuccess">تأكيد</button>
                 </div>
             </form>
         </div>
-        <!-- /.card-body -->
     </div>
 </div>
 
@@ -75,7 +74,6 @@
 
 
 @section('specificScript')
-<!-- Page specific script -->
 <script>
     $(function () {
       $("#barcode").on('keypress',function(){
@@ -92,7 +90,7 @@
         id = idFromBarcode(id)
         id = parseInt(id)
         $(`#${id}`).select()
-        $(`#${id}`).get(0).scrollIntoView()
+        $(`#${id}`).get(0).scrollIntoView({behavior: "smooth", block: "center", inline: "nearest"})
         $(`#${id}`).on('keypress',function(e){
             var keycode = (event.keyCode ? event.keyCode : event.which);
             if(keycode == '13'){

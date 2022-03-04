@@ -5,63 +5,42 @@
 
 
 <div class="col-md-6">
-    <!-- general form elements -->
     <div class="card card-primary">
         <div class="card-header">
             <h3 class="card-title">اضافة امتحان</h3>
         </div>
 
-        <!-- /.card-header -->
-        <!-- form start -->
-        <form action="{{route($model.'.store')}}" method="POST">
+        <form action="{{route('exam.store')}}" method="POST">
             @csrf
 
+            <div class="card-body">
+                <x-form.input-text name="name" label="اسم الامتحان" />
 
+                <x-select-search :selectdata="$levels" name="level_id" label="المستوى" :old="old('level_id')" />
 
-            {!! form_text('name','اسم الامتحان') !!}
-            @error('name')
-            <p class="text-danger" id="myError">{{$message}}</p>
-            @enderror
+                <x-select-search :selectdata="$groups" name="group_id" label="المجموعة" :old="old('group_id')" />
 
+                <x-form.input-date name="exam_date" label="التاريخ" :old="date('Y-m-d')" />
 
-            {!! form_select('level_id','المستوى الدراسي') !!}
-            @error('level_id')
-            <p class="text-danger" id="myError">{{$message}}</p>
-            @enderror
+                <x-form.input-text name="exam_max" label="الدرجة العليا" />
 
-
-            {!! form_select('group_id','المجموعة') !!}
-            @error('group_id')
-            <p class="text-danger" id="myError">{{$message}}</p>
-            @enderror
-
-
-            {!! form_date('exam_date','تاريخ الامتحان') !!}
-            @error('exam_date')
-            <p class="text-danger" id="myError">{{$message}}</p>
-            @enderror
-
-
-            {!! form_text('exam_max','الدرجة العليا') !!}
-            @error('exam_max')
-            <p class="text-danger" id="myError">{{$message}}</p>
-            @enderror
-
-
-            {!! form_text('exam_min','الدرجة الصغرى') !!}
-            @error('exam_min')
-            <p class="text-danger" id="myError">{{$message}}</p>
-            @enderror
-            <!-- /.card-body -->
+                <x-form.input-text name="exam_min" label="الدرجة الصغرى" />
+            </div>
 
             <div class="card-footer text-right">
                 <button type="submit" class="btn btn-primary swalDefaultSuccess">تأكيد</button>
             </div>
         </form>
     </div>
-    <!-- /.card -->
 </div>
 
 
+@endsection
 
+@section('specificScript')
+<script>
+    $('.select2').select2()
+
+    getGroupFromLevel();
+</script>
 @endsection

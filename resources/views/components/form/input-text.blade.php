@@ -1,7 +1,7 @@
-<div class="form-group mb-5">
+<div class="form-group mt-3">
     <label for="{{$name}}">{{$label}}</label>
     <input type="text" class="form-control" id="{{$name}}" name="{{$name}}" value="{{$old}}">
 </div>
 @error($name)
-<p class="text-danger">{{$message}}</p>
+<p class="alert alert-danger" id="myError">{{$message}}</p>
 @enderror

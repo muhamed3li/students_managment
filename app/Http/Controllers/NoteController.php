@@ -2,50 +2,75 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Traits\CrudTrait;
+use App\Http\Requests\Admin\Note\NoteDestroyRequest;
+use App\Http\Requests\Admin\Note\NoteStoreRequest;
+use App\Http\Requests\Admin\Note\NoteUpdateRequest;
+use App\Models\Group;
 use App\Models\Level;
 use App\Models\Note;
+use App\Models\Student;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class NoteController extends Controller
 {
-    use CrudTrait;
     public $model;
-    public $modelName;
-
 
     public function __construct(Note $model)
     {
         $this->model = $model;
-        $this->modelName = strtolower(class_basename($model));
     }
 
     public function index()
     {
         $all = $this->model::with('student:id,name')->orderBy('id', 'DESC')->get();
-        $model = $this->modelName;
-        return view("admin.pages.{$this->modelName}.index",compact('all','model'));
+        return view("admin.pages.note.index", compact('all'));
     }
 
     public function create()
     {
-        $model = $this->modelName;
-        $levels = Level::get();
-        return view("admin.pages.{$this->modelName}.create",compact('model','levels'));
+        $levels = Level::get(['id', 'name']);
+        $groups = Group::get(['id', 'name']);
+        $students = Student::get(['id', 'name']);
+        return view("admin.pages.note.create", compact('levels', 'groups', 'students'));
     }
 
-    private function validation()
+    public function store(NoteStoreRequest $request)
     {
-        request()->validate([
-            'student_id' => 'required|int|exists:students,id',
-            'note' => 'required|string',
+        $this->model::create([
+            'student_id' => $request->student_id,
+            'note' => $request->note,
         ]);
+        Alert::success('نجاح', "تم تسجيل الملاحظه بنجاح");
+        return redirect()->back()->withInput();
     }
 
-    public function attReq()
+    public function edit(Note $note)
     {
-        return [
-            'student_id' => request('student_id'),
-            'note' => request('note'),
-        ];
+        $students = Student::get(['id', 'name']);
+        return view("admin.pages.note.edit", compact('note', 'students'));
+    }
+
+    public function update(NoteUpdateRequest $request, Note $note)
+    {
+        $note->update([
+            'student_id' => $request->student_id,
+            'note' => $request->note,
+        ]);
+        Alert::success('نجاح', "تم تعديل الملاحظه بنجاح");
+        return redirect()->back();
+    }
+
+    public function destroy(NoteDestroyRequest $request, Note $note)
+    {
+        $note->delete();
+        Alert::success('نجاح', "تم حذف الملاحظه بنجاح");
+        return redirect()->back();
+    }
+
+    public function deleteAll()
+    {
+        $this->model::getQuery()->delete();
+        Alert::success('نجاح', "تم حذف كل الملاحظات");
+        return redirect()->back();
     }
 }

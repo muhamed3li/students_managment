@@ -5,14 +5,11 @@
 
 
 <div class="col-md-6">
-    <!-- general form elements -->
     <div class="card card-primary">
         <div class="card-header">
             <h3 class="card-title">اضافة موعد</h3>
         </div>
 
-        <!-- /.card-header -->
-        <!-- form start -->
         <form action="{{route($model.'.store')}}" method="POST">
             @csrf
 
@@ -58,14 +55,12 @@
             @error('fri')
             <p class="text-danger" id="myError">{{$message}}</p>
             @enderror
-            <!-- /.card-body -->
 
             <div class="card-footer text-right">
                 <button type="submit" class="btn btn-primary swalDefaultSuccess">تأكيد</button>
             </div>
         </form>
     </div>
-    <!-- /.card -->
 </div>
 
 

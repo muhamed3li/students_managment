@@ -3,44 +3,22 @@
 @section('content')
 
 <div class="col-md-6">
-    <!-- general form elements -->
     <div class="card card-primary">
         <div class="card-header">
             <h3 class="card-title">تعديل مستوى</h3>
         </div>
 
-        <!-- /.card-header -->
-        <!-- form start -->
-        <form action="{{route($model.'.update',$obj->id)}}" method="POST">
+        <form action="{{route('level.update',$level)}}" method="POST">
             @csrf
             @method('PUT')
 
+            <div class="card-body">
+                <x-form.input-text name="name" label="اسم المستوى الدراسي" :old="$level->name" />
 
+                <x-form.input-text name="malazem_cost" label="مصاريف الملازم" :old="$level->malazem_cost" />
 
-            {!! form_text('name','اسم المستوى الدراسي',$obj->name) !!}
-            @error('name')
-            <p class="text-danger" id="myError">{{$message}}</p>
-            @enderror
-
-
-            {{-- {!! form_text('reserve_cost','مصاريف الحجز',$obj->reserve_cost) !!}
-            @error('reserve_cost')
-            <p class="text-danger" id="myError">{{$message}}</p>
-            @enderror --}}
-
-
-            {!! form_text('malazem_cost','مصاريف الملازم',$obj->malazem_cost) !!}
-            @error('malazem_cost')
-            <p class="text-danger" id="myError">{{$message}}</p>
-            @enderror
-
-
-            {!! form_text('month_cost','الشهرية',$obj->month_cost) !!}
-            @error('month_cost')
-            <p class="text-danger" id="myError">{{$message}}</p>
-            @enderror
-
-            <!-- /.card-body -->
+                <x-form.input-text name="month_cost" label="الشهرية" :old="$level->month_cost" />
+            </div>
 
             <div class="card-footer text-right">
                 <button type="submit" class="btn btn-primary swalDefaultSuccess">تأكيد</button>

@@ -17,21 +17,21 @@ class CreatePaymentsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('month_id')->nullable();
             $table->decimal('month_paid');
-            $table->decimal('malazem_paid');
+            $table->decimal('malazem_paid')->default(0);
             $table->decimal('discount')->default(0);
             $table->decimal('total');
             $table->unsignedBigInteger('student_id')->nullable();
             $table->timestamps();
 
             $table->foreign('student_id')
-            ->references('id')
-            ->on('students')
-            ->onDelete('set null');
+                ->references('id')
+                ->on('students')
+                ->onDelete('set null');
 
             $table->foreign('month_id')
-            ->references('id')
-            ->on('months')
-            ->onDelete('set null');
+                ->references('id')
+                ->on('months')
+                ->onDelete('set null');
         });
     }
 

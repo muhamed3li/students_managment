@@ -10,7 +10,6 @@
             <a href="{{route('homework.create')}}" class="btn btn-success float-right">انشاء</a>
         </div>
 
-        <!-- /.card-header -->
         <div class="card-body">
             <table id="example1" class="table table-bordered table-striped">
                 <thead>
@@ -64,29 +63,10 @@
                 </tfoot>
             </table>
         </div>
-        <!-- /.card-body -->
     </div>
-    <!-- /.card -->
-    <form method="POST" action="{{route('homework.deleteAll')}}">
-        @csrf
-        <button type="submit" class="btn btn-danger mt-5 mb-1">
-            حذف كل البيانات
-            <i class="fas fa-trash"></i>
-        </button>
-    </form>
+
+    <x-helper.delete-all model="homework" />
 </div>
 
 
-@endsection
-
-@section('specificScript')
-<!-- Page specific script -->
-<script>
-    $(function () {
-      $("#example1").DataTable({
-        "responsive": true, "lengthChange": true, "autoWidth": false,
-        "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-      }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-    });
-</script>
 @endsection

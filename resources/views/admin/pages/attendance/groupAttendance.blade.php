@@ -18,19 +18,16 @@
         </div>
 
 
-        <!-- /.card-header -->
         <div class="card-body">
             <form action="{{route('attendance.attendGroup')}}" method="POST">
                 @csrf
 
-                {!! form_date('day','التاريخ',$day) !!}
-                @error('day')
-                <p class="text-danger" id="myError">{{$message}}</p>
-                @enderror
+                <x-form.input-date name="day" label="التاريخ" :old="date('Y-m-d')" />
 
-                <table id="example1" class="table table-bordered table-striped">
+                <table id="group" class="table table-bordered table-striped">
                     <thead>
                         <tr>
+                            <th>رقم الهوية</th>
                             <th>اسم الطالب</th>
                             <th>حضر؟</th>
                         </tr>
@@ -38,6 +35,9 @@
                     <tbody>
                         @foreach ($students as $index => $student)
                         <tr class="{{$student->id}}">
+                            <td>
+                                {{$student->id}}
+                            </td>
                             <td>
                                 <div class="form-group mb-0">
                                     <label for="">{{$student->name}}</label>
@@ -56,19 +56,18 @@
                     </tbody>
                     <tfoot>
                         <tr>
+                            <th>رقم الهوية</th>
                             <th>اسم الطالب</th>
                             <th>حضر؟</th>
                         </tr>
                     </tfoot>
                 </table>
-                <!-- /.card-body -->
 
                 <div class="card-footer text-right">
                     <button type="submit" class="btn btn-primary swalDefaultSuccess">تأكيد</button>
                 </div>
             </form>
         </div>
-        <!-- /.card-body -->
     </div>
 </div>
 
@@ -78,7 +77,6 @@
 
 
 @section('specificScript')
-<!-- Page specific script -->
 <script>
     $(function () {
       $("#barcode").on('keypress',function(){
@@ -95,7 +93,7 @@
         id = idFromBarcode(id)
         id = parseInt(id)
         $(`#${id}`).prop('checked',true)
-        // $(`#${id}`).get(0).scrollIntoView(true)
+        $(`#${id}`).get(0).scrollIntoView({behavior: "smooth", block: "center", inline: "nearest"})
         $(`#${id}`).on('keypress',function(e){
             var keycode = (event.keyCode ? event.keyCode : event.which);
             if(keycode == '13'){

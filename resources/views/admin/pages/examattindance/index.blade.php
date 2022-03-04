@@ -7,10 +7,9 @@
     <div class="card">
         <div class="card-header">
             <h3 class="card-title">حضور الامتحان</h3>
-            <a href="{{route($model.'.create')}}" class="btn btn-success float-right">انشاء</a>
+            <a href="{{route('examattindance.create')}}" class="btn btn-success float-right">انشاء</a>
         </div>
 
-        <!-- /.card-header -->
         <div class="card-body">
             <table id="example1" class="table table-bordered table-striped">
                 <thead>
@@ -33,13 +32,13 @@
                         <td class="{{$item->exam->name ?? " text-danger"}}">{{$item->exam->name ?? "لا يوجد امتحان"}}
                         </td>
 
-                        <td class="{{$item->degree < $item->exam->exam_min ? 'text-danger' : 'text-success'}}">
+                        <td class="{{($item->degree < ($item->exam->exam_min ?? 0) )? 'text-danger' : 'text-success'}}">
                             {{$item->degree ?? "غياب"}}</td>
                         <td class="d-flex justify-content-center">
-                            <a class="btn btn-primary" href="{{route($model.'.edit',$item->id)}}">
+                            <a class="btn btn-primary" href="{{route('examattindance.edit',$item->id)}}">
                                 <i class="fas fa-pen"></i>
                             </a>
-                            <form method="POST" action="{{route($model.'.destroy',$item->id)}}">
+                            <form method="POST" action="{{route('examattindance.destroy',$item->id)}}">
                                 @csrf
                                 @method('DELETE')
                                 <input type="hidden" name="id" value="{{$item->id}}">
@@ -62,38 +61,17 @@
                 </tfoot>
             </table>
         </div>
-        <!-- /.card-body -->
     </div>
-    <!-- /.card -->
-    <form method="POST" action="{{route($model.'.deleteAll')}}">
-        @csrf
-        <button type="submit" class="btn btn-danger mt-5 mb-1">
-            حذف كل البيانات
-            <i class="fas fa-trash"></i>
-        </button>
-    </form>
+
+
+    <x-helper.delete-all model="examattindance" />
 </div>
 
 
 @endsection
 
 @section('specificScript')
-<!-- Page specific script -->
 <script>
-    $(function () {
-      $("#example1").DataTable({
-        "responsive": true, "lengthChange": true, "autoWidth": false,
-        "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-      }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-      $('#example2').DataTable({
-        "paging": true,
-        "lengthChange": false,
-        "searching": false,
-        "ordering": true,
-        "info": true,
-        "autoWidth": false,
-        "responsive": true,
-      });
-    });
+
 </script>
 @endsection

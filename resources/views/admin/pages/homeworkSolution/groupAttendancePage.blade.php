@@ -9,7 +9,6 @@
             <h3 class="card-title">صفحة حضور الواجب لمجموعة</h3>
         </div>
 
-        <!-- /.card-header -->
         <div class="card-body">
             <form action="{{route('homeworkSolution.groupAttendance')}}" method="POST">
                 @csrf
@@ -17,18 +16,15 @@
 
                 <x-select-search :selectdata="$levels" name="level_id" label="المستوى" />
 
-                <x-select-search :selectdata="$levels" name="group_id" label="المجموعة" />
+                <x-select-search :selectdata="$groups" name="group_id" label="المجموعة" />
 
-                <x-select-search :selectdata="$levels" name="homework_id" label="الواجب" />
-
-                <!-- /.card-body -->
+                <x-select-search :selectdata="$homeworks" name="homework_id" label="الواجب" />
 
                 <div class="card-footer text-right">
                     <button type="submit" class="btn btn-primary swalDefaultSuccess">تأكيد</button>
                 </div>
             </form>
         </div>
-        <!-- /.card-body -->
     </div>
 </div>
 
@@ -36,46 +32,11 @@
 @endsection
 
 @section('specificScript')
-<!-- Page specific script -->
 <script>
     $('.select2').select2()
 
-    $("#group_id").html("<option>اختر</option>")
-    $('#level_id').change(function(){
-        $.ajax("/level/getGroups/" + this.value ,
-        {
-            dataType: 'json',
-            success:function(data,status){
-                $("#group_id").html("<option>اختر</option>")
-                data.forEach(element => {
-                $("#group_id").append(`
-                <option value="${element.id}">${element.name}</option>
-                `)
-                });
-            },
-            error: function (jqXhr, textStatus, errorMessage) { 
-                console.log(errorMessage)
-            }
-        })
-    });
+    getGroupFromLevel();
 
-    $("#homework_id").html("<option>اختر</option>")
-    $('#group_id').change(function(){
-        $.ajax("/groups/getHomework/" + this.value ,
-        {
-            dataType: 'json',
-            success:function(data,status){
-                $("#homework_id").html("<option>اختر</option>")
-                data.forEach(element => {
-                $("#homework_id").append(`
-                <option value="${element.id}">${element.name}</option>
-                `)
-                });
-            },
-            error: function (jqXhr, textStatus, errorMessage) { 
-                console.log(errorMessage)
-            }
-        })
-    });
+    getHomeworkFromGroup();
 </script>
 @endsection

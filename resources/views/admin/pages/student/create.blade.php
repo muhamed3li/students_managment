@@ -2,152 +2,69 @@
 
 @section('content')
 
-
-
-<div class="col-md-6">
-    <!-- general form elements -->
+<div class="col-md-12">
     <div class="card card-primary">
         <div class="card-header">
             <h3 class="card-title">اضافة طالب</h3>
         </div>
 
-        <!-- /.card-header -->
-        <!-- form start -->
-        <form action="{{route($model.'.store')}}" method="POST">
+        <form action="{{route('student.store')}}" method="POST">
             @csrf
 
+            <div class="card-body row">
+                <div class="col-6">
+                    <x-form.input-text name="name" label="*اسم الطالب" />
 
-            {!! form_text('name','*اسم الطالب') !!}
-            @error('name')
-            <p class="text-danger" id="myError">{{$message}}</p>
-            @enderror
-
-
-            {!! form_check('gender','مذكر ؟') !!}
-            @error('gender')
-            <p class="text-danger" id="myError">{{$message}}</p>
-            @enderror
-
-
-            {!! form_text('address','العنوان') !!}
-            @error('address')
-            <p class="text-danger" id="myError">{{$message}}</p>
-            @enderror
+                    <x-select-search :selectdata="$levels" name="level_id" label="المستوى" :old="old('level_id')" />
+                    <x-select-search :selectdata="$groups" name="group_id" label="المجموعة" :old="old('group_id')" />
+                    <x-form.input-radio name="gender" label="النوع" :arr="[
+                            '0' => 'مؤنث',
+                            '1' => 'مذكر',
+                        ]" />
 
 
-            {!! form_text('home_phone','هاتف المنزل') !!}
-            @error('home_phone')
-            <p class="text-danger" id="myError">{{$message}}</p>
-            @enderror
+                    <x-form.input-text name="address" label="العنوان" />
+
+                    <x-form.input-text name="home_phone" label="هاتف المنزل" />
+                </div>
+
+                <div class="col-6">
 
 
-            {!! form_text('phone','هاتف المحمول') !!}
-            @error('phone')
-            <p class="text-danger" id="myError">{{$message}}</p>
-            @enderror
-
-            {{--
-            {!! form_text('father_name','اسم الأب') !!}
-            @error('father_name')
-            <p class="text-danger" id="myError">{{$message}}</p>
-            @enderror --}}
+                    <x-form.input-text name="phone" label="هاتف المحمول" />
 
 
-            {!! form_text('father_phone','هاتف ولى الأمر') !!}
-            @error('father_phone')
-            <p class="text-danger" id="myError">{{$message}}</p>
-            @enderror
+                    <x-form.input-text name="father_phone" label="هاتف ولى الأمر" />
 
+                    <x-form.input-text name="school" label="اسم المدرسة" />
 
-            {!! form_text('school','اسم المدرسة') !!}
-            @error('school')
-            <p class="text-danger" id="myError">{{$message}}</p>
-            @enderror
+                    <x-form.select-array name="status" label="الحالة الدراسية" :selectdata="[
+                'reserve' => 'قيد الحجز',
+                'in' => 'يدرس',
+                'out' => 'لا يدرس',
+                'fired' => 'مطرود'
+                ]" />
 
+                    <x-form.input-text name="reserve_paid" label="قيمة الحجز المدفوع" />
 
-            {!! form_select_array('status','الحالة الدراسية',[
-            'reserve' => 'قيد الحجز',
-            'in' => 'يدرس',
-            'out' => 'لا يدرس',
-            'fired' => 'مطرود'
-            ]
-            ) !!}
-            @error('status')
-            <p class="text-danger" id="myError">{{$message}}</p>
-            @enderror
+                </div>
 
-
-
-            {!! form_text('reserve_paid','قيمة الحجز المدفوع') !!}
-            @error('reserve_paid')
-            <p class="text-danger" id="myError">{{$message}}</p>
-            @enderror
-
-
-            {!! form_select('level_id','اسم المستوى') !!}
-            @error('level_id')
-            <p class="text-danger" id="myError">{{$message}}</p>
-            @enderror
-
-
-
-            {!! form_select('group_id','اسم المجموعة') !!}
-            @error('group_id')
-            <p class="text-danger" id="myError">{{$message}}</p>
-            @enderror
-            <!-- /.card-body -->
+            </div>
 
             <div class="card-footer text-right">
                 <button type="submit" class="btn btn-primary swalDefaultSuccess">تأكيد</button>
             </div>
         </form>
     </div>
-    <!-- /.card -->
 </div>
 
 @endsection
 
 
 @section('specificScript')
-<!-- Page specific script -->
 <script>
-    $("#group_id").html("")
-    $('#level_id').change(function(){
-        $.ajax("/level/getGroups/" + this.value ,
-        {
-            dataType: 'json',
-            success:function(data,status){
-                $("#group_id").html("")
-                data.forEach(element => {
-                $("#group_id").append(`
-                <option value="${element.id}">${element.name}</option>
-                `)
-                });
-            },
-            error: function (jqXhr, textStatus, errorMessage) { 
-                console.log(errorMessage)
-            }
-        })
-    });
-
-
-    $('.button_for_print_barcode').on('click', function() {
-        let input = $(this).siblings('.parcode_id_for_print')[0];
-        var id = $(input).val()
-        console.log(id);
-          
-        $.ajax({
-            type: "POST",
-            url: '/printSinlgeBarcode/' + id,
-            data: { _token: '{{csrf_token()}}' },
-            success: function (data) {
-                // $.print(data);
-            },
-            error: function (data, textStatus, errorThrown) {
-                console.log(data);
-            },
-        });
-    });
-    
+    $('#group_id').select2()
+    $('#level_id').select2()
+    getGroupFromLevel();
 </script>
 @endsection

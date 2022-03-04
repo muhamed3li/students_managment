@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Traits\CrudTrait;
+use App\Http\Requests\Admin\Attendance\AttendanceDestroyRequest;
+use App\Http\Requests\Admin\Attendance\AttendanceStoreRequest;
+use App\Http\Requests\Admin\Attendance\AttendanceUpdateRequest;
+use App\Http\Requests\Admin\Attendance\GroupAttendanceRequest;
 use App\Models\Attendance;
 use App\Models\Group;
 use App\Models\Level;
@@ -13,20 +16,16 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class AttendanceController extends Controller
 {
-    use CrudTrait;
     public $model;
-    public $modelName;
 
     public function __construct(Attendance $model)
     {
         $this->model = $model;
-        $this->modelName = strtolower(class_basename($model));
     }
 
     public function index()
     {
         $all = $this->model::with(['student:id,name,group_id,level_id', 'student.group:id,name', 'student.level:id,name'])->orderBy('id', 'DESC')->get();
-        // $all = $this->model::with('student.group.level')->orderBy('id', 'DESC')->get();
         $levels = Level::get(['id', 'name']);
         return view("admin.pages.attendance.index", compact('all', 'levels'));
     }
@@ -34,16 +33,72 @@ class AttendanceController extends Controller
     public function create()
     {
         $levels = Level::get();
-        return view("admin.pages.attendance.create", compact('levels'));
+        $groups = Group::get();
+        $students = Student::get();
+        return view("admin.pages.attendance.create", compact('levels', 'groups', 'students'));
+    }
+
+    public function store(AttendanceStoreRequest $request)
+    {
+        $student = Student::find($request->student_id);
+        if ($request->attend) {
+            $student->attendIn($request->day);
+            Alert::success('نجاح', "تم تحضير الطالب في ذلك اليوم");
+        } else {
+            $student->unAttendIn($request->day);
+            Alert::info('نجاح', "تم تغييب الطالب في ذلك اليوم");
+        }
+        return redirect()->back()->withInput();
+    }
+
+    public function edit(Attendance $attendance)
+    {
+        $students = Student::get(['id', 'name']);
+        return view("admin.pages.attendance.edit", compact('attendance', 'students'));
+    }
+
+    public function update(AttendanceUpdateRequest $request, Attendance $attendance)
+    {
+        if ($request->attend) {
+            $attendance->update([
+                'student_id' => $request->student_id,
+                'attend' => true,
+                'day' => $request->day
+            ]);
+            Alert::success('نجاح', "تم تحضير الطالب في ذلك اليوم");
+        } else {
+            $attendance->update([
+                'student_id' => $request->student_id,
+                'attend' => false,
+                'day' => $request->day
+            ]);
+            Alert::info('نجاح', "تم تغييب الطالب في ذلك اليوم");
+        }
+        return redirect()->back();
+    }
+
+    public function destroy(AttendanceDestroyRequest $request, Attendance $attendance)
+    {
+        $attendance->delete();
+        Alert::success('نجاح', "تم حذف الحضور بنجاح ");
+        return redirect()->back();
+    }
+
+    public function deleteAll()
+    {
+        Attendance::getQuery()->delete();
+        Alert::success('نجاح', "تم حذف كل الحضور");
+        return redirect()->back();
     }
 
     public function groupAttendancePage()
     {
-        $levels = Level::get();
-        return view('admin.pages.attendance.groupAttendancePage', compact('levels'));
+        $levels = Level::get(['id', 'name']);
+        $groups = Group::get(['id', 'name']);
+        return view('admin.pages.attendance.groupAttendancePage', compact('levels', 'groups'));
     }
 
-    public function groupAttendance(Request $request)
+    public function groupAttendance(GroupAttendanceRequest $request)
     {
         $group = Group::find($request->group_id);
         $day = $request->day;
@@ -57,7 +112,7 @@ class AttendanceController extends Controller
         $attends = $request->attend;
         $day = $request->day;
         foreach ($students as $index => $student) {
-            if (key_exists($index, $attends)) {
+            if (isset($attends) && key_exists($index, $attends)) {
                 $student->attendIn($day);
             } else {
                 $student->unAttendIn($day);
@@ -67,8 +122,6 @@ class AttendanceController extends Controller
         Alert::success('Success', "تم تحضير الطلاب في ذلك اليوم");
         return redirect(route('attendance.groupAttendancePage'));
     }
-
-
 
     public function attendAll(Request $request)
     {
@@ -126,8 +179,6 @@ class AttendanceController extends Controller
         }
     }
 
-
-
     public function attendStudentsWhoUnattended()
     {
         $groups = Group::get();
@@ -154,25 +205,6 @@ class AttendanceController extends Controller
         Alert::success('Success', "تم تغييب الطلاب في ذلك اليوم");
         return redirect()->back();
     }
-
-    private function validation()
-    {
-        request()->validate([
-            'student_id' => 'required|int|exists:students,id',
-            'attend' => 'boolean',
-            'day' => 'required|date',
-        ]);
-    }
-
-    public function attReq()
-    {
-        return [
-            'student_id' => request('student_id'),
-            'attend' => request('attend', false),
-            'day' => request('day'),
-        ];
-    }
-
 
     public function handleUnattend($group, $day)
     {
