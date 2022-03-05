@@ -19,7 +19,7 @@ class SelectArray extends Component
         $label,
         $selectdata,
         $name,
-        $old = null,
+        $old = null
     ) {
         $this->label = $label;
         $this->selectdata = $selectdata;

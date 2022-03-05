@@ -58,14 +58,30 @@
                 </tbody>
                 <tfoot>
                     <tr>
-                        <th>التسلسل</th>
-                        <th>المستوى</th>
-                        <th>المجموعة</th>
-                        <th>اسم الطالب</th>
-                        <th>الواجب</th>
-                        <th>الدرجة</th>
-                        <th>تاريخ الحل</th>
-                        <th>حذف وتعديل</th>
+                        <th>
+                            <input type="text" style="min-width:200px" />
+                        </th>
+                        <th>
+                            <input type="text" style="min-width:200px" />
+                        </th>
+                        <th>
+                            <input type="text" style="min-width:200px" />
+                        </th>
+                        <th>
+                            <input type="text" style="min-width:200px" />
+                        </th>
+                        <th>
+                            <input type="text" style="min-width:200px" />
+                        </th>
+                        <th>
+                            <input type="text" style="min-width:200px" />
+                        </th>
+                        <th>
+                            <input type="text" style="min-width:200px" />
+                        </th>
+                        <th>
+
+                        </th>
                     </tr>
                 </tfoot>
             </table>

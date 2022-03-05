@@ -47,11 +47,21 @@
                 </tbody>
                 <tfoot>
                     <tr>
-                        <th>التسلسل</th>
-                        <th>الشهر</th>
-                        <th>يبدا من</th>
-                        <th>ينتهي عند</th>
-                        <th>حذف وتعديل</th>
+                        <th>
+                            <input type="text" style="min-width:200px" />
+                        </th>
+                        <th>
+                            <input type="text" style="min-width:200px" />
+                        </th>
+                        <th>
+                            <input type="text" style="min-width:200px" />
+                        </th>
+                        <th>
+                            <input type="text" style="min-width:200px" />
+                        </th>
+                        <th>
+
+                        </th>
                     </tr>
                 </tfoot>
             </table>

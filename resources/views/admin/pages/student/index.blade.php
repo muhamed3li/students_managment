@@ -95,22 +95,54 @@
                 </tbody>
                 <tfoot>
                     <tr>
-                        <th>التسلسل</th>
-                        <th>رقم الهوية</th>
-                        <th>اسم الطالب</th>
-                        <th>النوع</th>
-                        <th>العنوان</th>
-                        <th>هاتف المنزل</th>
-                        <th>الهاتف المحمول</th>
-                        <th>هاتف ولى الأمر</th>
-                        <th>اسم المدرسة</th>
-                        <th>الحالة</th>
-                        <th>حجز مدفوع</th>
-                        <th>المستوى</th>
-                        <th>المجموعة</th>
-                        <th>طباعة الباركود</th>
-                        <th>طباعة البطاقة</th>
-                        <th>حذف وتعديل</th>
+                        <th>
+                            <input type="text" style="min-width:200px" />
+                        </th>
+                        <th>
+                            <input type="text" style="min-width:200px" id="exact" />
+                        </th>
+                        <th>
+                            <input type="text" style="min-width:200px" />
+                        </th>
+                        <th>
+                            <input type="text" style="min-width:200px" />
+                        </th>
+                        <th>
+                            <input type="text" style="min-width:200px" />
+                        </th>
+                        <th>
+                            <input type="text" style="min-width:200px" />
+                        </th>
+                        <th>
+                            <input type="text" style="min-width:200px" />
+                        </th>
+                        <th>
+                            <input type="text" style="min-width:200px" />
+                        </th>
+                        <th>
+                            <input type="text" style="min-width:200px" />
+                        </th>
+                        <th>
+                            <input type="text" style="min-width:200px" />
+                        </th>
+                        <th>
+                            <input type="text" style="min-width:200px" />
+                        </th>
+                        <th>
+                            <input type="text" style="min-width:200px" />
+                        </th>
+                        <th>
+                            <input type="text" style="min-width:200px" />
+                        </th>
+                        <th>
+
+                        </th>
+                        <th>
+
+                        </th>
+                        <th>
+
+                        </th>
                     </tr>
                 </tfoot>
             </table>

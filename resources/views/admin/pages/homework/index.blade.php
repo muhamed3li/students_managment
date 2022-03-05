@@ -53,12 +53,24 @@
                 </tbody>
                 <tfoot>
                     <tr>
-                        <th>التسلسل</th>
-                        <th>اسم الواجب</th>
-                        <th>المستوى</th>
-                        <th>المجموعة</th>
-                        <th>اخر موعد للتسليم</th>
-                        <th>حذف وتعديل</th>
+                        <th>
+                            <input type="text" style="min-width:200px" />
+                        </th>
+                        <th>
+                            <input type="text" style="min-width:200px" />
+                        </th>
+                        <th>
+                            <input type="text" style="min-width:200px" />
+                        </th>
+                        <th>
+                            <input type="text" style="min-width:200px" />
+                        </th>
+                        <th>
+                            <input type="text" style="min-width:200px" />
+                        </th>
+                        <th>
+
+                        </th>
                     </tr>
                 </tfoot>
             </table>

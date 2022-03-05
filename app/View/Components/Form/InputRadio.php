@@ -19,7 +19,7 @@ class InputRadio extends Component
         $label,
         $arr,
         $name,
-        $old = null,
+        $old = null
     ) {
         $this->label = $label;
         $this->arr = $arr;

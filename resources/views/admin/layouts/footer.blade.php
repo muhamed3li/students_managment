@@ -74,10 +74,10 @@
 
     
 
-    $('#example1 tfoot th').each( function () {
-        var title = $(this).text();
-        $(this).html( '<input type="text" style="min-width:200px" />' );
-    });
+    // $('#example1 tfoot th').each( function () {
+    //     var title = $(this).text();
+    //     $(this).html( '<input type="text" style="min-width:200px" />' );
+    // });
     $("#example1").DataTable({
         "responsive": false, "lengthChange": true, "autoWidth": false,
         "scrollX": true,
@@ -87,7 +87,15 @@
                 var that = this;
                 $( 'input', this.footer() ).on( 'keyup change clear', function () {
                     if ( that.search() !== this.value ) {
-                        that.search( this.value ).draw();
+                        if(this.id == "exact")
+                        {
+                            var val = this.value;
+                            that.search( val ? '^'+val+'$' : '', true, false ).draw();
+                        }
+                        else
+                        {
+                            that.search( this.value ).draw();
+                        }
                     }
                 } );
             } );

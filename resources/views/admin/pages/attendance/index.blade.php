@@ -133,14 +133,31 @@
                 </tbody>
                 <tfoot>
                     <tr>
-                        <th>الرقم التسلسلي</th>
-                        <th>هوية الطالب</th>
-                        <th>اسم الطالب</th>
-                        <th>المجموعة</th>
-                        <th>المستوى</th>
-                        <th>حالة الحضور</th>
-                        <th>التاريخ</th>
-                        <th>حذف وتعديل</th>
+                        <th>
+                            <input type="text" style="min-width:200px" />
+                        </th>
+                        <th>
+                            <input type="text" style="min-width:200px" id="exact" />
+                        </th>
+                        <th>
+                            <input type="text" style="min-width:200px" />
+                        </th>
+                        <th>
+                            <input type="text" style="min-width:200px" />
+                        </th>
+                        <th>
+                            <input type="text" style="min-width:200px" />
+                        </th>
+                        <th>
+                            <input type="text" style="min-width:200px" />
+                        </th>
+                        <th>
+                            <input type="text" style="min-width:200px" />
+                        </th>
+
+                        <th>
+                        </th>
+
                     </tr>
                 </tfoot>
             </table>

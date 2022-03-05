@@ -57,14 +57,30 @@
                 </tbody>
                 <tfoot>
                     <tr>
-                        <th>التسلسل</th>
-                        <th>اسم الامتحان</th>
-                        <th>المستوى</th>
-                        <th>المجموعة</th>
-                        <th>تاريخ الامتحان</th>
-                        <th>الدرجة العظمى</th>
-                        <th>الدرجة الصغرى</th>
-                        <th>حذف وتعديل</th>
+                        <th>
+                            <input type="text" style="min-width:200px" />
+                        </th>
+                        <th>
+                            <input type="text" style="min-width:200px" />
+                        </th>
+                        <th>
+                            <input type="text" style="min-width:200px" />
+                        </th>
+                        <th>
+                            <input type="text" style="min-width:200px" />
+                        </th>
+                        <th>
+                            <input type="text" style="min-width:200px" />
+                        </th>
+                        <th>
+                            <input type="text" style="min-width:200px" />
+                        </th>
+                        <th>
+                            <input type="text" style="min-width:200px" />
+                        </th>
+                        <th>
+
+                        </th>
                     </tr>
                 </tfoot>
             </table>

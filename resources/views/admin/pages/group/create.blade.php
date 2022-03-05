@@ -14,10 +14,10 @@
             @csrf
 
             <div class="card-body">
-                <x-form.input-text name="name" label="اسم المجموعة" />
 
                 <x-select-search :selectdata="$levels" name="level_id" label="المستوى" :old="old('level_id')" />
 
+                <x-form.input-text name="name" label="اسم المجموعة" />
 
                 <div class="form-group">
                     <label for="time">الميعاد</label>
