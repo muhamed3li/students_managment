@@ -24,7 +24,7 @@ class PaymentGroupRequest extends FormRequest
     public function rules()
     {
         return [
-            'group_id' => 'required|integer|exists:groups,id'
+            'group_id' => 'required|integer|exists:groups,id',
         ];
     }
 }

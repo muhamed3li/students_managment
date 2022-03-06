@@ -18,6 +18,7 @@
                         <th>الشهر</th>
                         <th>يبدا من</th>
                         <th>ينتهي عند</th>
+                        <th>عدد الأيام</th>
                         <th>حذف وتعديل</th>
                     </tr>
                 </thead>
@@ -29,6 +30,13 @@
                         <td>{{$item->name}}</td>
                         <td>{{$item->start}}</td>
                         <td>{{$item->end}}</td>
+                        <td>
+                            @php
+                            $start = strtotime($item->start);
+                            $end = strtotime($item->end);
+                            echo round(($end - $start) / (60 * 60 * 24));
+                            @endphp
+                        </td>
                         <td class="d-flex justify-content-center">
                             <a class="btn btn-primary" href="{{route('month.edit',$item->id)}}">
                                 <i class="fas fa-pen"></i>
@@ -47,6 +55,9 @@
                 </tbody>
                 <tfoot>
                     <tr>
+                        <th>
+                            <input type="text" style="min-width:200px" />
+                        </th>
                         <th>
                             <input type="text" style="min-width:200px" />
                         </th>

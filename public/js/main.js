@@ -1,3 +1,10 @@
+function idFromBarcode(id) {
+    if (id.length >= 5) {
+        id = id.slice(0, -1);
+    }
+    return id;
+}
+
 /**
  * ******************
  * **** Level Start ****
@@ -192,11 +199,4 @@ function attendAjax(e, studentsList) {
             console.log(data);
         },
     });
-}
-
-function idFromBarcode(id) {
-    if (id.length >= 5) {
-        id = id.slice(0, -1);
-    }
-    return id;
 }
