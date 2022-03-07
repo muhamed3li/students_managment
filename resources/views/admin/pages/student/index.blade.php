@@ -42,7 +42,7 @@
                 </thead>
                 <tbody>
                     @foreach ($all as $index => $item)
-                    <tr>
+                    <tr class="{{$item->status == 'in' ? 'bg-success' : ($item->status == 'out' ? 'bg-info' : ($item->status == 'reserve' ? 'bg-warning': 'bg-danger'))}}">
                         <td>{{++$index}}</td>
                         <td>{{$item->id}}</td>
                         <td>{{$item->name}}</td>
