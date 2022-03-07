@@ -4,6 +4,7 @@
         <span class="text-warninig">{{$notification->data['name']}}</span>
         <span>لم يدفع في شهر:</span>
         <span class="text-info">{{$notification->data['month']}}</span>
+        <a href="" class="btn btn-danger">A</a>
     </p>
     <span class="float-right text-muted text-sm">
         {{Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $notification->created_at)->format('Y-F-l')}}
