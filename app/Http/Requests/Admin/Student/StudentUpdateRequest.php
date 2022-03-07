@@ -26,6 +26,7 @@ class StudentUpdateRequest extends FormRequest
         return [
             'name' => 'required|string',
             'gender' => 'boolean',
+            'do_pay' => 'boolean',
             'address' => 'nullable|string',
             'home_phone' => 'nullable|string',
             'phone' => 'nullable|string',

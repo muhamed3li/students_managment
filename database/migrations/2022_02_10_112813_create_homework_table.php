@@ -16,6 +16,8 @@ class CreateHomeworkTable extends Migration
         Schema::create('homework', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->float('homework_max')->nullable();
+            $table->float('homework_min')->nullable();
             $table->unsignedBigInteger('level_id')->nullable();
             $table->unsignedBigInteger('group_id')->nullable();
             $table->date('deadline');

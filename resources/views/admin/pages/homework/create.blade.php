@@ -24,6 +24,11 @@
                 <x-select-search :selectdata="$groups" name="group_id" label="المجموعة" :old="old('group_id')" />
 
                 <x-form.input-date name="deadline" label="اخر معاد للتسليم" />
+
+                <x-form.input-text name="homework_max" label="الدرجه العليا" />
+                
+                <x-form.input-text name="homework_min" label="الدرجه الصغرى" />
+
             </div>
             <div class="card-footer text-right">
                 <button type="submit" class="btn btn-primary swalDefaultSuccess">تأكيد</button>

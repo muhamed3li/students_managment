@@ -38,6 +38,7 @@ class StudentController extends Controller
         $this->model::create([
             'name' => $request->name,
             'gender' => $request->gender,
+            'do_pay' => $request->do_pay,
             'address' => $request->address,
             'home_phone' => $request->home_phone,
             'phone' => $request->phone,
@@ -64,6 +65,7 @@ class StudentController extends Controller
         $student->update([
             'name' => $request->name,
             'gender' => $request->gender,
+            'do_pay' => $request->do_pay,
             'address' => $request->address,
             'home_phone' => $request->home_phone,
             'phone' => $request->phone,

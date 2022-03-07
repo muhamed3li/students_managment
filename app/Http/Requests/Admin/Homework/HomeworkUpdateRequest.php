@@ -26,6 +26,8 @@ class HomeworkUpdateRequest extends FormRequest
         return [
             // 'id' => 'exists:homework,id',
             'name' => 'required|string',
+            'homework_max' => 'required',
+            'homework_min' => 'required',
             'level_id' => 'exists:levels,id',
             'group_id' => 'exists:groups,id',
             'deadline' => 'required|date'

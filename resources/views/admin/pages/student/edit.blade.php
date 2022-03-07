@@ -44,7 +44,11 @@
                 ]" :old="$student->status" />
 
                     <x-form.input-text name="reserve_paid" label="قيمة الحجز المدفوع" :old="$student->reserve_paid" />
-
+                        
+                    <x-form.input-radio name="do_pay" label="الدفع" :arr="[
+                            '1' => 'يدفع',
+                            '0' => 'لا يدفع',
+                ]" :old="$student->do_pay" />
                 </div>
             </div>
 

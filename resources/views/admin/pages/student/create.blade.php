@@ -47,6 +47,10 @@
 
                     <x-form.input-text name="reserve_paid" label="قيمة الحجز المدفوع" />
 
+                    <x-form.input-radio name="do_pay" label="الدفع" :arr="[
+                            '1' => 'يدفع',
+                            '0' => 'لا يدفع',
+                        ]" />
                 </div>
 
             </div>

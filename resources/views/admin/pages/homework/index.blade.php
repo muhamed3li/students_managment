@@ -18,6 +18,8 @@
                         <th>اسم الواجب</th>
                         <th>المستوى</th>
                         <th>المجموعة</th>
+                        <th>الدرجة العليا</th>
+                        <th>الدرجة الصغرى</th>
                         <th>اخر موعد للتسليم</th>
                         <th>حذف وتعديل</th>
                     </tr>
@@ -32,6 +34,10 @@
                         </td>
 
                         <td class="{{$item->group->name ?? 'text-danger'}}">{{$item->group->name ?? "لا يوجد مجموعة"}}
+                        </td>
+                        <td >{{$item->homework_max}}
+                        </td>
+                        <td >{{$item->homework_min}}
                         </td>
 
                         <td>{{$item->deadline}}</td>
@@ -53,6 +59,12 @@
                 </tbody>
                 <tfoot>
                     <tr>
+                        <th>
+                            <input type="text" style="min-width:200px" />
+                        </th>
+                        <th>
+                            <input type="text" style="min-width:200px" />
+                        </th>
                         <th>
                             <input type="text" style="min-width:200px" />
                         </th>

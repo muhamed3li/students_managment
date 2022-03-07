@@ -17,7 +17,9 @@
                 <x-form.input-text name="name" label="اسم الواجب" :old="$homework->name" />
 
                 <x-form.input-date name="deadline" label="اخر معاد للتسليم" :old="$homework->deadline" />
-
+                
+                <x-form.input-text name="homework_max" label="الدرجه العليا" :old="$homework->homework_max" />
+                <x-form.input-text name="homework_min" label="الدرجه الصغرى" :old="$homework->homework_min"/>
             </div>
             <div class="card-footer text-right">
                 <button type="submit" class="btn btn-primary swalDefaultSuccess">Submit</button>

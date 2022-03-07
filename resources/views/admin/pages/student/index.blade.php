@@ -26,6 +26,7 @@
                         <th>رقم الهوية</th>
                         <th>اسم الطالب</th>
                         <th>النوع</th>
+                        <th>الدفع</th>
                         <th>العنوان</th>
                         <th>هاتف المنزل</th>
                         <th>الهاتف المحمول</th>
@@ -47,6 +48,7 @@
                         <td>{{$item->id}}</td>
                         <td>{{$item->name}}</td>
                         <td>{{$item->gender == 1 ? 'مذكر' : 'مؤنث'}}</td>
+                        <td>{{$item->do_pay == 1 ? 'يدفع' : 'لا يدفع'}}</td>
                         <td>{{$item->address}}</td>
                         <td>{{$item->home_phone}}</td>
                         <td>{{$item->phone}}</td>
@@ -100,6 +102,9 @@
                         </th>
                         <th>
                             <input type="text" style="min-width:200px" id="exact" />
+                        </th>
+                        <th>
+                            <input type="text" style="min-width:200px" />
                         </th>
                         <th>
                             <input type="text" style="min-width:200px" />

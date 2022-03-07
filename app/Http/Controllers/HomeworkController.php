@@ -28,7 +28,14 @@ class HomeworkController extends Controller
 
     public function store(HomeworkStoreRequest $request)
     {
-        Homework::create($request->validated());
+        Homework::create([
+            'name' => $request->name,
+            'homework_max' => $request->homework_max,
+            'homework_min' => $request->homework_min,
+            'level_id' => $request->level_id,
+            'group_id' => $request->group_id,
+            'deadline' => $request->deadline,
+        ]);
         Alert::success('Success', "تمت اضافة الواجب");
         return redirect()->back()->withInput();
     }
@@ -40,7 +47,12 @@ class HomeworkController extends Controller
 
     public function update(HomeworkUpdateRequest $request, Homework $homework)
     {
-        $homework->update($request->validated());
+        $homework->update([
+            'name' => $request->name,
+            'homework_max' => $request->homework_max,
+            'homework_min' => $request->homework_min,
+            'deadline' => $request->deadline,
+        ]);
         Alert::success('Success', "تمت عملية التعديل الواجب");
         return redirect()->back();
     }
